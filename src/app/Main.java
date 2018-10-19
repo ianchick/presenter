@@ -48,6 +48,7 @@ public class Main extends Application {
 
         window.setScene(scene);
         window.setTitle("Slides");
+        window.setMaximized(true);
         window.show();
 
         window.setOnCloseRequest(e -> System.exit(0));
@@ -68,19 +69,18 @@ public class Main extends Application {
         fontSizeCombo.setOnAction(e -> {
             LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
             if (LiveView.isLive()) {
-                System.out.println(fontSizeCombo.getValue());
                 LiveView.setCurrentSlide(LiveView.getTextView().getText());
             }
         });
 
         Button searchMusixMatch = setMusixMatchButton();
 
-        Separator separator = new Separator();
-        separator.setOrientation(Orientation.VERTICAL);
-
         Button editSong = setEditSongButton();
 
-        toolBar.getItems().addAll(startLive, addSong, separator, fontSizeLabel, fontSizeCombo, searchMusixMatch, editSong);
+        toolBar.getItems().addAll(startLive, addSong, new Separator(Orientation.VERTICAL),
+                fontSizeLabel, fontSizeCombo, new Separator(Orientation.VERTICAL),
+                searchMusixMatch, new Separator(Orientation.VERTICAL),
+                editSong);
     }
 
     private Button setEditSongButton() {

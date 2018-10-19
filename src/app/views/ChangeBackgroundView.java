@@ -21,16 +21,12 @@ public class ChangeBackgroundView {
         flow = new FlowPane();
         flow.setPadding(new Insets(10));
         parent = parentScrollPane;
+        parent.setId("background_scroll_pane");
         parent.setFitToHeight(true);
         parent.setFitToWidth(true);
         parent.setContent(flow);
 
         setBackgroundSlides();
-
-        parent.viewportBoundsProperty().addListener((observableValue, oldBounds, newBounds) -> {
-            flow.setPrefWidth(newBounds.getWidth());
-            flow.setPrefHeight(newBounds.getHeight());
-        });
     }
 
     public void setBackgroundSlides() {

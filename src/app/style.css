@@ -15,6 +15,10 @@
     -fx-max-height: 150;
 }
 
+#background_scroll_pane {
+    -fx-max-height: 300
+}
+
 #slide_preview_text {
     -fx-fill: #fff;
     -fx-text-alignment: center;
