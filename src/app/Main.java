@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,7 @@ import java.io.File;
 public class Main extends Application {
 
     private SongListView songListView;
+    private Button liveViewButton;
 
     public static void main(String[] args) {
         launch(args);
@@ -47,10 +49,10 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
         window.setScene(scene);
-        window.setTitle("Slides");
+        window.setTitle("Amateur Presenter");
         window.setMaximized(true);
+        window.getIcons().add(new Image("file:resources/icon.png"));
         window.show();
-
         window.setOnCloseRequest(e -> System.exit(0));
     }
 
@@ -69,7 +71,7 @@ public class Main extends Application {
         fontSizeCombo.setOnAction(e -> {
             LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
             if (LiveView.isLive()) {
-                LiveView.setCurrentSlide(LiveView.getTextView().getText());
+                LiveView.setFontSize(LiveView.getTextView().getText());
             }
         });
 
@@ -120,10 +122,22 @@ public class Main extends Application {
     }
 
     private Button setLiveView() {
-        Button button = new Button("Start");
-        button.setId("start_live_btn");
-        button.setOnAction(e -> LiveView.display());
-        return button;
+        if (liveViewButton == null) {
+            liveViewButton = new Button("Start");
+            liveViewButton.setId("start_live_btn");
+        }
+            liveViewButton.setOnAction(e -> {
+                if (!LiveView.isLive()) {
+                    LiveView.display();
+                    liveViewButton.setText("Stop");
+                }
+                else {
+                    LiveView.getWindow().close();
+                    LiveView.setLive(false);
+                    liveViewButton.setText("Start");
+                }
+            });
+        return liveViewButton;
     }
 
     private Button setCreateSongView() {
