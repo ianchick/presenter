@@ -33,7 +33,7 @@ public class Main extends Application {
         setChangeBackgroundView(backgroundPane);
         setSongListView(listSongsBox, slidesPane);
 
-        ToolBar toolBar = new NavigationBar().setup(songListView);
+        ToolBar toolBar = NavigationBar.setup(songListView);
 
         root.setTop(toolBar);
         root.setLeft(listSongsBox);

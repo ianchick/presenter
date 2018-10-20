@@ -11,30 +11,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 
 public class NavigationBar {
 
-    private Button liveViewButton;
-    private SongListView songListView;
+    private static Button liveViewButton;
+    private static SongListView songListView;
+    private static Button editSongButton;
 
-    public ToolBar setup(SongListView songListView) {
+    public static ToolBar setup(SongListView songList) {
         ToolBar toolBar = new ToolBar();
-        this.songListView = songListView;
+        songListView = songList;
 
         Button startLive = setLiveView();
         Button addSong = setCreateSongView();
 
         Label fontSizeLabel = new Label("Text Size");
-        ObservableList<String> options = FXCollections.observableArrayList("24", "32", "40", "48", "56", "64", "72", "80", "88", "96", "104");
-        ComboBox<String> fontSizeCombo = new ComboBox<>(options);
-        fontSizeCombo.setOnAction(e -> {
-            LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
-            if (LiveView.isLive()) {
-                LiveView.setFontSize(LiveView.getTextView().getText());
-            }
-        });
+        ComboBox<String> fontSizeCombo = setFontSizeComboBox();
 
         Button searchMusixMatch = setMusixMatchButton();
 
@@ -48,26 +44,48 @@ public class NavigationBar {
         return toolBar;
     }
 
-    private Button setLiveView() {
+    private static ComboBox<String> setFontSizeComboBox() {
+        ObservableList<String> options = FXCollections.observableArrayList("24", "32", "40", "48", "56", "64", "72", "80", "88", "96", "104");
+        ComboBox<String> fontSizeCombo = new ComboBox<>(options);
+        fontSizeCombo.getSelectionModel().select(5);
+        fontSizeCombo.setOnAction(e -> {
+            LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
+            if (LiveView.isLive()) {
+                LiveView.setFontSize(LiveView.getTextView().getText());
+            }
+        });
+        return fontSizeCombo;
+    }
+
+    private static Button setLiveView() {
         if (liveViewButton == null) {
-            liveViewButton = new Button("Start");
-            liveViewButton.setId("start_live_btn");
+            liveViewButton = new Button();
+            Image buttonImage = new Image("file:resources/play_button.png");
+            ImageView imageView = new ImageView(buttonImage);
+            imageView.setFitHeight(20);
+            imageView.setFitWidth(20);
+            imageView.preserveRatioProperty().setValue(false);
+            liveViewButton.setGraphic(imageView);
         }
         liveViewButton.setOnAction(e -> {
             if (!LiveView.isLive()) {
                 LiveView.display();
-                liveViewButton.setText("Stop");
+                ImageView imageView = (ImageView) liveViewButton.getGraphic();
+                imageView.setImage(new Image("file:resources/stop_button.png"));
+                liveViewButton.setGraphic(imageView);
             }
             else {
                 LiveView.getWindow().close();
                 LiveView.setLive(false);
-                liveViewButton.setText("Start");
+                ImageView imageView = (ImageView) liveViewButton.getGraphic();
+                imageView.setImage(new Image("file:resources/play_button.png"));
+                liveViewButton.setGraphic(imageView);
             }
         });
         return liveViewButton;
     }
 
-    private Button setCreateSongView() {
+    private static Button setCreateSongView() {
         Button button = new Button("Add Song");
         button.setOnAction(e -> {
             CreateSongView createSongView = new CreateSongView();
@@ -78,7 +96,7 @@ public class NavigationBar {
         return button;
     }
 
-    private Button setMusixMatchButton() {
+    private static Button setMusixMatchButton() {
         MusixMatchControl controller = new MusixMatchControl();
         controller.auth();
         Button button = new Button("Search For Lyrics");
@@ -90,9 +108,10 @@ public class NavigationBar {
         return button;
     }
 
-    private Button setEditSongButton() {
-        Button button = new Button("Edit Song");
-        button.setOnAction(e -> {
+    private static Button setEditSongButton() {
+        editSongButton = new Button("Edit Song");
+        editSongButton.setDisable(true);
+        editSongButton.setOnAction(e -> {
             Song song = songListView.getSelectedSong();
             if (song != null) {
                 CreateSongView createSongView = new CreateSongView();
@@ -106,6 +125,10 @@ public class NavigationBar {
                 }
             }
         });
-        return button;
+        return editSongButton;
+    }
+
+    public static Button getEditSongButton() {
+        return editSongButton;
     }
 }

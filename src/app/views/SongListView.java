@@ -2,6 +2,7 @@ package app.views;
 
 import app.models.Song;
 import app.storage.StorageController;
+import app.toolbars.NavigationBar;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.NavigableMap;
 
 public class SongListView {
 
@@ -29,6 +31,7 @@ public class SongListView {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
                 setSlidesListView(slidesPane);
+                NavigationBar.getEditSongButton().setDisable(false);
             }
         });
         parent.getChildren().add(listView);
