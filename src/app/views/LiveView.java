@@ -76,6 +76,10 @@ public class LiveView {
     }
 
     private static void handleCloseEvents() {
+        window.setOnHidden(e -> {
+            e.consume();
+            closeLiveView();
+        });
         window.setOnCloseRequest(e -> {
             e.consume();
             closeLiveView();

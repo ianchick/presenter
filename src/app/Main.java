@@ -27,7 +27,9 @@ public class Main extends Application {
         root.setId("root");
 
         VBox listSongsBox = new VBox();
-        ScrollPane slidesPane = new ScrollPane();
+        ScrollPane slidesView = new ScrollPane();
+        slidesView.setId("slides_scroll_pane");
+        ScrollPane slidesPane = slidesView;
         ScrollPane backgroundPane = new ScrollPane();
 
         setChangeBackgroundView(backgroundPane);

@@ -19,7 +19,7 @@ public class ChangeBackgroundView {
 
     public void display(ScrollPane parentScrollPane) {
         flow = new FlowPane();
-        flow.setPadding(new Insets(10));
+        flow.setId("background_flow");
         parent = parentScrollPane;
         parent.setId("background_scroll_pane");
         parent.setFitToHeight(true);

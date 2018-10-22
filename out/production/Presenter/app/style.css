@@ -15,8 +15,21 @@
     -fx-max-height: 150;
 }
 
+#background_flow {
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-padding: 10;
+}
+
 #background_scroll_pane {
-    -fx-max-height: 300
+    -fx-max-height: 300;
+    -fx-background: #D3D3D3;
+    -fx-focus-color: transparent;
+}
+
+#slides_scroll_pane {
+    -fx-background: #C0C0C0;
+    -fx-focus-color: transparent;
 }
 
 #slide_preview_text {
@@ -26,6 +39,7 @@
 
 #song_list_listview {
     -fx-preferred-height: 0;
+    -fx-focus-color: transparent;
 }
 
 #main_content_anchor {
@@ -35,6 +49,6 @@
 #start_live_btn {
 }
 
-#testbounds {
-    -fx-background-color: #AAA;
+.button {
+    -fx-focus-color: transparent;
 }
