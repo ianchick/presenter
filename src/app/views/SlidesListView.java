@@ -61,7 +61,7 @@ public class SlidesListView {
                         activeSlide.setBorder(null);
                     }
                     activeSlide = (StackPane) item;
-                    activeSlide.setBorder(new Border(new BorderStroke(Color.valueOf("#39ff14"), BorderStrokeStyle.SOLID, new CornerRadii(0), BorderStroke.THICK)));
+                    activeSlide.setBorder(new Border(new BorderStroke(Color.valueOf("#49E20E"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(4))));
                 }
             }
         }));

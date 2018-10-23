@@ -29,17 +29,16 @@ public class Main extends Application {
         VBox listSongsBox = new VBox();
         ScrollPane slidesView = new ScrollPane();
         slidesView.setId("slides_scroll_pane");
-        ScrollPane slidesPane = slidesView;
         ScrollPane backgroundPane = new ScrollPane();
 
         setChangeBackgroundView(backgroundPane);
-        setSongListView(listSongsBox, slidesPane);
+        setSongListView(listSongsBox, slidesView);
 
         ToolBar toolBar = NavigationBar.setup(songListView);
 
         root.setTop(toolBar);
         root.setLeft(listSongsBox);
-        root.setCenter(slidesPane);
+        root.setCenter(slidesView);
         root.setBottom(backgroundPane);
 
         Scene scene = new Scene(root);
