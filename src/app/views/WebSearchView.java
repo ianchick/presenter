@@ -24,7 +24,7 @@ public class WebSearchView {
         VBox content = new VBox(10);
         Text errorText = new Text();
         errorText.setFill(Color.RED);
-        errorText.setVisible(false);
+        errorText.setManaged(false);
         Label titleLabel = new Label("Track Title");
         TextField title = new TextField();
         Label artistLabel = new Label("Artist Name");
@@ -41,14 +41,14 @@ public class WebSearchView {
                     songSaved = createSongView.display();
                     window.close();
                 } else {
-                    errorText.setVisible(true);
+                    errorText.setManaged(true);
                     errorText.setText("Song and lyrics not found");
                 }
             }
         });
         content.setPadding(new Insets(10));
         content.getChildren().addAll(errorText, titleLabel, title, artistLabel, artist, submit);
-        window.setScene(new Scene(content));
+        window.setScene(new Scene(content, 220, 220));
         window.showAndWait();
         return songSaved;
     }
