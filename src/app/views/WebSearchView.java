@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,6 +22,9 @@ public class WebSearchView {
         window.setTitle("Web Search");
         window.initModality(Modality.APPLICATION_MODAL);
         VBox content = new VBox(10);
+        Text errorText = new Text();
+        errorText.setFill(Color.RED);
+        errorText.setVisible(false);
         Label titleLabel = new Label("Track Title");
         TextField title = new TextField();
         Label artistLabel = new Label("Artist Name");
@@ -30,14 +34,20 @@ public class WebSearchView {
             if (validations(title, artist)) {
                 WebScrapingController controller = new WebScrapingController();
                 String lyrics = controller.getLyrics(artist.getText(), title.getText());
-                CreateSongView createSongView = new CreateSongView();
-                createSongView.setFields(title.getText(), lyrics);
-                songSaved = createSongView.display();
-                window.close();
+                if (lyrics != null) {
+                    System.out.println(lyrics);
+                    CreateSongView createSongView = new CreateSongView();
+                    createSongView.setFields(title.getText(), lyrics);
+                    songSaved = createSongView.display();
+                    window.close();
+                } else {
+                    errorText.setVisible(true);
+                    errorText.setText("Song and lyrics not found");
+                }
             }
         });
         content.setPadding(new Insets(10));
-        content.getChildren().addAll(titleLabel, title, artistLabel, artist, submit);
+        content.getChildren().addAll(errorText, titleLabel, title, artistLabel, artist, submit);
         window.setScene(new Scene(content));
         window.showAndWait();
         return songSaved;
