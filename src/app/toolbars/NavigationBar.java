@@ -70,19 +70,20 @@ public class NavigationBar {
         liveViewButton.setOnAction(e -> {
             if (!LiveView.isLive()) {
                 LiveView.display();
-                ImageView imageView = (ImageView) liveViewButton.getGraphic();
-                imageView.setImage(new Image("file:resources/stop_button.png"));
-                liveViewButton.setGraphic(imageView);
+                LiveView.setLive(true);
+                setImageButtonImage("file:resources/stop_button.png");
             }
             else {
                 LiveView.getWindow().close();
                 LiveView.setLive(false);
-                ImageView imageView = (ImageView) liveViewButton.getGraphic();
-                imageView.setImage(new Image("file:resources/play_button.png"));
-                liveViewButton.setGraphic(imageView);
+                setImageButtonImage("file:resources/play_button.png");
             }
         });
         return liveViewButton;
+    }
+
+    public static void setImageButtonImage(String fileName) {
+        ((ImageView) liveViewButton.getGraphic()).setImage(new Image(fileName));
     }
 
     private static Button setCreateSongView() {

@@ -1,5 +1,6 @@
 package app.views;
 
+import app.toolbars.NavigationBar;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -80,10 +81,6 @@ public class LiveView {
             e.consume();
             closeLiveView();
         });
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeLiveView();
-        });
         window.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.ESCAPE == event.getCode()) {
                 closeLiveView();
@@ -94,6 +91,7 @@ public class LiveView {
     private static void closeLiveView() {
         setLive(false);
         SlidesListView.unsetActiveSlide();
+        NavigationBar.setImageButtonImage("file:resources/play_button.png");
         window.close();
     }
 
