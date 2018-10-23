@@ -1,12 +1,9 @@
 package app.toolbars;
 
-import app.MusixMatchControl;
+import app.MusixMatchController;
 import app.models.Song;
 import app.storage.StorageController;
-import app.views.CreateSongView;
-import app.views.LiveView;
-import app.views.SlidesListView;
-import app.views.SongListView;
+import app.views.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -31,14 +28,14 @@ public class NavigationBar {
 
         Label fontSizeLabel = new Label("Text Size");
         ComboBox<String> fontSizeCombo = setFontSizeComboBox();
+        Button searchWebButton = setWebSearchButton();
 
-        Button searchMusixMatch = setMusixMatchButton();
 
         Button editSong = setEditSongButton();
 
         toolBar.getItems().addAll(startLive, addSong, new Separator(Orientation.VERTICAL),
                 fontSizeLabel, fontSizeCombo, new Separator(Orientation.VERTICAL),
-                searchMusixMatch, new Separator(Orientation.VERTICAL),
+                searchWebButton, new Separator(Orientation.VERTICAL),
                 editSong);
 
         return toolBar;
@@ -97,12 +94,11 @@ public class NavigationBar {
         return button;
     }
 
-    private static Button setMusixMatchButton() {
-        MusixMatchControl controller = new MusixMatchControl();
-        controller.auth();
+    private static Button setWebSearchButton() {
+        WebSearchView webSearchView = new WebSearchView();
         Button button = new Button("Search For Lyrics");
         button.setOnAction(e -> {
-            if (controller.displaySearch()) {
+            if (webSearchView.displaySearch()) {
                 songListView.populateSongList();
             }
         });
