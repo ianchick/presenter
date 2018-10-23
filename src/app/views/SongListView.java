@@ -4,8 +4,11 @@ import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.NavigationBar;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -17,12 +20,15 @@ public class SongListView {
 
     private Song selectedSong;
     private SlidesListView slidesListView;
+    private TextField searchBar;
 
     private ListView<Song> listView;
 
     public void display(Pane parent, ScrollPane slidesPane) {
         listView = new ListView<>();
         VBox.setVgrow(listView, Priority.ALWAYS);
+        searchBar = new TextField();
+        searchBar.setPromptText("Search...");
         listView.setId("song_list_listview");
         populateSongList();
         listView.getSelectionModel().selectedItemProperty().addListener(e -> {
@@ -32,12 +38,22 @@ public class SongListView {
                 NavigationBar.getEditSongButton().setDisable(false);
             }
         });
-        parent.getChildren().add(listView);
+        parent.getChildren().addAll(searchBar, listView);
     }
 
     public void populateSongList() {
-        ArrayList<Song> songList = getSongs();
-        listView.setItems(FXCollections.observableArrayList(songList));
+        ObservableList<Song> rawData= FXCollections.observableArrayList(getSongs());
+        FilteredList<Song> filteredList= new FilteredList<>(rawData, data -> true);
+        listView.setItems(filteredList);
+        searchBar.textProperty().addListener(((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(data -> {
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseSearch = newValue.toLowerCase();
+                return (data.getTitle().toLowerCase()).contains(lowerCaseSearch);
+            });
+        }));
     }
 
     private ArrayList<Song> getSongs() {
