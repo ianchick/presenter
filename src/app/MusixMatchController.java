@@ -12,6 +12,9 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Unused due to paid api license
+ */
 public class MusixMatchController {
 
     private MusixMatch musixMatch;

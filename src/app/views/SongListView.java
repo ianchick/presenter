@@ -12,11 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.NavigableMap;
 
 public class SongListView {
 
-    private ArrayList<Song> songList;
     private Song selectedSong;
     private SlidesListView slidesListView;
 
@@ -38,25 +36,18 @@ public class SongListView {
     }
 
     public void populateSongList() {
-        songList = getSongs();
+        ArrayList<Song> songList = getSongs();
         listView.setItems(FXCollections.observableArrayList(songList));
-    }
-
-    private void setSlidesListView(ScrollPane slidesPane) {
-        slidesListView = new SlidesListView();
-        slidesListView.display(selectedSong, slidesPane);
     }
 
     private ArrayList<Song> getSongs() {
         ArrayList<Song> songs = new ArrayList<>();
         ArrayList<File> files = StorageController.getFilesFromDir(StorageController.SONGS_PATH);
-        if (files != null) {
-            for (File file : files) {
-                Song song = new Song(StorageController.convertFileNameToTitle(file.getName()));
-                song.setSlides(StorageController.getSlidesFromFile(file));
-                song.setLyricsFromSlides();
-                songs.add(song);
-            }
+        for (File file : files) {
+            Song song = new Song(StorageController.convertFileNameToTitle(file.getName()));
+            song.setSlides(StorageController.getSlidesFromFile(file));
+            song.setLyricsFromSlides();
+            songs.add(song);
         }
         return songs;
     }
@@ -67,5 +58,10 @@ public class SongListView {
 
     public SlidesListView getSlidesListView() {
         return slidesListView;
+    }
+
+    private void setSlidesListView(ScrollPane slidesPane) {
+        slidesListView = new SlidesListView();
+        slidesListView.display(selectedSong, slidesPane);
     }
 }

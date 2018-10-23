@@ -1,6 +1,5 @@
 package app.toolbars;
 
-import app.MusixMatchController;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
@@ -69,8 +68,7 @@ public class NavigationBar {
                 LiveView.display();
                 LiveView.setLive(true);
                 setImageButtonImage("file:resources/stop_button.png");
-            }
-            else {
+            } else {
                 LiveView.getWindow().close();
                 LiveView.setLive(false);
                 setImageButtonImage("file:resources/play_button.png");

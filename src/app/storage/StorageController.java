@@ -66,7 +66,7 @@ public class StorageController {
         if (list != null) {
             return new ArrayList<>(Arrays.asList(list));
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public static boolean deleteFile(String title) {
@@ -75,7 +75,7 @@ public class StorageController {
         return file.delete();
     }
 
-    public static String convertTitleToFileName(String title) {
+    private static String convertTitleToFileName(String title) {
         return title.replace(" ", "_");
     }
 
@@ -83,11 +83,11 @@ public class StorageController {
         return filename.replace("_", " ");
     }
 
-    public static String convertLyricsToFileFormat(String text) {
+    private static String convertLyricsToFileFormat(String text) {
         return text.replace("\n", "\\n");
     }
 
-    public static String convertFileFormatToLyrics(String text) {
+    private static String convertFileFormatToLyrics(String text) {
         return text.replace("\\n", "\n");
     }
 

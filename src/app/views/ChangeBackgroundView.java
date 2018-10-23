@@ -1,7 +1,6 @@
 package app.views;
 
 import app.storage.StorageController;
-import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,22 +13,19 @@ import java.util.ArrayList;
 public class ChangeBackgroundView {
 
     private FlowPane flow;
-    private ScrollPane parent;
     private StackPane activeBackground;
 
     public void display(ScrollPane parentScrollPane) {
         flow = new FlowPane();
         flow.setId("background_flow");
-        parent = parentScrollPane;
-        parent.setId("background_scroll_pane");
-        parent.setFitToHeight(true);
-        parent.setFitToWidth(true);
-        parent.setContent(flow);
-
+        parentScrollPane.setId("background_scroll_pane");
+        parentScrollPane.setFitToHeight(true);
+        parentScrollPane.setFitToWidth(true);
+        parentScrollPane.setContent(flow);
         setBackgroundSlides();
     }
 
-    public void setBackgroundSlides() {
+    private void setBackgroundSlides() {
         ArrayList<File> backgroundFiles = StorageController.getFilesFromDir(StorageController.BACKGROUNDS_PATH);
         for (File file : backgroundFiles) {
             StackPane pane = new StackPane();

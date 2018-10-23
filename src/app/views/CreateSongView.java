@@ -12,10 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class CreateSongView {
 
     private TextField titleField;

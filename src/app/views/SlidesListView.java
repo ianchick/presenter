@@ -10,10 +10,17 @@ import javafx.scene.text.Text;
 
 public class SlidesListView {
 
-    private FlowPane flow;
     private static StackPane activeSlide;
+    private FlowPane flow;
     private ScrollPane parent;
     private Song song;
+
+    public static void unsetActiveSlide() {
+        if (activeSlide != null) {
+            activeSlide.setBorder(null);
+        }
+        activeSlide = null;
+    }
 
     public void display(Song song, ScrollPane parentScrollPane) {
         this.song = song;
@@ -65,13 +72,6 @@ public class SlidesListView {
                 }
             }
         }));
-    }
-
-    public static void unsetActiveSlide() {
-        if (activeSlide != null) {
-            activeSlide.setBorder(null);
-        }
-        activeSlide = null;
     }
 
     public ScrollPane getParent() {
