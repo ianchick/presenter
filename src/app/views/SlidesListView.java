@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 public class SlidesListView {
 
     private static StackPane activeSlide;
+    private static int activeSlideIndex;
     private FlowPane flow;
     private ScrollPane parent;
     private Song song;
@@ -25,7 +26,9 @@ public class SlidesListView {
     public void display(Song song, ScrollPane parentScrollPane) {
         this.song = song;
         this.parent = parentScrollPane;
-        flow = new FlowPane();
+        if (flow == null) {
+            flow = new FlowPane();
+        }
         flow.setId("slides_flow");
         if (song != null) {
             setSlides(song);
@@ -51,6 +54,8 @@ public class SlidesListView {
             pane.getChildren().add(text);
             flow.getChildren().add(pane);
         }
+        activeSlideIndex = -1;
+        activeSlide = null;
         setSlideClickEvent();
     }
 
@@ -64,14 +69,48 @@ public class SlidesListView {
                 if (LiveView.isLive()) {
                     Text text = (Text) ((StackPane) item).getChildren().get(0);
                     LiveView.setCurrentSlide(text.getText());
-                    if (activeSlide != null) {
-                        activeSlide.setBorder(null);
-                    }
-                    activeSlide = (StackPane) item;
-                    activeSlide.setBorder(new Border(new BorderStroke(Color.valueOf("#49E20E"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(4))));
+                    setActiveSlide((StackPane) item);
+                    activeSlideIndex = flow.getChildren().indexOf(item);
                 }
             }
         }));
+    }
+
+    private void setActiveSlide(StackPane item) {
+        if (activeSlide != null) {
+            activeSlide.setBorder(null);
+        }
+        activeSlide = item;
+        activeSlide.setBorder(new Border(new BorderStroke(Color.valueOf("#49E20E"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(4))));
+    }
+
+    public void previousSlide() {
+        if (activeSlideIndex == -1) {
+            nextSlide();
+        }
+        if (LiveView.isLive() && activeSlideIndex > 0) {
+            activeSlideIndex = activeSlideIndex - 1;
+            String lyric = song.getSlides().get(activeSlideIndex).getContent();
+            setActiveSlide((StackPane) flow.getChildren().get(activeSlideIndex));
+            LiveView.setCurrentSlide(lyric);
+        }
+    }
+
+    public void nextSlide() {
+        if (LiveView.isLive() && activeSlideIndex < flow.getChildren().size() - 1) {
+            activeSlideIndex = activeSlideIndex + 1;
+            String lyric = song.getSlides().get(activeSlideIndex).getContent();
+            setActiveSlide((StackPane) flow.getChildren().get(activeSlideIndex));
+            LiveView.setCurrentSlide(lyric);
+        }
+    }
+
+    public void currentSlide() {
+        if (LiveView.isLive()) {
+            String lyric = song.getSlides().get(activeSlideIndex).getContent();
+            setActiveSlide((StackPane) flow.getChildren().get(activeSlideIndex));
+            LiveView.setCurrentSlide(lyric);
+        }
     }
 
     public ScrollPane getParent() {

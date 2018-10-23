@@ -2,14 +2,18 @@ package app;
 
 import app.toolbars.NavigationBar;
 import app.views.ChangeBackgroundView;
+import app.views.LiveView;
 import app.views.SongListView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -41,6 +45,8 @@ public class Main extends Application {
         root.setCenter(slidesView);
         root.setBottom(backgroundPane);
 
+        setKeyEventHandler(root);
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
@@ -60,5 +66,29 @@ public class Main extends Application {
     private void setSongListView(Pane parent, ScrollPane slidesPane) {
         songListView = new SongListView();
         songListView.display(parent, slidesPane);
+    }
+
+    private void setKeyEventHandler(Pane pane) {
+        pane.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.RIGHT == event.getCode()) {
+                if (songListView.getSlidesListView() != null) {
+                    songListView.getSlidesListView().nextSlide();
+                }
+            }
+            if (KeyCode.LEFT == event.getCode()) {
+                if (songListView.getSlidesListView() != null) {
+                    songListView.getSlidesListView().previousSlide();
+                }
+            }
+            if (KeyCode.B == event.getCode()) {
+                if (LiveView.isLive()) {
+                    if (LiveView.getTextView().getText().equals("")) {
+                        songListView.getSlidesListView().currentSlide();
+                    } else {
+                        LiveView.getTextView().setText("");
+                    }
+                }
+            }
+        });
     }
 }

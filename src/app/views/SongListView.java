@@ -61,7 +61,9 @@ public class SongListView {
     }
 
     private void setSlidesListView(ScrollPane slidesPane) {
-        slidesListView = new SlidesListView();
+        if (slidesListView == null) {
+            slidesListView = new SlidesListView();
+        }
         slidesListView.display(selectedSong, slidesPane);
     }
 }
