@@ -52,7 +52,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.setTitle("Amateur Presenter");
         window.setMaximized(true);
-        window.getIcons().add(new Image("file:resources/icon.png"));
+        window.getIcons().add(new Image("icon.png"));
         window.show();
         window.setOnCloseRequest(e -> System.exit(0));
     }

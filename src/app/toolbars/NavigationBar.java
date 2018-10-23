@@ -56,7 +56,7 @@ public class NavigationBar {
     private static Button setLiveView() {
         if (liveViewButton == null) {
             liveViewButton = new Button();
-            Image buttonImage = new Image("file:resources/play_button.png");
+            Image buttonImage = new Image("play_button.png");
             ImageView imageView = new ImageView(buttonImage);
             imageView.setFitHeight(20);
             imageView.setFitWidth(20);
@@ -67,11 +67,11 @@ public class NavigationBar {
             if (!LiveView.isLive()) {
                 LiveView.display();
                 LiveView.setLive(true);
-                setImageButtonImage("file:resources/stop_button.png");
+                setImageButtonImage("stop_button.png");
             } else {
                 LiveView.getWindow().close();
                 LiveView.setLive(false);
-                setImageButtonImage("file:resources/play_button.png");
+                setImageButtonImage("play_button.png");
             }
         });
         return liveViewButton;

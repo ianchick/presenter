@@ -91,7 +91,7 @@ public class LiveView {
     private static void closeLiveView() {
         setLive(false);
         SlidesListView.unsetActiveSlide();
-        NavigationBar.setImageButtonImage("file:resources/play_button.png");
+        NavigationBar.setImageButtonImage("play_button.png");
         window.close();
     }
 
