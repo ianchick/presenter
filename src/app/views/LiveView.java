@@ -1,6 +1,6 @@
 package app.views;
 
-import app.toolbars.NavigationBar;
+import app.toolbars.ControlBar;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -91,7 +91,7 @@ public class LiveView {
     private static void closeLiveView() {
         setLive(false);
         SlidesListView.unsetActiveSlide();
-        NavigationBar.setImageButtonImage("play_button.png");
+        ControlBar.setImageButtonImage("play_button.png");
         window.close();
     }
 

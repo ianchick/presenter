@@ -1,11 +1,13 @@
 package app;
 
+import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
 import app.views.ChangeBackgroundView;
 import app.views.LiveView;
 import app.views.SongListView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
@@ -37,9 +39,11 @@ public class Main extends Application {
         setChangeBackgroundView(backgroundPane);
         setSongListView(listSongsBox, slidesView);
 
-        ToolBar toolBar = NavigationBar.setup(songListView);
+        ToolBar toolBar = ControlBar.setup(songListView);
 
-        root.setTop(toolBar);
+        MenuBar menuBar = NavigationBar.setup();
+
+        root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(listSongsBox);
         root.setCenter(slidesView);
         root.setBottom(backgroundPane);

@@ -2,7 +2,7 @@ package app.views;
 
 import app.models.Song;
 import app.storage.StorageController;
-import app.toolbars.NavigationBar;
+import app.toolbars.ControlBar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -35,7 +35,7 @@ public class SongListView {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
                 setSlidesListView(slidesPane);
-                NavigationBar.getEditSongButton().setDisable(false);
+                ControlBar.getEditSongButton().setDisable(false);
             }
         });
         parent.getChildren().addAll(searchBar, listView);
