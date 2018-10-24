@@ -75,7 +75,7 @@ public class StorageController {
         return file.delete();
     }
 
-    private static String convertTitleToFileName(String title) {
+    public static String convertTitleToFileName(String title) {
         return title.replace(" ", "_");
     }
 

@@ -36,6 +36,7 @@ public class SongListView {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
                 setSlidesListView(slidesPane);
                 ControlBar.getEditSongButton().setDisable(false);
+                ControlBar.getDeleteSongButton().setDisable(false);
             }
         });
         parent.getChildren().addAll(searchBar, listView);

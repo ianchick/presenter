@@ -17,6 +17,7 @@ public class ControlBar {
     private static Button liveViewButton;
     private static SongListView songListView;
     private static Button editSongButton;
+    private static Button deleteSongButton;
 
     public static ToolBar setup(SongListView songList) {
         ToolBar toolBar = new ToolBar();
@@ -29,12 +30,13 @@ public class ControlBar {
         ComboBox<String> fontSizeCombo = setFontSizeComboBox();
         Button searchWebButton = setWebSearchButton();
 
-        Button editSong = setEditSongButton();
+        setEditSongButton();
+        setDeleteSongButton();
 
         toolBar.getItems().addAll(startLive, addSong, new Separator(Orientation.VERTICAL),
                 fontSizeLabel, fontSizeCombo, new Separator(Orientation.VERTICAL),
                 searchWebButton, new Separator(Orientation.VERTICAL),
-                editSong);
+                editSongButton, deleteSongButton);
 
         return toolBar;
     }
@@ -122,7 +124,26 @@ public class ControlBar {
         return editSongButton;
     }
 
+    private static Button setDeleteSongButton() {
+        deleteSongButton = new Button("Delete Song");
+        deleteSongButton.setDisable(true);
+        deleteSongButton.setOnAction(e -> {
+            Song song = songListView.getSelectedSong();
+            if (song != null) {
+                StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
+                editSongButton.setDisable(true);
+                deleteSongButton.setDisable(true);
+                NavigationBar.refresh();
+            }
+        });
+        return deleteSongButton;
+    }
+
     public static Button getEditSongButton() {
         return editSongButton;
+    }
+
+    public static Button getDeleteSongButton() {
+        return deleteSongButton;
     }
 }

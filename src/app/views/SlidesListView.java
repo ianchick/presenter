@@ -43,6 +43,10 @@ public class SlidesListView {
         });
     }
 
+    public void clear() {
+        flow.getChildren().clear();
+    }
+
     private void setSlides(Song song) {
         flow.getChildren().clear();
         for (Slide slide : song.getSlides()) {

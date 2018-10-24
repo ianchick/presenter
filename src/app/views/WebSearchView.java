@@ -48,7 +48,7 @@ public class WebSearchView {
         });
         content.setPadding(new Insets(10));
         content.getChildren().addAll(errorText, titleLabel, title, artistLabel, artist, submit);
-        window.setScene(new Scene(content, 220, 220));
+        window.setScene(new Scene(content, 300, 220));
         window.showAndWait();
         return songSaved;
     }

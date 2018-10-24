@@ -36,12 +36,14 @@ public class Main extends Application {
         slidesView.setId("slides_scroll_pane");
         ScrollPane backgroundPane = new ScrollPane();
 
-        setChangeBackgroundView(backgroundPane);
+        ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
+        changeBackgroundView.display(backgroundPane);
+
         setSongListView(listSongsBox, slidesView);
 
         ToolBar toolBar = ControlBar.setup(songListView);
 
-        MenuBar menuBar = NavigationBar.setup();
+        MenuBar menuBar = NavigationBar.setup(changeBackgroundView, backgroundPane, songListView);
 
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(listSongsBox);
@@ -59,11 +61,6 @@ public class Main extends Application {
         window.getIcons().add(new Image("icon.png"));
         window.show();
         window.setOnCloseRequest(e -> System.exit(0));
-    }
-
-    private void setChangeBackgroundView(ScrollPane backgroundPane) {
-        ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
-        changeBackgroundView.display(backgroundPane);
     }
 
     private void setSongListView(Pane parent, ScrollPane slidesPane) {
