@@ -18,6 +18,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     private SongListView songListView;
@@ -27,7 +29,24 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage window) {
+    public void start(Stage window) throws IOException {
+        Configurations configurations = new Configurations();
+        configurations.setup();
+        configurations.setConfigValues();
+
+        BorderPane root = setRootContent();
+        setKeyEventHandler(root);
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        window.setScene(scene);
+        window.setTitle("Amateur Presenter");
+        window.setMaximized(true);
+        window.getIcons().add(new Image("icon.png"));
+        window.show();
+        window.setOnCloseRequest(e -> System.exit(0));
+    }
+
+    private BorderPane setRootContent() {
         BorderPane root = new BorderPane();
         root.setId("root");
 
@@ -49,18 +68,7 @@ public class Main extends Application {
         root.setLeft(listSongsBox);
         root.setCenter(slidesView);
         root.setBottom(backgroundPane);
-
-        setKeyEventHandler(root);
-
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
-        window.setScene(scene);
-        window.setTitle("Amateur Presenter");
-        window.setMaximized(true);
-        window.getIcons().add(new Image("icon.png"));
-        window.show();
-        window.setOnCloseRequest(e -> System.exit(0));
+        return root;
     }
 
     private void setSongListView(Pane parent, ScrollPane slidesPane) {

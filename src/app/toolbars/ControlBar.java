@@ -1,5 +1,6 @@
 package app.toolbars;
 
+import app.Configurations;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
@@ -44,7 +45,7 @@ public class ControlBar {
     private static ComboBox<String> setFontSizeComboBox() {
         ObservableList<String> options = FXCollections.observableArrayList("24", "32", "40", "48", "56", "64", "72", "80", "88", "96", "104");
         ComboBox<String> fontSizeCombo = new ComboBox<>(options);
-        fontSizeCombo.getSelectionModel().select(5);
+        fontSizeCombo.getSelectionModel().select(String.valueOf(Configurations.getDefaultFontSize()));
         fontSizeCombo.setOnAction(e -> {
             LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
             if (LiveView.isLive()) {
@@ -113,7 +114,7 @@ public class ControlBar {
                 CreateSongView createSongView = new CreateSongView();
                 createSongView.setFields(song.getTitle(), song.getLyrics());
                 createSongView.display();
-                File file = StorageController.getFile(StorageController.SONGS_PATH, song.getTitle());
+                File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
                 song.setSlides(StorageController.getSlidesFromFile(file));
                 SlidesListView slidesListView = songListView.getSlidesListView();
                 if (slidesListView != null) {

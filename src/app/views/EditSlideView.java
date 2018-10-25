@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Configurations;
 import app.models.Slide;
 import app.models.Song;
 import app.storage.StorageController;
@@ -35,9 +36,9 @@ public class EditSlideView {
         submit.setOnAction(e -> {
             slide.setContent(content.getText());
             song.setLyricsFromSlides();
-            saved = StorageController.saveFile(StorageController.SONGS_PATH, song.getTitle(), song.getLyrics());
+            saved = StorageController.saveFile(Configurations.getSongsPath(), song.getTitle(), song.getLyrics());
             window.close();
-            File file = StorageController.getFile(StorageController.SONGS_PATH, song.getTitle());
+            File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
             song.setSlides(StorageController.getSlidesFromFile(file));
             context.display(song, context.getParent());
         });

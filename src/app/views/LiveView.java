@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Configurations;
 import app.toolbars.ControlBar;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
@@ -26,7 +27,7 @@ public class LiveView {
     private static Text textView;
     private static boolean isLive;
     private static Stage window;
-    private static int textSize = 64;
+    private static int textSize = Configurations.getDefaultFontSize();
 
     private static ImageView background;
     private static StackPane contentPane;
@@ -120,9 +121,8 @@ public class LiveView {
         transitionTextView.setText(textView.getText());
         transitionTextView.setFill(Color.WHITE);
         transitionTextView.setTextAlignment(TextAlignment.CENTER);
-        transitionTextView.setFont(new Font("Arial", textSize));
-
-        textView.setFont(new Font("Arial", textSize));
+        transitionTextView.setFont(new Font(Configurations.getDefaultFont(), textSize));
+        textView.setFont(new Font(Configurations.getDefaultFont(), textSize));
         textView.setText(text);
         animateLyrics(transitionTextView, textView);
     }

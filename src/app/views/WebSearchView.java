@@ -35,7 +35,6 @@ public class WebSearchView {
                 WebScrapingController controller = new WebScrapingController();
                 String lyrics = controller.getLyrics(artist.getText(), title.getText());
                 if (lyrics != null) {
-                    System.out.println(lyrics);
                     CreateSongView createSongView = new CreateSongView();
                     createSongView.setFields(title.getText(), lyrics);
                     songSaved = createSongView.display();

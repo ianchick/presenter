@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Configurations;
 import app.storage.StorageController;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -26,7 +27,7 @@ public class ChangeBackgroundView {
     }
 
     private void setBackgroundSlides() {
-        ArrayList<File> backgroundFiles = StorageController.getFilesFromDir(StorageController.BACKGROUNDS_PATH);
+        ArrayList<File> backgroundFiles = StorageController.getFilesFromDir(Configurations.getBackgroundsPath());
         for (File file : backgroundFiles) {
             StackPane pane = new StackPane();
             ImageView imageView = new ImageView();

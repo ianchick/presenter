@@ -1,5 +1,6 @@
 package app.toolbars;
 
+import app.Configurations;
 import app.storage.StorageController;
 import app.views.ChangeBackgroundView;
 import app.views.SongListView;
@@ -7,7 +8,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
 
 import java.awt.*;
 import java.io.File;
@@ -36,7 +36,7 @@ public class NavigationBar {
             Desktop desktop = Desktop.getDesktop();
             File dir;
             try {
-                dir = new File(StorageController.SONGS_PATH);
+                dir = new File(Configurations.getSongsPath());
                 desktop.open(dir);
             } catch (IllegalArgumentException | IOException e1) {
                 System.out.println("File Not Found");
@@ -47,7 +47,7 @@ public class NavigationBar {
             Desktop desktop = Desktop.getDesktop();
             File dir;
             try {
-                dir = new File(StorageController.BACKGROUNDS_PATH);
+                dir = new File(Configurations.getBackgroundsPath());
                 desktop.open(dir);
             } catch (IllegalArgumentException | IOException e1) {
                 System.out.println("File Not Found");

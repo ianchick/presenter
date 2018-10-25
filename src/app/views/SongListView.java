@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Configurations;
 import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.ControlBar;
@@ -43,12 +44,12 @@ public class SongListView {
     }
 
     public void populateSongList() {
-        ObservableList<Song> rawData= FXCollections.observableArrayList(getSongs());
-        FilteredList<Song> filteredList= new FilteredList<>(rawData, data -> true);
+        ObservableList<Song> rawData = FXCollections.observableArrayList(getSongs());
+        FilteredList<Song> filteredList = new FilteredList<>(rawData, data -> true);
         listView.setItems(filteredList);
         searchBar.textProperty().addListener(((observable, oldValue, newValue) -> {
             filteredList.setPredicate(data -> {
-                if (newValue == null || newValue.isEmpty()){
+                if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseSearch = newValue.toLowerCase();
@@ -59,7 +60,7 @@ public class SongListView {
 
     private ArrayList<Song> getSongs() {
         ArrayList<Song> songs = new ArrayList<>();
-        ArrayList<File> files = StorageController.getFilesFromDir(StorageController.SONGS_PATH);
+        ArrayList<File> files = StorageController.getFilesFromDir(Configurations.getSongsPath());
         for (File file : files) {
             Song song = new Song(StorageController.convertFileNameToTitle(file.getName()));
             song.setSlides(StorageController.getSlidesFromFile(file));

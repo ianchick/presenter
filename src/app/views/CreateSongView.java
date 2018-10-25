@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Configurations;
 import app.storage.StorageController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -38,7 +39,7 @@ public class CreateSongView {
         Button submit = new Button("Save");
         submit.setOnAction(e -> {
             if (validations()) {
-                songSaved = StorageController.saveFile(StorageController.SONGS_PATH, titleField.getText(), lyricsField.getText());
+                songSaved = StorageController.saveFile(Configurations.getSongsPath(), titleField.getText(), lyricsField.getText());
                 window.close();
             }
         });

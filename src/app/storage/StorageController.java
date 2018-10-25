@@ -1,5 +1,6 @@
 package app.storage;
 
+import app.Configurations;
 import app.models.Slide;
 
 import java.io.*;
@@ -7,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StorageController {
-
-    public static final String SONGS_PATH = "songs";
-    public static final String BACKGROUNDS_PATH = "backgrounds";
 
     public static boolean saveFile(String path, String title, String lyrics) {
         String filename = convertTitleToFileName(title);
@@ -71,7 +69,7 @@ public class StorageController {
 
     public static boolean deleteFile(String title) {
         String filename = convertTitleToFileName(title);
-        File file = new File(SONGS_PATH, filename);
+        File file = new File(Configurations.getSongsPath(), filename);
         return file.delete();
     }
 
