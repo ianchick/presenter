@@ -53,6 +53,16 @@ public class NavigationBar {
             }
         });
         MenuItem preferences = new MenuItem("Preferences");
+        preferences.setOnAction(e -> {
+            Desktop desktop = Desktop.getDesktop();
+            File dir;
+            try {
+                dir = new File(Configurations.getConfigPath());
+                desktop.open(dir);
+            } catch (IllegalArgumentException | IOException e1) {
+                System.out.println("File Not Found");
+            }
+        });
         fileMenu.getItems().addAll(refresh, openSongsDir, openBgDir, preferences);
         menuBar.getMenus().add(fileMenu);
         return menuBar;

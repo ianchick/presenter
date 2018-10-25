@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initializing">
       <change beforePath="$PROJECT_DIR$/src/app/Configurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Configurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/LiveView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/LiveView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,7 +85,7 @@
           <entry key="css" value="3" />
           <entry key="exclude" value="1" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="58" />
+          <entry key="java" value="61" />
           <entry key="json" value="1" />
           <entry key="png" value="1" />
           <entry key="yaml" value="6" />
@@ -99,7 +98,7 @@
           <entry key="Git exclude file" value="1" />
           <entry key="Git file" value="1" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="58" />
+          <entry key="JAVA" value="61" />
           <entry key="JSON" value="1" />
           <entry key="YAML" value="6" />
         </counts>
@@ -109,7 +108,7 @@
           <entry key="css" value="628" />
           <entry key="dummy" value="84" />
           <entry key="gitignore" value="2" />
-          <entry key="java" value="11361" />
+          <entry key="java" value="11381" />
           <entry key="json" value="13" />
           <entry key="txt" value="12" />
           <entry key="yaml" value="11" />
@@ -119,7 +118,7 @@
         <counts>
           <entry key="CSS" value="628" />
           <entry key="Git file" value="2" />
-          <entry key="JAVA" value="11361" />
+          <entry key="JAVA" value="11381" />
           <entry key="JSON" value="13" />
           <entry key="PLAIN_TEXT" value="96" />
           <entry key="YAML" value="11" />
@@ -165,83 +164,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/Configurations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1544#1545#0" expanded="true" />
-                <element signature="e#1577#1578#0" expanded="true" />
-                <element signature="e#1634#1635#0" expanded="true" />
-                <element signature="e#1672#1673#0" expanded="true" />
-                <element signature="e#1721#1722#0" expanded="true" />
-                <element signature="e#1760#1761#0" expanded="true" />
-                <element signature="e#1829#1830#0" expanded="true" />
-                <element signature="e#1879#1880#0" expanded="true" />
-                <element signature="e#2080#2081#0" expanded="true" />
-                <element signature="e#2120#2121#0" expanded="true" />
-                <element signature="e#2189#2190#0" expanded="true" />
-                <element signature="e#2240#2241#0" expanded="true" />
-                <element signature="e#2285#2286#0" expanded="true" />
-                <element signature="e#2320#2321#0" expanded="true" />
-                <element signature="e#2381#2382#0" expanded="true" />
-                <element signature="e#2423#2424#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1029">
-              <caret line="124" column="52" lean-forward="true" selection-start-line="124" selection-start-column="52" selection-end-line="124" selection-end-column="52" />
-              <folding>
-                <element signature="e#4151#4152#0" expanded="true" />
-                <element signature="e#4182#4183#0" expanded="true" />
-                <element signature="e#4296#4297#0" expanded="true" />
-                <element signature="e#4327#4328#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
+            <state relative-caret-position="220">
+              <caret line="59" column="53" lean-forward="true" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -250,35 +176,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/views/EditSlideView.java">
+        <entry file="file://$PROJECT_DIR$/src/app/toolbars/ControlBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="40" column="79" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
+            <state relative-caret-position="-140">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/toolbars/ControlBar.java">
+        <entry file="file://$PROJECT_DIR$/src/app/Configurations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="61" column="76" selection-start-line="61" selection-start-column="76" selection-end-line="61" selection-end-column="76" />
+            <state relative-caret-position="280">
+              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5811#5812#0" expanded="true" />
-                <element signature="e#5848#5849#0" expanded="true" />
-                <element signature="e#5898#5899#0" expanded="true" />
-                <element signature="e#5937#5938#0" expanded="true" />
+                <element signature="e#2882#2883#0" expanded="true" />
+                <element signature="e#2916#2917#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/views/ChangeBackgroundView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -314,6 +229,7 @@
       <find>getE</find>
       <find>font</find>
       <find>setFont</find>
+      <find>config</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -340,15 +256,15 @@
         <option value="$PROJECT_DIR$/src/app/views/SlidesListView.java" />
         <option value="$PROJECT_DIR$/src/app/storage/StorageController.java" />
         <option value="$PROJECT_DIR$/src/app/views/SongListView.java" />
-        <option value="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" />
         <option value="$PROJECT_DIR$/src/app/views/EditSlideView.java" />
         <option value="$PROJECT_DIR$/src/app/views/ChangeBackgroundView.java" />
         <option value="$PROJECT_DIR$/src/app/views/CreateSongView.java" />
         <option value="$PROJECT_DIR$/src/app/Main.java" />
         <option value="$PROJECT_DIR$/src/app/views/LiveView.java" />
         <option value="$PROJECT_DIR$/config.yaml" />
-        <option value="$PROJECT_DIR$/src/app/Configurations.java" />
         <option value="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" />
+        <option value="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" />
+        <option value="$PROJECT_DIR$/src/app/Configurations.java" />
       </list>
     </option>
   </component>
@@ -391,13 +307,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Presenter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Presenter" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="toolbars" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -418,7 +327,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540501963914" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540502531641" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="public" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
@@ -708,16 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1029">
@@ -738,42 +637,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Configurations.java">
+    <entry file="file://$PROJECT_DIR$/src/app/toolbars/ControlBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
+        <state relative-caret-position="-140">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="59" column="53" lean-forward="true" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-            <element signature="e#1577#1578#0" expanded="true" />
-            <element signature="e#1634#1635#0" expanded="true" />
-            <element signature="e#1672#1673#0" expanded="true" />
-            <element signature="e#1721#1722#0" expanded="true" />
-            <element signature="e#1760#1761#0" expanded="true" />
-            <element signature="e#1829#1830#0" expanded="true" />
-            <element signature="e#1879#1880#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2120#2121#0" expanded="true" />
-            <element signature="e#2189#2190#0" expanded="true" />
-            <element signature="e#2240#2241#0" expanded="true" />
-            <element signature="e#2285#2286#0" expanded="true" />
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2381#2382#0" expanded="true" />
-            <element signature="e#2423#2424#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/toolbars/ControlBar.java">
+    <entry file="file://$PROJECT_DIR$/src/app/Configurations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="61" column="76" selection-start-line="61" selection-start-column="76" selection-end-line="61" selection-end-column="76" />
+        <state relative-caret-position="280">
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5811#5812#0" expanded="true" />
-            <element signature="e#5848#5849#0" expanded="true" />
-            <element signature="e#5898#5899#0" expanded="true" />
-            <element signature="e#5937#5938#0" expanded="true" />
+            <element signature="e#2882#2883#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
           </folding>
         </state>
       </provider>

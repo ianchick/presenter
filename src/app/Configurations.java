@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Configurations {
 
-    private static String CONFIG_PATH = "config.yaml";
+    private static String CONFIG_PATH = "config.yml";
     private static String SONGS_PATH;
     private static String BACKGROUNDS_PATH;
     private static String DEFAULT_FONT;
@@ -96,6 +96,10 @@ public class Configurations {
 
     public static void setDefaultFont(String defaultFont) {
         DEFAULT_FONT = defaultFont;
+    }
+
+    public static String getConfigPath() {
+        return CONFIG_PATH;
     }
 
 }
