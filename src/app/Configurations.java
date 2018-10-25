@@ -3,8 +3,10 @@ package app;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.*;
-import java.util.Collections;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class Configurations {
         Map<String, String> data = new LinkedHashMap<>();
         data.put("songs_dir", "songs");
         data.put("bg_dir", "backgrounds");
-        data.put("default_font", "arial");
+        data.put("default_font", "Arial");
         data.put("default_font_size", "64");
         Yaml yaml = new Yaml(options);
         FileWriter writer = null;

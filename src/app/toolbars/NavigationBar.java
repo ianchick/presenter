@@ -1,7 +1,6 @@
 package app.toolbars;
 
 import app.Configurations;
-import app.storage.StorageController;
 import app.views.ChangeBackgroundView;
 import app.views.SongListView;
 import javafx.scene.control.Menu;

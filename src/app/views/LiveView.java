@@ -28,6 +28,7 @@ public class LiveView {
     private static boolean isLive;
     private static Stage window;
     private static int textSize = Configurations.getDefaultFontSize();
+    private static String font = Configurations.getDefaultFont();
 
     private static ImageView background;
     private static StackPane contentPane;
@@ -54,7 +55,7 @@ public class LiveView {
         transitionTextView = new Text();
         textView.setFill(Color.WHITE);
         textView.setTextAlignment(TextAlignment.CENTER);
-        textView.setFont(new Font("Arial", textSize));
+        textView.setFont(new Font(font, textSize));
         contentPane.getChildren().add(background);
         contentPane.getChildren().add(transitionBackground);
         contentPane.getChildren().add(textView);
@@ -113,7 +114,7 @@ public class LiveView {
     }
 
     public static void setFontSize(String text) {
-        textView.setFont(new Font("Arial", textSize));
+        textView.setFont(new Font(font, textSize));
         textView.setText(text);
     }
 
@@ -121,14 +122,18 @@ public class LiveView {
         transitionTextView.setText(textView.getText());
         transitionTextView.setFill(Color.WHITE);
         transitionTextView.setTextAlignment(TextAlignment.CENTER);
-        transitionTextView.setFont(new Font(Configurations.getDefaultFont(), textSize));
-        textView.setFont(new Font(Configurations.getDefaultFont(), textSize));
+        transitionTextView.setFont(new Font(font, textSize));
+        textView.setFont(new Font(font, textSize));
         textView.setText(text);
         animateLyrics(transitionTextView, textView);
     }
 
     public static void setTextSize(int size) {
         textSize = size;
+    }
+
+    public static void setFont(String fontName) {
+        font = fontName;
     }
 
     public static Text getTextView() {

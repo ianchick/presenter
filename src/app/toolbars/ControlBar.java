@@ -29,13 +29,14 @@ public class ControlBar {
 
         Label fontSizeLabel = new Label("Text Size");
         ComboBox<String> fontSizeCombo = setFontSizeComboBox();
+        ComboBox<String> fontCombo = setFontComboBox();
         Button searchWebButton = setWebSearchButton();
 
         setEditSongButton();
         setDeleteSongButton();
 
         toolBar.getItems().addAll(startLive, addSong, new Separator(Orientation.VERTICAL),
-                fontSizeLabel, fontSizeCombo, new Separator(Orientation.VERTICAL),
+                fontSizeLabel, fontSizeCombo, fontCombo, new Separator(Orientation.VERTICAL),
                 searchWebButton, new Separator(Orientation.VERTICAL),
                 editSongButton, deleteSongButton);
 
@@ -53,6 +54,19 @@ public class ControlBar {
             }
         });
         return fontSizeCombo;
+    }
+
+    private static ComboBox<String> setFontComboBox() {
+        ObservableList<String> options = FXCollections.observableArrayList("Arial", "Courier New", "Helvetica", "Times New Roman");
+        ComboBox<String> fontCombo = new ComboBox<>(options);
+        fontCombo.getSelectionModel().select(Configurations.getDefaultFont());
+        fontCombo.setOnAction(e -> {
+            LiveView.setFont(fontCombo.getValue());
+            if (LiveView.isLive()) {
+                LiveView.setFontSize(LiveView.getTextView().getText());
+            }
+        });
+        return fontCombo;
     }
 
     private static Button setLiveView() {
