@@ -124,7 +124,7 @@ public class ControlBar {
         return editSongButton;
     }
 
-    private static Button setDeleteSongButton() {
+    private static void setDeleteSongButton() {
         deleteSongButton = new Button("Delete Song");
         deleteSongButton.setDisable(true);
         deleteSongButton.setOnAction(e -> {
@@ -134,9 +134,9 @@ public class ControlBar {
                 editSongButton.setDisable(true);
                 deleteSongButton.setDisable(true);
                 NavigationBar.refresh();
+                songListView.getSlidesListView().clear();
             }
         });
-        return deleteSongButton;
     }
 
     public static Button getEditSongButton() {
