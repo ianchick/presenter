@@ -6,12 +6,18 @@ import app.storage.StorageController;
 import app.views.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.Optional;
 
 public class ControlBar {
 
@@ -135,6 +141,7 @@ public class ControlBar {
                 if (slidesListView != null) {
                     slidesListView.display(song, slidesListView.getParent());
                 }
+                NavigationBar.refresh();
             }
         });
         return editSongButton;
@@ -144,13 +151,15 @@ public class ControlBar {
         deleteSongButton = new Button("Delete Song");
         deleteSongButton.setDisable(true);
         deleteSongButton.setOnAction(e -> {
-            Song song = songListView.getSelectedSong();
-            if (song != null) {
-                StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
-                editSongButton.setDisable(true);
-                deleteSongButton.setDisable(true);
-                NavigationBar.refresh();
-                songListView.getSlidesListView().clear();
+            if (confirmDelete()) {
+                Song song = songListView.getSelectedSong();
+                if (song != null) {
+                    StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
+                    editSongButton.setDisable(true);
+                    deleteSongButton.setDisable(true);
+                    NavigationBar.refresh();
+                    songListView.getSlidesListView().clear();
+                }
             }
         });
     }
@@ -161,5 +170,16 @@ public class ControlBar {
 
     public static Button getDeleteSongButton() {
         return deleteSongButton;
+    }
+
+    private static boolean confirmDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Song");
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setContentText("Are you sure you want to delete this song?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
     }
 }
