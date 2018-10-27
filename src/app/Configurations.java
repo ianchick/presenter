@@ -26,8 +26,8 @@ public class Configurations {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            generateDefaultConfig();
         }
+        generateDefaultConfig();
     }
 
     private void generateDefaultConfig() {
