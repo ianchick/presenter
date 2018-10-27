@@ -130,6 +130,7 @@ public class ControlBar {
                 createSongView.display();
                 File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
                 song.setSlides(StorageController.getSlidesFromFile(file));
+                song.setLyricsFromSlides();
                 SlidesListView slidesListView = songListView.getSlidesListView();
                 if (slidesListView != null) {
                     slidesListView.display(song, slidesListView.getParent());
