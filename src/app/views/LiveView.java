@@ -30,6 +30,8 @@ public class LiveView {
     private static int textSize = Configurations.getDefaultFontSize();
     private static String font = Configurations.getDefaultFont();
 
+    private static int textAnimSpeed = 2000;
+
     private static ImageView background;
     private static StackPane contentPane;
 
@@ -167,11 +169,11 @@ public class LiveView {
     }
 
     private static void animateLyrics(Text oldView, Text newView) {
-        FadeTransition oldft = new FadeTransition(Duration.millis(1000), oldView);
+        FadeTransition oldft = new FadeTransition(Duration.millis(textAnimSpeed*.4), oldView);
         oldft.setFromValue(1);
         oldft.setToValue(0);
         oldft.play();
-        FadeTransition newft = new FadeTransition(Duration.millis(2800), newView);
+        FadeTransition newft = new FadeTransition(Duration.millis(textAnimSpeed), newView);
         newft.setFromValue(0);
         newft.setToValue(1);
         newft.play();
@@ -190,5 +192,13 @@ public class LiveView {
 
     public static Stage getWindow() {
         return window;
+    }
+
+    public static int getTextAnimSpeed() {
+        return textAnimSpeed;
+    }
+
+    public static void setTextAnimSpeed(int textAnimSpeed) {
+        LiveView.textAnimSpeed = textAnimSpeed;
     }
 }

@@ -6,15 +6,10 @@ import app.storage.StorageController;
 import app.views.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.Optional;
@@ -33,10 +28,13 @@ public class ControlBar {
         Button startLive = setLiveView();
         Button addSong = setCreateSongView();
 
-        Label fontSizeLabel = new Label("Text Size");
+        Label fontSizeLabel = new Label("Text Size:");
         ComboBox<String> fontSizeCombo = setFontSizeComboBox();
         ComboBox<String> fontCombo = setFontComboBox();
         Button searchWebButton = setWebSearchButton();
+
+        Label animSpeedLabel = new Label("Animation Speed:");
+        ComboBox<Integer> animSpeedCombo = setAnimSpeedComboBox();
 
         setEditSongButton();
         setDeleteSongButton();
@@ -44,9 +42,21 @@ public class ControlBar {
         toolBar.getItems().addAll(startLive, addSong, new Separator(Orientation.VERTICAL),
                 fontSizeLabel, fontSizeCombo, fontCombo, new Separator(Orientation.VERTICAL),
                 searchWebButton, new Separator(Orientation.VERTICAL),
-                editSongButton, deleteSongButton);
+                editSongButton, deleteSongButton, new Separator(Orientation.VERTICAL),
+                animSpeedLabel, animSpeedCombo);
 
         return toolBar;
+    }
+
+    private static ComboBox<Integer> setAnimSpeedComboBox() {
+        ObservableList<Integer> options = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        ComboBox<Integer> animSpeedCombo = new ComboBox<>(options);
+        animSpeedCombo.getSelectionModel().select(4);
+        animSpeedCombo.setOnAction(e -> {
+            int speedMilli = animSpeedCombo.getValue() * 400;
+            LiveView.setTextAnimSpeed(speedMilli);
+        });
+        return animSpeedCombo;
     }
 
     private static ComboBox<String> setFontSizeComboBox() {
