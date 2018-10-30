@@ -7,6 +7,7 @@ import app.toolbars.ControlBar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class SongListView {
 
@@ -46,16 +48,16 @@ public class SongListView {
     public void populateSongList() {
         ObservableList<Song> rawData = FXCollections.observableArrayList(getSongs());
         FilteredList<Song> filteredList = new FilteredList<>(rawData, data -> true);
-        listView.setItems(filteredList);
-        searchBar.textProperty().addListener(((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(data -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseSearch = newValue.toLowerCase();
-                return (data.getTitle().toLowerCase()).contains(lowerCaseSearch);
-            });
-        }));
+        searchBar.textProperty().addListener(((observable, oldValue, newValue) -> filteredList.setPredicate(data -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseSearch = newValue.toLowerCase();
+            return (data.getTitle().toLowerCase()).contains(lowerCaseSearch);
+        })));
+        SortedList<Song> sortedList = new SortedList<>(filteredList);
+        sortedList.setComparator((s1, s2) -> s1.getTitle().compareToIgnoreCase(s2.getTitle()));
+        listView.setItems(sortedList);
     }
 
     private ArrayList<Song> getSongs() {
