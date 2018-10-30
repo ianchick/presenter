@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initializing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/SongListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/SongListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Presenter/app/views/CreateSongView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Presenter/app/views/CreateSongView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/storage/StorageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/storage/StorageController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,7 +95,7 @@
           <entry key="exclude" value="1" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="69" />
+          <entry key="java" value="70" />
           <entry key="json" value="2" />
           <entry key="png" value="1" />
           <entry key="properties" value="1" />
@@ -111,7 +112,7 @@
           <entry key="Git file" value="1" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="69" />
+          <entry key="JAVA" value="70" />
           <entry key="JSON" value="2" />
           <entry key="Manifest" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
@@ -125,7 +126,7 @@
           <entry key="css" value="628" />
           <entry key="dummy" value="84" />
           <entry key="gitignore" value="3" />
-          <entry key="java" value="13009" />
+          <entry key="java" value="13338" />
           <entry key="json" value="13" />
           <entry key="txt" value="12" />
           <entry key="xml" value="4" />
@@ -137,7 +138,7 @@
         <counts>
           <entry key="CSS" value="628" />
           <entry key="Git file" value="2" />
-          <entry key="JAVA" value="13009" />
+          <entry key="JAVA" value="13338" />
           <entry key="JSON" value="13" />
           <entry key="PLAIN_TEXT" value="97" />
           <entry key="XML" value="4" />
@@ -198,74 +199,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/views/CreateSongView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-372">
-              <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/toolbars/ControlBar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="162" column="64" lean-forward="true" selection-start-line="162" selection-start-column="64" selection-end-line="162" selection-end-column="64" />
-              <folding>
-                <element signature="e#6797#6798#0" expanded="true" />
-                <element signature="e#6833#6834#0" expanded="true" />
-                <element signature="e#6895#6896#0" expanded="true" />
-                <element signature="e#6949#6950#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="360">
+              <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/views/SongListView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/views/EditSlideView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="17" selection-start-column="17" selection-end-column="17" />
+            <state relative-caret-position="120">
+              <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+              <folding>
+                <element signature="e#2397#2398#0" expanded="true" />
+                <element signature="e#2443#2444#0" expanded="true" />
+                <element signature="e#2511#2512#0" expanded="true" />
+                <element signature="e#2560#2561#0" expanded="true" />
+                <element signature="e#2628#2629#0" expanded="true" />
+                <element signature="e#2676#2677#0" expanded="true" />
+                <element signature="e#2744#2745#0" expanded="true" />
+                <element signature="e#2792#2793#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -329,7 +283,6 @@
         <option value="$PROJECT_DIR$/src/app/style.css" />
         <option value="$PROJECT_DIR$/src/app/views/WebSearchView.java" />
         <option value="$PROJECT_DIR$/src/app/views/SlidesListView.java" />
-        <option value="$PROJECT_DIR$/src/app/storage/StorageController.java" />
         <option value="$PROJECT_DIR$/src/app/views/EditSlideView.java" />
         <option value="$PROJECT_DIR$/src/app/views/ChangeBackgroundView.java" />
         <option value="$PROJECT_DIR$/src/app/Main.java" />
@@ -337,11 +290,12 @@
         <option value="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" />
         <option value="$PROJECT_DIR$/config.yml" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/app/views/CreateSongView.java" />
         <option value="$PROJECT_DIR$/src/app/Configurations.java" />
         <option value="$PROJECT_DIR$/src/app/views/LiveView.java" />
         <option value="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" />
         <option value="$PROJECT_DIR$/src/app/views/SongListView.java" />
+        <option value="$PROJECT_DIR$/src/app/views/CreateSongView.java" />
+        <option value="$PROJECT_DIR$/src/app/storage/StorageController.java" />
       </list>
     </option>
   </component>
@@ -449,7 +403,7 @@
     <property name="SearchEverywhereHistoryKey" value="yml&#9;FILE&#9;file://D:/Projects/Presenter/config.yml&#10;dump&#9;PSI&#9;JAVA://org.yaml.snakeyaml.DumperOptions&#10;pom.xml&#9;FILE&#9;jar://C:/Users/ianhc/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar!/META-INF/maven/org.jsoup/jsoup/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540871259922" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540872245477" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="public" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
@@ -791,13 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Configurations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-832">
@@ -815,20 +762,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/views/EditSlideView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/views/CreateSongView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-372">
-          <caret line="25" column="26" lean-forward="true" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -855,10 +788,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/views/EditSlideView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/views/SongListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
+        <state relative-caret-position="9">
+          <caret line="52" column="28" lean-forward="true" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/views/CreateSongView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+          <folding>
+            <element signature="e#2397#2398#0" expanded="true" />
+            <element signature="e#2443#2444#0" expanded="true" />
+            <element signature="e#2511#2512#0" expanded="true" />
+            <element signature="e#2560#2561#0" expanded="true" />
+            <element signature="e#2628#2629#0" expanded="true" />
+            <element signature="e#2676#2677#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2792#2793#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

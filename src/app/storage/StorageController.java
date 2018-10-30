@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class StorageController {
 
     public static boolean saveFile(String path, String title, String lyrics) {
-        String filename = convertTitleToFileName(title);
+        String filename = convertTitleToFileName(capitalizeTitle(title));
         String content = convertLyricsToFileFormat(lyrics);
         boolean saved = false;
         checkDirectory(new File(path));
@@ -93,5 +93,13 @@ public class StorageController {
         if (!file.exists()) {
             file.mkdir();
         }
+    }
+
+    private static String capitalizeTitle(String str) {
+        StringBuilder result = new StringBuilder(str.length());
+        for (String word : str.split(" ")) {
+            result.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+        }
+        return result.toString().trim();
     }
 }
