@@ -24,10 +24,12 @@ public class SongListView {
     private Song selectedSong;
     private TextField searchBar;
     private ListView<Song> listView;
+    private ObservableList<Song> songList;
 
     public SongListView init(Pane parent) {
         listView = new ListView<>();
         listView.setId("song_list_listview");
+        songList = FXCollections.observableArrayList(getSongsFromFiles());
         VBox.setVgrow(listView, Priority.ALWAYS);
         initSearchBar();
         populateSongList();
@@ -69,8 +71,7 @@ public class SongListView {
     }
 
     public void populateSongList() {
-        ObservableList<Song> rawData = FXCollections.observableArrayList(getSongsFromFiles());
-        FilteredList<Song> filteredList = new FilteredList<>(rawData, data -> true);
+        FilteredList<Song> filteredList = new FilteredList<>(songList, data -> true);
         searchBar.textProperty().addListener(((observable, oldValue, newValue) -> filteredList.setPredicate(data -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
