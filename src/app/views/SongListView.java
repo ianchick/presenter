@@ -1,6 +1,8 @@
 package app.views;
 
 import app.Configurations;
+import app.Mastermind;
+import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.ControlBar;
@@ -8,8 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -17,37 +19,62 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class SongListView {
 
     private Song selectedSong;
-    private SlidesListView slidesListView;
     private TextField searchBar;
-
     private ListView<Song> listView;
+    private ObservableList<Song> songList;
 
-    public void display(Pane parent, ScrollPane slidesPane) {
+    public SongListView init(Pane parent) {
         listView = new ListView<>();
-        VBox.setVgrow(listView, Priority.ALWAYS);
-        searchBar = new TextField();
-        searchBar.setPromptText("Search...");
         listView.setId("song_list_listview");
+        songList = FXCollections.observableArrayList(getSongsFromFiles());
+        VBox.setVgrow(listView, Priority.ALWAYS);
+        initSearchBar();
         populateSongList();
+        setSongListClickListener();
+        Label label = new Label("Songs:");
+        label.setId("list_label");
+        parent.getChildren().addAll(label, searchBar, listView);
+        return this;
+    }
+
+    private void setSongListClickListener() {
         listView.getSelectionModel().selectedItemProperty().addListener(e -> {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
-                setSlidesListView(slidesPane);
+                Session.getInstance().setSelectedSong(selectedSong);
+                SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
+                slidesListView.display(selectedSong);
                 ControlBar.getEditSongButton().setDisable(false);
                 ControlBar.getDeleteSongButton().setDisable(false);
             }
         });
-        parent.getChildren().addAll(searchBar, listView);
+
+        listView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Song song = Session.getInstance().getSelectedSong();
+                SetListQueueView setList = Mastermind.getInstance().getSetListQueueView();
+                if (!setList.getQueue().contains(song)) {
+                    setList.addSong(song);
+                }
+            }
+        });
+    }
+
+    public void setSelectedSong(Song song) {
+        listView.getSelectionModel().select(song);
+    }
+
+    private void initSearchBar() {
+        searchBar = new TextField();
+        searchBar.setPromptText("Search...");
     }
 
     public void populateSongList() {
-        ObservableList<Song> rawData = FXCollections.observableArrayList(getSongs());
-        FilteredList<Song> filteredList = new FilteredList<>(rawData, data -> true);
+        FilteredList<Song> filteredList = new FilteredList<>(songList, data -> true);
         searchBar.textProperty().addListener(((observable, oldValue, newValue) -> filteredList.setPredicate(data -> {
             if (newValue == null || newValue.isEmpty()) {
                 return true;
@@ -60,7 +87,7 @@ public class SongListView {
         listView.setItems(sortedList);
     }
 
-    private ArrayList<Song> getSongs() {
+    private ArrayList<Song> getSongsFromFiles() {
         ArrayList<Song> songs = new ArrayList<>();
         ArrayList<File> files = StorageController.getFilesFromDir(Configurations.getSongsPath());
         for (File file : files) {
@@ -70,20 +97,5 @@ public class SongListView {
             songs.add(song);
         }
         return songs;
-    }
-
-    public Song getSelectedSong() {
-        return selectedSong;
-    }
-
-    public SlidesListView getSlidesListView() {
-        return slidesListView;
-    }
-
-    private void setSlidesListView(ScrollPane slidesPane) {
-        if (slidesListView == null) {
-            slidesListView = new SlidesListView();
-        }
-        slidesListView.display(selectedSong, slidesPane);
     }
 }

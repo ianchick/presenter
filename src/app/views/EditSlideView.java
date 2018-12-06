@@ -1,6 +1,7 @@
 package app.views;
 
 import app.Configurations;
+import app.Mastermind;
 import app.models.Slide;
 import app.models.Song;
 import app.storage.StorageController;
@@ -17,10 +18,8 @@ public class EditSlideView {
 
     private Song song;
     private boolean saved;
-    private SlidesListView context;
 
-    public EditSlideView(Song song, SlidesListView context) {
-        this.context = context;
+    public EditSlideView(Song song) {
         this.song = song;
     }
 
@@ -40,7 +39,7 @@ public class EditSlideView {
             window.close();
             File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
             song.setSlides(StorageController.getSlidesFromFile(file));
-            context.display(song, context.getParent());
+            Mastermind.getInstance().getSlidesListView().display(song);
         });
         vbox.getChildren().addAll(content, submit);
         window.setScene(new Scene(vbox));

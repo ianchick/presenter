@@ -1,6 +1,6 @@
 package app.views;
 
-import app.WebScrapingController;
+import app.webcontrollers.WebScrapingController;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

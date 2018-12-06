@@ -1,6 +1,8 @@
 package app.toolbars;
 
 import app.Configurations;
+import app.Mastermind;
+import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
@@ -139,7 +141,7 @@ public class ControlBar {
         editSongButton = new Button("Edit Song");
         editSongButton.setDisable(true);
         editSongButton.setOnAction(e -> {
-            Song song = songListView.getSelectedSong();
+            Song song = Session.getInstance().getSelectedSong();
             if (song != null) {
                 CreateSongView createSongView = new CreateSongView();
                 createSongView.setFields(song.getTitle(), song.getLyrics());
@@ -147,9 +149,9 @@ public class ControlBar {
                 File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
                 song.setSlides(StorageController.getSlidesFromFile(file));
                 song.setLyricsFromSlides();
-                SlidesListView slidesListView = songListView.getSlidesListView();
+                SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
                 if (slidesListView != null) {
-                    slidesListView.display(song, slidesListView.getParent());
+                    slidesListView.display(song);
                 }
                 NavigationBar.refresh();
             }
@@ -162,13 +164,14 @@ public class ControlBar {
         deleteSongButton.setDisable(true);
         deleteSongButton.setOnAction(e -> {
             if (confirmDelete()) {
-                Song song = songListView.getSelectedSong();
+                Song song = Session.getInstance().getSelectedSong();
                 if (song != null) {
                     StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
+                    Mastermind.getInstance().getSetListQueueView().removeSong(song);
                     editSongButton.setDisable(true);
                     deleteSongButton.setDisable(true);
                     NavigationBar.refresh();
-                    songListView.getSlidesListView().clear();
+                    Mastermind.getInstance().getSlidesListView().clear();
                 }
             }
         });

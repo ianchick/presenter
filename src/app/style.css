@@ -46,7 +46,17 @@
     -fx-preferred-height: 0;
     -fx-focus-color: transparent;
     -fx-background-color: #D7D7D7;
+    -fx-border-color: #AAA;
     -fx-control-inner-background: #DFDFDF;
+    -fx-background-insets: 1;
+}
+
+#list_label {
+}
+
+#song_list_box {
+    -fx-padding: 5;
+    -fx-background-color: #D7D7D7;
     -fx-background-insets: 1;
 }
 
