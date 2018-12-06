@@ -24,7 +24,6 @@ public class SongListView {
 
     private Song selectedSong;
     private TextField searchBar;
-
     private ListView<Song> listView;
 
     public SongListView init(Pane parent) {
