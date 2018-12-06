@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class SongListView {
 
     private Song selectedSong;
-    private SlidesListView slidesListView;
     private TextField searchBar;
 
     private ListView<Song> listView;
@@ -44,7 +43,8 @@ public class SongListView {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
                 Session.getInstance().setSelectedSong(selectedSong);
-                setSlidesListView(Mastermind.getInstance().getSlidesListView().getParent());
+                SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
+                slidesListView.display(selectedSong);
                 ControlBar.getEditSongButton().setDisable(false);
                 ControlBar.getDeleteSongButton().setDisable(false);
             }
@@ -81,16 +81,5 @@ public class SongListView {
             songs.add(song);
         }
         return songs;
-    }
-
-    public SlidesListView getSlidesListView() {
-        return slidesListView;
-    }
-
-    private void setSlidesListView(ScrollPane slidesPane) {
-        if (slidesListView == null) {
-            slidesListView = new SlidesListView();
-        }
-        slidesListView.display(selectedSong, slidesPane);
     }
 }

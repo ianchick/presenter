@@ -1,6 +1,7 @@
 package app.toolbars;
 
 import app.Configurations;
+import app.Mastermind;
 import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
@@ -148,9 +149,9 @@ public class ControlBar {
                 File file = StorageController.getFile(Configurations.getSongsPath(), song.getTitle());
                 song.setSlides(StorageController.getSlidesFromFile(file));
                 song.setLyricsFromSlides();
-                SlidesListView slidesListView = songListView.getSlidesListView();
+                SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
                 if (slidesListView != null) {
-                    slidesListView.display(song, slidesListView.getParent());
+                    slidesListView.display(song);
                 }
                 NavigationBar.refresh();
             }
@@ -169,7 +170,7 @@ public class ControlBar {
                     editSongButton.setDisable(true);
                     deleteSongButton.setDisable(true);
                     NavigationBar.refresh();
-                    songListView.getSlidesListView().clear();
+                    Mastermind.getInstance().getSlidesListView().clear();
                 }
             }
         });

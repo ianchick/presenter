@@ -24,13 +24,13 @@ public class SlidesListView {
     }
 
     public SlidesListView init(ScrollPane parent) {
-        display(null, parent);
+        this.parent = parent;
+        display(null);
         return this;
     }
 
-    public void display(Song song, ScrollPane parentScrollPane) {
+    public void display(Song song) {
         this.song = song;
-        this.parent = parentScrollPane;
         if (flow == null) {
             flow = new FlowPane();
         }
@@ -72,7 +72,7 @@ public class SlidesListView {
         flow.getChildren().forEach(item -> item.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.SECONDARY) {
                 Text text = (Text) ((StackPane) item).getChildren().get(0);
-                EditSlideView editSlideView = new EditSlideView(song, this);
+                EditSlideView editSlideView = new EditSlideView(song);
                 editSlideView.display(song.getSlideFromText(text.getText()));
             } else {
                 if (LiveView.isLive()) {

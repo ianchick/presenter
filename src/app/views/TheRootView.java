@@ -14,12 +14,9 @@ import javafx.scene.layout.VBox;
 
 public class TheRootView {
 
-    private SongListView songListView;
-
     public BorderPane init() {
         BorderPane root = new BorderPane();
         root.setId("root");
-        setKeyEventHandler(root);
 
         ScrollPane slidesView = new ScrollPane();
         Mastermind.getInstance().setSlidesListView(new SlidesListView().init(slidesView));
@@ -30,12 +27,14 @@ public class TheRootView {
         changeBackgroundView.display(backgroundPane);
 
         VBox songListBox = new VBox();
-        songListView = new SongListView().init(songListBox);
+        SongListView songListView = new SongListView().init(songListBox);
         Mastermind.getInstance().setSongListView(songListView);
 
         ToolBar toolBar = ControlBar.setup(songListView);
 
         MenuBar menuBar = NavigationBar.setup(changeBackgroundView, backgroundPane, songListView);
+
+        setKeyEventHandler(root);
 
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListBox);
@@ -45,21 +44,22 @@ public class TheRootView {
     }
 
     private void setKeyEventHandler(Pane pane) {
+        SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
         pane.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.RIGHT == event.getCode()) {
-                if (songListView.getSlidesListView() != null) {
-                    songListView.getSlidesListView().nextSlide();
+                if (slidesListView != null) {
+                    slidesListView.nextSlide();
                 }
             }
             if (KeyCode.LEFT == event.getCode()) {
-                if (songListView.getSlidesListView() != null) {
-                    songListView.getSlidesListView().previousSlide();
+                if (slidesListView != null) {
+                    slidesListView.previousSlide();
                 }
             }
             if (KeyCode.B == event.getCode()) {
                 if (LiveView.isLive()) {
                     if (LiveView.getTextView().getText().equals("")) {
-                        songListView.getSlidesListView().currentSlide();
+                        slidesListView.currentSlide();
                     } else {
                         LiveView.getTextView().setText("");
                     }
