@@ -13,15 +13,14 @@ import javafx.scene.layout.VBox;
 
 public class TheRootView {
 
-    SongListView songListView;
+    private SongListView songListView;
 
     public BorderPane init() {
         BorderPane root = new BorderPane();
         root.setId("root");
-
         setKeyEventHandler(root);
 
-        VBox listSongsBox = new VBox();
+        VBox songListBox = new VBox();
         ScrollPane slidesView = new ScrollPane();
         slidesView.setId("slides_scroll_pane");
         ScrollPane backgroundPane = new ScrollPane();
@@ -29,14 +28,14 @@ public class TheRootView {
         ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
         changeBackgroundView.display(backgroundPane);
 
-        songListView = new SongListView().init(listSongsBox, slidesView);
+        songListView = new SongListView().init(songListBox, slidesView);
 
         ToolBar toolBar = ControlBar.setup(songListView);
 
         MenuBar menuBar = NavigationBar.setup(changeBackgroundView, backgroundPane, songListView);
 
         root.setTop(new VBox(menuBar, toolBar));
-        root.setLeft(listSongsBox);
+        root.setLeft(songListBox);
         root.setCenter(slidesView);
         root.setBottom(backgroundPane);
         return root;

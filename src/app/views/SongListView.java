@@ -1,6 +1,7 @@
 package app.views;
 
 import app.Configurations;
+import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.ControlBar;
@@ -17,7 +18,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class SongListView {
 
@@ -28,30 +28,35 @@ public class SongListView {
     private ListView<Song> listView;
 
     public SongListView init(Pane parent, ScrollPane slidesPane) {
-        display(parent, slidesPane);
+        listView = new ListView<>();
+        listView.setId("song_list_listview");
+        VBox.setVgrow(listView, Priority.ALWAYS);
+        initSearchBar();
+        populateSongList();
+        setSongListClickListener(slidesPane);
+        parent.getChildren().addAll(searchBar, listView);
         return this;
     }
 
-    public void display(Pane parent, ScrollPane slidesPane) {
-        listView = new ListView<>();
-        VBox.setVgrow(listView, Priority.ALWAYS);
-        searchBar = new TextField();
-        searchBar.setPromptText("Search...");
-        listView.setId("song_list_listview");
-        populateSongList();
+    private void setSongListClickListener(ScrollPane slidesPane) {
         listView.getSelectionModel().selectedItemProperty().addListener(e -> {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
+                Session.getInstance().setSelectedSong(selectedSong);
                 setSlidesListView(slidesPane);
                 ControlBar.getEditSongButton().setDisable(false);
                 ControlBar.getDeleteSongButton().setDisable(false);
             }
         });
-        parent.getChildren().addAll(searchBar, listView);
+    }
+
+    private void initSearchBar() {
+        searchBar = new TextField();
+        searchBar.setPromptText("Search...");
     }
 
     public void populateSongList() {
-        ObservableList<Song> rawData = FXCollections.observableArrayList(getSongs());
+        ObservableList<Song> rawData = FXCollections.observableArrayList(getSongsFromFiles());
         FilteredList<Song> filteredList = new FilteredList<>(rawData, data -> true);
         searchBar.textProperty().addListener(((observable, oldValue, newValue) -> filteredList.setPredicate(data -> {
             if (newValue == null || newValue.isEmpty()) {
@@ -65,7 +70,7 @@ public class SongListView {
         listView.setItems(sortedList);
     }
 
-    private ArrayList<Song> getSongs() {
+    private ArrayList<Song> getSongsFromFiles() {
         ArrayList<Song> songs = new ArrayList<>();
         ArrayList<File> files = StorageController.getFilesFromDir(Configurations.getSongsPath());
         for (File file : files) {
@@ -75,10 +80,6 @@ public class SongListView {
             songs.add(song);
         }
         return songs;
-    }
-
-    public Song getSelectedSong() {
-        return selectedSong;
     }
 
     public SlidesListView getSlidesListView() {

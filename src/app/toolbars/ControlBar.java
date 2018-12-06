@@ -1,6 +1,7 @@
 package app.toolbars;
 
 import app.Configurations;
+import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
@@ -139,7 +140,7 @@ public class ControlBar {
         editSongButton = new Button("Edit Song");
         editSongButton.setDisable(true);
         editSongButton.setOnAction(e -> {
-            Song song = songListView.getSelectedSong();
+            Song song = Session.getInstance().getSelectedSong();
             if (song != null) {
                 CreateSongView createSongView = new CreateSongView();
                 createSongView.setFields(song.getTitle(), song.getLyrics());
@@ -162,7 +163,7 @@ public class ControlBar {
         deleteSongButton.setDisable(true);
         deleteSongButton.setOnAction(e -> {
             if (confirmDelete()) {
-                Song song = songListView.getSelectedSong();
+                Song song = Session.getInstance().getSelectedSong();
                 if (song != null) {
                     StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
                     editSongButton.setDisable(true);
