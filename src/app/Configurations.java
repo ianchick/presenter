@@ -18,7 +18,7 @@ public class Configurations {
     private static String DEFAULT_FONT;
     private static int DEFAULT_FONT_SIZE;
 
-    public void setup() throws IOException {
+    public static void setup() throws IOException {
         File config = new File(CONFIG_PATH);
         if (!config.exists()) {
             try {
@@ -31,7 +31,7 @@ public class Configurations {
         setConfigValues();
     }
 
-    private void generateDefaultConfig() {
+    private static void generateDefaultConfig() {
         DumperOptions options = new DumperOptions();
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
@@ -50,7 +50,7 @@ public class Configurations {
         yaml.dump(data, writer);
     }
 
-    public Map<String, String> readConfig() throws IOException {
+    private static Map<String, String> readConfig() throws IOException {
         Map<String, String> config;
         Yaml yaml = new Yaml();
         try (FileInputStream in = new FileInputStream(CONFIG_PATH)) {
@@ -59,7 +59,7 @@ public class Configurations {
         return config;
     }
 
-    public void setConfigValues() throws IOException {
+    private static void setConfigValues() throws IOException {
         Map<String, String> config = readConfig();
         setSongsPath(config.get("songs_dir"));
         setBackgroundsPath(config.get("bg_dir"));

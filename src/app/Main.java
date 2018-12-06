@@ -17,9 +17,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws IOException {
-        Configurations configurations = new Configurations();
-        configurations.setup();
+        Configurations.setup();
         Session.init();
+        Mastermind.init();
         init(window);
         window.show();
     }

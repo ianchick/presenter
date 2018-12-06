@@ -23,6 +23,11 @@ public class SlidesListView {
         activeSlide = null;
     }
 
+    public SlidesListView init(ScrollPane parent) {
+        display(null, parent);
+        return this;
+    }
+
     public void display(Song song, ScrollPane parentScrollPane) {
         this.song = song;
         this.parent = parentScrollPane;

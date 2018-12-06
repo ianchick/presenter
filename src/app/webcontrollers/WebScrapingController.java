@@ -1,4 +1,4 @@
-package app;
+package app.webcontrollers;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

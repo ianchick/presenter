@@ -1,5 +1,6 @@
 package app.views;
 
+import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
 import javafx.scene.control.MenuBar;
@@ -20,15 +21,17 @@ public class TheRootView {
         root.setId("root");
         setKeyEventHandler(root);
 
-        VBox songListBox = new VBox();
         ScrollPane slidesView = new ScrollPane();
+        Mastermind.getInstance().setSlidesListView(new SlidesListView().init(slidesView));
         slidesView.setId("slides_scroll_pane");
-        ScrollPane backgroundPane = new ScrollPane();
 
+        ScrollPane backgroundPane = new ScrollPane();
         ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
         changeBackgroundView.display(backgroundPane);
 
-        songListView = new SongListView().init(songListBox, slidesView);
+        VBox songListBox = new VBox();
+        songListView = new SongListView().init(songListBox);
+        Mastermind.getInstance().setSongListView(songListView);
 
         ToolBar toolBar = ControlBar.setup(songListView);
 

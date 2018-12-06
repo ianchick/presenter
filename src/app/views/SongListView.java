@@ -1,6 +1,7 @@
 package app.views;
 
 import app.Configurations;
+import app.Mastermind;
 import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
@@ -27,23 +28,23 @@ public class SongListView {
 
     private ListView<Song> listView;
 
-    public SongListView init(Pane parent, ScrollPane slidesPane) {
+    public SongListView init(Pane parent) {
         listView = new ListView<>();
         listView.setId("song_list_listview");
         VBox.setVgrow(listView, Priority.ALWAYS);
         initSearchBar();
         populateSongList();
-        setSongListClickListener(slidesPane);
+        setSongListClickListener();
         parent.getChildren().addAll(searchBar, listView);
         return this;
     }
 
-    private void setSongListClickListener(ScrollPane slidesPane) {
+    private void setSongListClickListener() {
         listView.getSelectionModel().selectedItemProperty().addListener(e -> {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
                 Session.getInstance().setSelectedSong(selectedSong);
-                setSlidesListView(slidesPane);
+                setSlidesListView(Mastermind.getInstance().getSlidesListView().getParent());
                 ControlBar.getEditSongButton().setDisable(false);
                 ControlBar.getDeleteSongButton().setDisable(false);
             }
