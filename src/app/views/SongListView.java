@@ -27,6 +27,11 @@ public class SongListView {
 
     private ListView<Song> listView;
 
+    public SongListView init(Pane parent, ScrollPane slidesPane) {
+        display(parent, slidesPane);
+        return this;
+    }
+
     public void display(Pane parent, ScrollPane slidesPane) {
         listView = new ListView<>();
         VBox.setVgrow(listView, Priority.ALWAYS);

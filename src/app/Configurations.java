@@ -18,7 +18,7 @@ public class Configurations {
     private static String DEFAULT_FONT;
     private static int DEFAULT_FONT_SIZE;
 
-    public void setup() {
+    public void setup() throws IOException {
         File config = new File(CONFIG_PATH);
         if (!config.exists()) {
             try {
@@ -28,6 +28,7 @@ public class Configurations {
             }
             generateDefaultConfig();
         }
+        setConfigValues();
     }
 
     private void generateDefaultConfig() {
