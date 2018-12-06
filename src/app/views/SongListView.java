@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -34,7 +35,9 @@ public class SongListView {
         initSearchBar();
         populateSongList();
         setSongListClickListener();
-        parent.getChildren().addAll(searchBar, listView);
+        Label label = new Label("Songs:");
+        label.setId("list_label");
+        parent.getChildren().addAll(label, searchBar, listView);
         return this;
     }
 

@@ -5,6 +5,7 @@ import app.Session;
 import app.models.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -23,7 +24,9 @@ public class SetListQueueView {
         listView = new ListView<>();
         listView.setId("song_list_listview");
         VBox.setVgrow(listView, Priority.ALWAYS);
-        parent.getChildren().addAll(listView);
+        Label label = new Label("Set List:");
+        label.setId("list_label");
+        parent.getChildren().addAll(label, listView);
         queue = FXCollections.observableArrayList();
         listView.setItems(queue);
         setListViewClickListener();

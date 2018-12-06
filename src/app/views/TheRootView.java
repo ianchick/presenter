@@ -27,6 +27,7 @@ public class TheRootView {
         changeBackgroundView.display(backgroundPane);
 
         VBox songListBox = new VBox();
+        songListBox.setId("song_list_box");
         SongListView songListView = new SongListView().init(songListBox);
         Mastermind.getInstance().setSongListView(songListView);
         SetListQueueView setListQueueView = new SetListQueueView().init(songListBox);
