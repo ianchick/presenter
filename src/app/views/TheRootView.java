@@ -33,7 +33,7 @@ public class TheRootView {
         SetListQueueView setListQueueView = new SetListQueueView().init(songListBox);
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
-        ToolBar toolBar = ControlBar.setup(songListView);
+        ToolBar toolBar = ControlBar.setup();
 
         MenuBar menuBar = NavigationBar.setup(changeBackgroundView, backgroundPane, songListView);
 
