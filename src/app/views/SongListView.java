@@ -30,9 +30,9 @@ public class SongListView {
     public SongListView init(Pane parent) {
         listView = new ListView<>();
         listView.setId("song_list_listview");
-        songList = FXCollections.observableArrayList(getSongsFromFiles());
         VBox.setVgrow(listView, Priority.ALWAYS);
         initSearchBar();
+        songList = FXCollections.observableArrayList();
         populateSongList();
         setSongListClickListener();
         Label label = new Label("Songs:");
@@ -74,6 +74,7 @@ public class SongListView {
     }
 
     public void populateSongList() {
+        songList.addAll(getSongsFromFiles());
         FilteredList<Song> filteredList = new FilteredList<>(songList, data -> true);
         searchBar.textProperty().addListener(((observable, oldValue, newValue) -> filteredList.setPredicate(data -> {
             if (newValue == null || newValue.isEmpty()) {
@@ -94,8 +95,18 @@ public class SongListView {
             Song song = new Song(StorageController.convertFileNameToTitle(file.getName()));
             song.setSlides(StorageController.getSlidesFromFile(file));
             song.setLyricsFromSlides();
-            songs.add(song);
+            ArrayList<String> songTitles = new ArrayList<>();
+            for (Song s : songList) {
+                songTitles.add(s.getTitle());
+            }
+            if (!songTitles.contains(song.getTitle())) {
+                songList.add(song);
+            }
         }
         return songs;
+    }
+
+    public void removeSong(Song song) {
+        songList.remove(song);
     }
 }
