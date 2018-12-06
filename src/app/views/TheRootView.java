@@ -29,6 +29,8 @@ public class TheRootView {
         VBox songListBox = new VBox();
         SongListView songListView = new SongListView().init(songListBox);
         Mastermind.getInstance().setSongListView(songListView);
+        SetListQueueView setListQueueView = new SetListQueueView().init(songListBox);
+        Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
         ToolBar toolBar = ControlBar.setup(songListView);
 

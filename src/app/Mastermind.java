@@ -1,5 +1,6 @@
 package app;
 
+import app.views.SetListQueueView;
 import app.views.SlidesListView;
 import app.views.SongListView;
 
@@ -11,6 +12,7 @@ public class Mastermind {
     private static Mastermind mastermind;
     private SongListView songListView;
     private SlidesListView slidesListView;
+    private SetListQueueView setListQueueView;
 
     public static void init() {
         mastermind = new Mastermind();
@@ -34,5 +36,13 @@ public class Mastermind {
 
     public void setSlidesListView(SlidesListView slidesListView) {
         this.slidesListView = slidesListView;
+    }
+
+    public SetListQueueView getSetListQueueView() {
+        return setListQueueView;
+    }
+
+    public void setSetListQueueView(SetListQueueView setListQueueView) {
+        this.setListQueueView = setListQueueView;
     }
 }

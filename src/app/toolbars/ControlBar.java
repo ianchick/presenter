@@ -167,6 +167,7 @@ public class ControlBar {
                 Song song = Session.getInstance().getSelectedSong();
                 if (song != null) {
                     StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
+                    Mastermind.getInstance().getSetListQueueView().removeSong(song);
                     editSongButton.setDisable(true);
                     deleteSongButton.setDisable(true);
                     NavigationBar.refresh();

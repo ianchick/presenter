@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -48,6 +47,20 @@ public class SongListView {
                 ControlBar.getDeleteSongButton().setDisable(false);
             }
         });
+
+        listView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Song song = Session.getInstance().getSelectedSong();
+                SetListQueueView setList = Mastermind.getInstance().getSetListQueueView();
+                if (!setList.getQueue().contains(song)) {
+                    setList.addSong(song);
+                }
+            }
+        });
+    }
+
+    public void setSelectedSong(Song song) {
+        listView.getSelectionModel().select(song);
     }
 
     private void initSearchBar() {
