@@ -23,9 +23,9 @@ public class ControlBar {
     private static Button editSongButton;
     private static Button deleteSongButton;
 
-    public static ToolBar setup(SongListView songList) {
+    public static ToolBar setup() {
         ToolBar toolBar = new ToolBar();
-        songListView = songList;
+        songListView = Mastermind.getInstance().getSongListView();
 
         Button startLive = setLiveView();
         Button addSong = setCreateSongView();
