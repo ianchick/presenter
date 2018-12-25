@@ -22,7 +22,6 @@
 }
 
 #background_scroll_pane {
-    -fx-max-height: 300;
     -fx-background: #D3D3D3;
     -fx-focus-color: transparent;
     -fx-border-color: #A9A9A9;

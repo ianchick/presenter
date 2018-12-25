@@ -3,8 +3,10 @@ package app.views;
 import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
+import javafx.geometry.Orientation;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,14 +20,22 @@ public class TheRootView {
         BorderPane root = new BorderPane();
         root.setId("root");
 
+        // Lyric Slides
         ScrollPane slidesView = new ScrollPane();
         Mastermind.getInstance().setSlidesListView(new SlidesListView().init(slidesView));
         slidesView.setId("slides_scroll_pane");
 
+        // Backgrounds
         ScrollPane backgroundPane = new ScrollPane();
         ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
         changeBackgroundView.display(backgroundPane);
 
+        // Center Split Pane
+        SplitPane splitPane = new SplitPane();
+        splitPane.setOrientation(Orientation.VERTICAL);
+        splitPane.getItems().addAll(slidesView, backgroundPane);
+
+        // Song and Queue lists
         VBox songListBox = new VBox();
         songListBox.setId("song_list_box");
         SongListView songListView = new SongListView().init(songListBox);
@@ -41,8 +51,7 @@ public class TheRootView {
 
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListBox);
-        root.setCenter(slidesView);
-        root.setBottom(backgroundPane);
+        root.setCenter(splitPane);
         return root;
     }
 
