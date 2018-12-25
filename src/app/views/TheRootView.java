@@ -31,16 +31,17 @@ public class TheRootView {
         changeBackgroundView.display(backgroundPane);
 
         // Center Split Pane
-        SplitPane splitPane = new SplitPane();
-        splitPane.setOrientation(Orientation.VERTICAL);
-        splitPane.getItems().addAll(slidesView, backgroundPane);
+        SplitPane contentSplitPane = new SplitPane();
+        contentSplitPane.setOrientation(Orientation.VERTICAL);
+        contentSplitPane.getItems().addAll(slidesView, backgroundPane);
 
         // Song and Queue lists
-        VBox songListBox = new VBox();
-        songListBox.setId("song_list_box");
-        SongListView songListView = new SongListView().init(songListBox);
+        SplitPane songListSplitPane = new SplitPane();
+        songListSplitPane.setOrientation(Orientation.VERTICAL);
+        songListSplitPane.setId("song_list_box");
+        SongListView songListView = new SongListView().init(songListSplitPane);
         Mastermind.getInstance().setSongListView(songListView);
-        SetListQueueView setListQueueView = new SetListQueueView().init(songListBox);
+        SetListQueueView setListQueueView = new SetListQueueView().init(songListSplitPane);
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
         ToolBar toolBar = ControlBar.setup();
@@ -50,8 +51,8 @@ public class TheRootView {
         setKeyEventHandler(root);
 
         root.setTop(new VBox(menuBar, toolBar));
-        root.setLeft(songListBox);
-        root.setCenter(splitPane);
+        root.setLeft(songListSplitPane);
+        root.setCenter(contentSplitPane);
         return root;
     }
 

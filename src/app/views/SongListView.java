@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -27,7 +28,8 @@ public class SongListView {
     private ListView<Song> listView;
     private ObservableList<Song> songList;
 
-    public SongListView init(Pane parent) {
+    public SongListView init(SplitPane parent) {
+        VBox content = new VBox();
         listView = new ListView<>();
         listView.setId("song_list_listview");
         VBox.setVgrow(listView, Priority.ALWAYS);
@@ -37,7 +39,8 @@ public class SongListView {
         setSongListClickListener();
         Label label = new Label("Songs:");
         label.setId("list_label");
-        parent.getChildren().addAll(label, searchBar, listView);
+        content.getChildren().addAll(label, searchBar, listView);
+        parent.getItems().add(content);
         return this;
     }
 
