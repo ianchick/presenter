@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Presenter">
+    <output-path>$USER_HOME$/Desktop/artifacts/Presenter</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="app.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Presenter.jar">
+        <element id="module-output" name="Presenter" />
+      </element>
+      <element id="library" level="project" name="com.sachinhandiekar:jMusixMatch:1.1.4" />
+      <element id="library" level="project" name="com.googlecode.json-simple:json-simple:1.1.1" />
+      <element id="library" level="project" name="org.jsoup:jsoup:1.11.3" />
+      <element id="library" level="project" name="org.yaml:snakeyaml:1.23" />
+    </root>
+  </artifact>
+</component>

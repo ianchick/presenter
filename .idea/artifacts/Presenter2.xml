@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Presenter2">
+    <output-path>$USER_HOME$/Desktop/artifacts/Presenter2</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="app.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="exe" />
+        <option name="title" value="Presenter" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Presenter.jar">
+        <element id="module-output" name="Presenter" />
+      </element>
+      <element id="artifact" artifact-name="Presenter" />
+    </root>
+  </artifact>
+</component>
