@@ -169,7 +169,7 @@ public class LiveView {
     }
 
     private static void animateLyrics(Text oldView, Text newView) {
-        FadeTransition oldft = new FadeTransition(Duration.millis(textAnimSpeed*.4), oldView);
+        FadeTransition oldft = new FadeTransition(Duration.millis(textAnimSpeed * .4), oldView);
         oldft.setFromValue(1);
         oldft.setToValue(0);
         oldft.play();
