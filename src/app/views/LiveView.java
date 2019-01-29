@@ -95,6 +95,7 @@ public class LiveView {
     private static void closeLiveView() {
         setLive(false);
         SlidesListView.unsetActiveSlide();
+        ChangeBackgroundView.unsetActiveBackground();
         ControlBar.setImageButtonImage("play_button.png");
         window.close();
     }

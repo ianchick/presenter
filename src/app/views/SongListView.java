@@ -13,6 +13,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.control.*;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class SongListView {
         songList = FXCollections.observableArrayList();
         populateSongList();
         setSongListClickListener();
-        Label label = new Label("Songs:");
+        Label label = new Label("All Songs:");
         label.setId("list_label");
         content.getChildren().addAll(label, searchBar, listView);
         parent.getItems().add(content);

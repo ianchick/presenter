@@ -3,10 +3,11 @@ package app.views;
 import app.Configurations;
 import app.storage.StorageController;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 public class ChangeBackgroundView {
 
     private FlowPane flow;
-    private StackPane activeBackground;
+    private static StackPane activeBackground;
 
     public void display(ScrollPane parentScrollPane) {
         flow = new FlowPane();
         flow.setId("background_flow");
+        Tooltip.install(flow, new Tooltip("Select slide to set background image.\nSelect same slide to remove background"));
         parentScrollPane.setId("background_scroll_pane");
         parentScrollPane.setFitToHeight(true);
         parentScrollPane.setFitToWidth(true);
@@ -42,8 +44,13 @@ public class ChangeBackgroundView {
                 if (LiveView.isLive()) {
                     if (activeBackground != pane) {
                         LiveView.setBackground(image);
+                        if (activeBackground != null) {
+                            activeBackground.setBorder(null);
+                        }
                         activeBackground = pane;
+                        activeBackground.setBorder(new Border(new BorderStroke(Color.valueOf("#49E20E"), BorderStrokeStyle.SOLID, new CornerRadii(0), new BorderWidths(4))));
                     } else {
+                        activeBackground.setBorder(null);
                         activeBackground = null;
                         LiveView.setBackground(null);
                     }
@@ -51,5 +58,12 @@ public class ChangeBackgroundView {
             });
             flow.getChildren().add(pane);
         }
+    }
+
+    public static void unsetActiveBackground() {
+        if (activeBackground != null) {
+            activeBackground.setBorder(null);
+        }
+        activeBackground = null;
     }
 }
