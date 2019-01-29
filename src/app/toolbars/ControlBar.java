@@ -139,6 +139,7 @@ public class ControlBar {
 
     private static Button setEditSongButton() {
         editSongButton = new Button("Edit Song");
+        editSongButton.setTooltip(new Tooltip("Edit the currently selected song. Slides are split by empty lines.\nRight click on slides to edit individually. Edits will not display real time.\nAfter saving edits, reselect slide to display changes"));
         editSongButton.setDisable(true);
         editSongButton.setOnAction(e -> {
             Song song = Session.getInstance().getSelectedSong();

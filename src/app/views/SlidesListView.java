@@ -3,6 +3,7 @@ package app.views;
 import app.models.Slide;
 import app.models.Song;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -35,6 +36,7 @@ public class SlidesListView {
             slidesFlowPane = new FlowPane();
         }
         slidesFlowPane.setId("slides_flow");
+        Tooltip.install(slidesFlowPane, new Tooltip("Right click on a slide to edit slide content"));
         if (song != null) {
             setSlides(song);
         }

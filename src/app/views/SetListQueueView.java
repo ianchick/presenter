@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -23,6 +24,7 @@ public class SetListQueueView {
     public SetListQueueView init(SplitPane parent) {
         VBox content = new VBox();
         listView = new ListView<>();
+        listView.setTooltip(new Tooltip("Double click item to remove from set list"));
         listView.setId("song_list_listview");
         VBox.setVgrow(listView, Priority.ALWAYS);
         Label label = new Label("Set List:");
