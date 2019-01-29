@@ -23,7 +23,6 @@ public class CreateSongView {
         songSaved = false;
         Stage window = new Stage();
         window.setTitle("Add Song");
-        window.initModality(Modality.APPLICATION_MODAL);
 
         VBox content = new VBox(10);
         content.setPadding(new Insets(10));
