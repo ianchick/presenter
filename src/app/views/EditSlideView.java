@@ -33,7 +33,7 @@ public class EditSlideView {
         content.setText(slide.getContent());
         Button submit = new Button("Save");
         submit.setOnAction(e -> {
-            slide.setContent(content.getText());
+            slide.setContent(content.getText().trim());
             song.setLyricsFromSlides();
             saved = StorageController.saveFile(Configurations.getSongsPath(), song.getTitle(), song.getLyrics());
             window.close();

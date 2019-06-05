@@ -46,7 +46,7 @@ public class Song {
             stringBuilder.append(lyric);
             stringBuilder.append("\n\n");
         }
-        lyrics = stringBuilder.toString();
+        lyrics = stringBuilder.toString().trim();
     }
 
     public Slide getSlideFromText(String text) {
