@@ -4,10 +4,7 @@ import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
 import javafx.geometry.Orientation;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +13,10 @@ import javafx.scene.layout.VBox;
 
 public class TheRootView {
 
-    public BorderPane init() {
+    private static SplitPane contentSplitPane;
+    private static ScrollPane backgroundPane;
+
+    public static BorderPane init() {
         BorderPane root = new BorderPane();
         root.setId("root");
 
@@ -26,12 +26,12 @@ public class TheRootView {
         slidesView.setId("slides_scroll_pane");
 
         // Backgrounds
-        ScrollPane backgroundPane = new ScrollPane();
+        backgroundPane = new ScrollPane();
         ChangeBackgroundView changeBackgroundView = new ChangeBackgroundView();
         changeBackgroundView.display(backgroundPane);
 
         // Center Split Pane
-        SplitPane contentSplitPane = new SplitPane();
+        contentSplitPane = new SplitPane();
         contentSplitPane.setOrientation(Orientation.VERTICAL);
         contentSplitPane.getItems().addAll(slidesView, backgroundPane);
 
@@ -56,7 +56,7 @@ public class TheRootView {
         return root;
     }
 
-    private void setKeyEventHandler(Pane pane) {
+    private static void setKeyEventHandler(Pane pane) {
         SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
         pane.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.RIGHT == event.getCode()) {
@@ -79,5 +79,13 @@ public class TheRootView {
                 }
             }
         });
+    }
+
+    public static void toggleBackgroundPane(boolean isVisible) {
+        if (!isVisible) {
+            contentSplitPane.getItems().remove(1);
+        } else {
+            contentSplitPane.getItems().add(backgroundPane);
+        }
     }
 }

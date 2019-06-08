@@ -25,7 +25,7 @@ public class Main extends Application {
     }
 
     private void init(Stage window) {
-        BorderPane root = new TheRootView().init();
+        BorderPane root = TheRootView.init();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         window.setScene(scene);

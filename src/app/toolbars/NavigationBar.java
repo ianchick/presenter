@@ -1,8 +1,13 @@
 package app.toolbars;
 
 import app.Configurations;
+import app.Mastermind;
 import app.views.ChangeBackgroundView;
 import app.views.SongListView;
+import app.views.TheRootView;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -14,8 +19,8 @@ import java.io.IOException;
 
 public class NavigationBar {
 
-    private static MenuBar menuBar;
     private static Menu fileMenu;
+    private static Menu viewMenu;
 
     private static ChangeBackgroundView backgroundView;
     private static ScrollPane backgroundPane;
@@ -26,8 +31,21 @@ public class NavigationBar {
         backgroundView = bgView;
         songListView = listView;
 
-        menuBar = new MenuBar();
+        MenuBar menuBar = new MenuBar();
         fileMenu = new Menu("File");
+        viewMenu = new Menu("View");
+
+        CheckMenuItem toggleBackgrounds = new CheckMenuItem("Toggle Backgrounds");
+        toggleBackgrounds.setSelected(true);
+        toggleBackgrounds.setOnAction(e -> TheRootView.toggleBackgroundPane(toggleBackgrounds.isSelected()));
+        viewMenu.getItems().addAll(toggleBackgrounds);
+
+        setFileMenu();
+        menuBar.getMenus().addAll(fileMenu, viewMenu);
+        return menuBar;
+    }
+
+    private static void setFileMenu() {
         MenuItem refresh = new MenuItem("Refresh");
         refresh.setOnAction(e -> refresh());
         MenuItem openSongsDir = new MenuItem("Songs Directory");
@@ -64,8 +82,6 @@ public class NavigationBar {
             }
         });
         fileMenu.getItems().addAll(refresh, openSongsDir, openBgDir, preferences);
-        menuBar.getMenus().add(fileMenu);
-        return menuBar;
     }
 
     public static void refresh() {
