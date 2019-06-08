@@ -31,15 +31,22 @@ public class NavigationBar {
         MenuBar menuBar = new MenuBar();
         fileMenu = new Menu("File");
         viewMenu = new Menu("View");
-
-        CheckMenuItem toggleBackgrounds = new CheckMenuItem("Toggle Backgrounds");
-        toggleBackgrounds.setSelected(true);
-        toggleBackgrounds.setOnAction(e -> TheRootView.toggleBackgroundPane(toggleBackgrounds.isSelected()));
-        viewMenu.getItems().addAll(toggleBackgrounds);
-
+        setViewMenu();
         setFileMenu();
         menuBar.getMenus().addAll(fileMenu, viewMenu);
         return menuBar;
+    }
+
+    private static void setViewMenu() {
+        CheckMenuItem toggleBackgrounds = new CheckMenuItem("Toggle Backgrounds");
+        toggleBackgrounds.setSelected(true);
+        toggleBackgrounds.setOnAction(e -> TheRootView.toggleBackgroundPane(toggleBackgrounds.isSelected()));
+
+        CheckMenuItem toggleSongs = new CheckMenuItem("Toggle Songs");
+        toggleSongs.setSelected(true);
+        toggleSongs.setOnAction(e -> TheRootView.toggleSongsPane(toggleSongs.isSelected()));
+
+        viewMenu.getItems().addAll(toggleBackgrounds, toggleSongs);
     }
 
     private static void setFileMenu() {

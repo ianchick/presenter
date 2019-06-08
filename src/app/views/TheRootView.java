@@ -18,9 +18,11 @@ public class TheRootView {
 
     private static SplitPane contentSplitPane;
     private static ScrollPane backgroundPane;
+    private static SplitPane songListSplitPane;
+    private static BorderPane root;
 
     public static BorderPane init() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         root.setId("root");
 
         // Lyric Slides
@@ -39,7 +41,7 @@ public class TheRootView {
         contentSplitPane.getItems().addAll(slidesView, backgroundPane);
 
         // Song and Queue lists
-        SplitPane songListSplitPane = new SplitPane();
+        songListSplitPane = new SplitPane();
         songListSplitPane.setOrientation(Orientation.VERTICAL);
         songListSplitPane.setId("song_list_box");
         SongListView songListView = new SongListView().init(songListSplitPane);
@@ -86,9 +88,17 @@ public class TheRootView {
 
     public static void toggleBackgroundPane(boolean isVisible) {
         if (!isVisible) {
-            contentSplitPane.getItems().remove(1);
+            contentSplitPane.getItems().remove(backgroundPane);
         } else {
             contentSplitPane.getItems().add(backgroundPane);
+        }
+    }
+
+    public static void toggleSongsPane(boolean isVisible) {
+        if (!isVisible) {
+            root.getChildren().remove(songListSplitPane);
+        } else {
+            root.setLeft(songListSplitPane);
         }
     }
 }
