@@ -1,17 +1,14 @@
 package app.toolbars;
 
 import app.Configurations;
-import app.Mastermind;
 import app.views.ChangeBackgroundView;
 import app.views.SongListView;
 import app.views.TheRootView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 
 import java.awt.*;
 import java.io.File;
