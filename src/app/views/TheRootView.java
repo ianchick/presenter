@@ -49,6 +49,11 @@ public class TheRootView {
         SetListQueueView setListQueueView = new SetListQueueView().init(songListSplitPane);
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
+        // Bible Slides View
+        ScrollPane biblePane = new ScrollPane();
+        BibleSlidesView bibleSlidesView = new BibleSlidesView();
+        bibleSlidesView.display(biblePane);
+
         ToolBar toolBar = ControlBar.setup();
 
         MenuBar menuBar = NavigationBar.setup(changeBackgroundView, backgroundPane, songListView);
@@ -58,6 +63,7 @@ public class TheRootView {
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListSplitPane);
         root.setCenter(contentSplitPane);
+        root.setRight(biblePane);
         return root;
     }
 
