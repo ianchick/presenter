@@ -2,8 +2,11 @@ package app.views;
 
 import app.Mastermind;
 import app.webcontrollers.ESVController;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.json.simple.parser.ParseException;
@@ -22,6 +25,7 @@ public class BibleSlidesView {
         ESVController esvController = new ESVController();
 
         VBox wrapper = new VBox();
+        wrapper.setSpacing(8);
 
         TextField queryTextField = new TextField();
         queryTextField.setPromptText("Reference...");
@@ -68,6 +72,7 @@ public class BibleSlidesView {
         });
 
         HBox formattingBox = new HBox(versesPerSlideInput, setFormatButton);
+        formattingBox.setSpacing(4);
 
         Button createSlidesButton = new Button("Create Slides");
         createSlidesButton.setOnMouseClicked(event -> {
@@ -78,7 +83,9 @@ public class BibleSlidesView {
             }
         });
 
-        wrapper.getChildren().addAll(bibleSearchHBox, textArea, formattingBox, createSlidesButton);
+        wrapper.getChildren().addAll(new Label("Bible Search"), bibleSearchHBox, textArea, formattingBox, createSlidesButton);
+        parent.setPadding(new Insets(4));
+        parent.setId("bible_pane");
         parent.setContent(wrapper);
     }
 }
