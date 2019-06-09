@@ -1,19 +1,13 @@
 package app.views;
 
+import app.Mastermind;
 import app.webcontrollers.ESVController;
-import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.json.simple.parser.ParseException;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class BibleSlidesView {
@@ -28,6 +22,7 @@ public class BibleSlidesView {
         VBox wrapper = new VBox();
 
         TextField queryTextField = new TextField();
+        queryTextField.setPromptText("Reference...");
         Button search = new Button("Search");
         search.setOnMouseClicked(event -> {
             try {
@@ -40,10 +35,47 @@ public class BibleSlidesView {
         footnotesCheckbox = new CheckBox("Footnotes");
 
         HBox bibleSearchHBox = new HBox(queryTextField, search, headersCheckbox, footnotesCheckbox);
+        bibleSearchHBox.setAlignment(Pos.CENTER_LEFT);
+        bibleSearchHBox.setSpacing(4);
         textArea = new TextArea();
         textArea.setWrapText(true);
-        wrapper.getChildren().addAll(bibleSearchHBox, textArea);
-        parent.setContent(wrapper);
 
+        TextField versesPerSlideInput = new TextField();
+        versesPerSlideInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                versesPerSlideInput.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        Button setFormatButton = new Button("Format Verses");
+        setFormatButton.setOnMouseClicked(event -> {
+            String stripped = textArea.getText().replace("\n", "").replace(" +", " ").trim();
+            String[] splitVerses = stripped.split("\\[.*?]");
+            StringBuilder output = new StringBuilder();
+            int count = 0;
+            for (String verse : splitVerses) {
+                if (count < Integer.valueOf(versesPerSlideInput.getText())) {
+                    output.append(verse);
+                    count++;
+                } else {
+                    count = 0;
+                    output.append("\\n\\n");
+                }
+            }
+            textArea.setText(output.toString());
+        });
+
+        HBox formattingBox = new HBox(versesPerSlideInput, setFormatButton);
+
+        Button createSlidesButton = new Button("Create Slides");
+        createSlidesButton.setOnMouseClicked(event -> {
+            CreateSongView createSongView = new CreateSongView();
+            createSongView.setFields(queryTextField.getText(), textArea.getText());
+            if (createSongView.display()) {
+                Mastermind.getInstance().getSongListView().populateSongList();
+            }
+        });
+
+        wrapper.getChildren().addAll(bibleSearchHBox, textArea, formattingBox, createSlidesButton);
+        parent.setContent(wrapper);
     }
 }

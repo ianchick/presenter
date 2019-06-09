@@ -30,7 +30,13 @@ public class ESVController {
         uc.addRequestProperty("Authorization", "Token " + tokenJSON.get("esv_token"));
 
         JSONParser jsonParser = new JSONParser();
-        JSONObject response = (JSONObject)jsonParser.parse(new InputStreamReader(uc.getInputStream(), "UTF-8"));
+        JSONObject response = null;
+        try {
+            response = (JSONObject)jsonParser.parse(new InputStreamReader(uc.getInputStream(), "UTF-8"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Reference could not be found";
+        }
         return ((JSONArray)response.get("passages")).get(0).toString();
     }
 

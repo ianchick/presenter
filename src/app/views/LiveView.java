@@ -27,7 +27,7 @@ public class LiveView {
     private static Text textView;
     private static boolean isLive;
     private static Stage window;
-    private static int textSize = Configurations.getDefaultFontSize();
+    private static int fontSize = Configurations.getDefaultFontSize();
     private static String font = Configurations.getDefaultFont();
 
     private static int textAnimSpeed = 2000;
@@ -42,6 +42,9 @@ public class LiveView {
         setLive(true);
         setup();
         window.show();
+        contentPane.setPadding(new Insets(fontSize * 2));
+        textView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
+        transitionTextView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
     }
 
     private static void setup() {
@@ -53,13 +56,15 @@ public class LiveView {
         contentPane = new StackPane();
         contentPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         setBackground(null);
+        window.widthProperty().addListener((obs, oldVal, newVal) -> {
+            textView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
+            transitionTextView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
+        });
         textView = new Text();
-        textView.setWrappingWidth(window.getWidth());
         transitionTextView = new Text();
-        transitionTextView.setWrappingWidth(window.getWidth());
         textView.setFill(Color.WHITE);
         textView.setTextAlignment(TextAlignment.CENTER);
-        textView.setFont(new Font(font, textSize));
+        textView.setFont(new Font(font, fontSize));
         contentPane.getChildren().add(background);
         contentPane.getChildren().add(transitionBackground);
         contentPane.getChildren().add(textView);
@@ -119,7 +124,7 @@ public class LiveView {
     }
 
     public static void setFontSize(String text) {
-        textView.setFont(new Font(font, textSize));
+        textView.setFont(new Font(font, fontSize));
         textView.setText(text);
     }
 
@@ -127,14 +132,14 @@ public class LiveView {
         transitionTextView.setText(textView.getText());
         transitionTextView.setFill(Color.WHITE);
         transitionTextView.setTextAlignment(TextAlignment.CENTER);
-        transitionTextView.setFont(new Font(font, textSize));
-        textView.setFont(new Font(font, textSize));
+        transitionTextView.setFont(new Font(font, fontSize));
+        textView.setFont(new Font(font, fontSize));
         textView.setText(text);
         animateLyrics(transitionTextView, textView);
     }
 
-    public static void setTextSize(int size) {
-        textSize = size;
+    public static void setFontSize(int size) {
+        fontSize = size;
     }
 
     public static void setFont(String fontName) {

@@ -66,7 +66,7 @@ public class ControlBar {
         ComboBox<String> fontSizeCombo = new ComboBox<>(options);
         fontSizeCombo.getSelectionModel().select(String.valueOf(Configurations.getDefaultFontSize()));
         fontSizeCombo.setOnAction(e -> {
-            LiveView.setTextSize(Integer.valueOf(fontSizeCombo.getValue()));
+            LiveView.setFontSize(Integer.valueOf(fontSizeCombo.getValue()));
             if (LiveView.isLive()) {
                 LiveView.setFontSize(LiveView.getTextView().getText());
             }
