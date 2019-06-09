@@ -54,7 +54,9 @@ public class LiveView {
         contentPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         setBackground(null);
         textView = new Text();
+        textView.setWrappingWidth(window.getWidth());
         transitionTextView = new Text();
+        transitionTextView.setWrappingWidth(window.getWidth());
         textView.setFill(Color.WHITE);
         textView.setTextAlignment(TextAlignment.CENTER);
         textView.setFont(new Font(font, textSize));
