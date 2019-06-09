@@ -75,7 +75,7 @@ public class ControlBar {
     }
 
     private static ComboBox<String> setFontComboBox() {
-        ObservableList<String> options = FXCollections.observableArrayList("Arial", "Courier New", "Helvetica", "Times New Roman");
+        ObservableList<String> options = FXCollections.observableArrayList(Configurations.getFontList());
         ComboBox<String> fontCombo = new ComboBox<>(options);
         fontCombo.getSelectionModel().select(Configurations.getDefaultFont());
         fontCombo.setOnAction(e -> {

@@ -89,6 +89,11 @@ public class NavigationBar {
     }
 
     public static void refresh() {
+        try {
+            Configurations.setConfigValues();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         backgroundView.display(backgroundPane);
         songListView.populateSongList();
     }

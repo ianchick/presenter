@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ public class Configurations {
     private static String BACKGROUNDS_PATH;
     private static String DEFAULT_FONT;
     private static int DEFAULT_FONT_SIZE;
+    private static ArrayList<String> FONT_LIST;
 
     public static void setup() throws IOException {
         File config = new File(CONFIG_PATH);
@@ -40,6 +43,7 @@ public class Configurations {
         data.put("bg_dir", "backgrounds");
         data.put("default_font", "Arial");
         data.put("default_font_size", "64");
+        data.put("font_list", "Arial, Courier New, Helvetica, Times New Roman");
         Yaml yaml = new Yaml(options);
         FileWriter writer = null;
         try {
@@ -59,12 +63,13 @@ public class Configurations {
         return config;
     }
 
-    private static void setConfigValues() throws IOException {
+    public static void setConfigValues() throws IOException {
         Map<String, String> config = readConfig();
         setSongsPath(config.get("songs_dir"));
         setBackgroundsPath(config.get("bg_dir"));
         setDefaultFont(config.get("default_font"));
         setDefaultFontSize(Integer.valueOf(config.get("default_font_size")));
+        setFontList(new ArrayList<>(Arrays.asList(config.get("font_list").split(", "))));
     }
 
     public static String getSongsPath() {
@@ -103,4 +108,11 @@ public class Configurations {
         return CONFIG_PATH;
     }
 
+    public static ArrayList<String> getFontList() {
+        return FONT_LIST;
+    }
+
+    public static void setFontList(ArrayList<String> fontList) {
+        FONT_LIST = fontList;
+    }
 }
