@@ -16,6 +16,8 @@ public class BibleSlidesView {
     private CheckBox headersCheckbox;
     private CheckBox footnotesCheckbox;
 
+    private String rawPassageText;
+
     public void display(ScrollPane parent) {
         ESVController esvController = new ESVController();
 
@@ -26,7 +28,9 @@ public class BibleSlidesView {
         Button search = new Button("Search");
         search.setOnMouseClicked(event -> {
             try {
-                textArea.setText(esvController.getText(queryTextField.getText(), headersCheckbox.isSelected(), footnotesCheckbox.isSelected()));
+                // Cache verses into rawPassageText
+                rawPassageText = esvController.getText(queryTextField.getText(), headersCheckbox.isSelected(), footnotesCheckbox.isSelected());
+                textArea.setText(rawPassageText);
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
@@ -48,15 +52,14 @@ public class BibleSlidesView {
         });
         Button setFormatButton = new Button("Format Verses");
         setFormatButton.setOnMouseClicked(event -> {
-            String stripped = textArea.getText().replace("\n", "").replace(" +", " ").trim();
+            String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
             String[] splitVerses = stripped.split("\\[.*?]");
             StringBuilder output = new StringBuilder();
             int count = 0;
             for (String verse : splitVerses) {
-                if (count < Integer.valueOf(versesPerSlideInput.getText())) {
-                    output.append(verse);
-                    count++;
-                } else {
+                output.append(verse);
+                count++;
+                if (count >= Integer.valueOf(versesPerSlideInput.getText())) {
                     count = 0;
                     output.append("\\n\\n");
                 }

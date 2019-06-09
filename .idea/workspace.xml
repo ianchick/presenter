@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initializing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/toolbars/ControlBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/views/BibleSlidesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/BibleSlidesView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/LiveView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/LiveView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/webcontrollers/ESVController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/webcontrollers/ESVController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/views/BibleSlidesView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-510">
-              <caret column="2" selection-start-column="2" selection-end-column="2" />
+            <state relative-caret-position="298">
+              <caret line="63" column="44" lean-forward="true" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -164,11 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+            <state relative-caret-position="340">
+              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -187,7 +183,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>selected</find>
       <find>songlistview</find>
       <find>slides</find>
       <find>slideslist</find>
@@ -217,6 +212,7 @@
       <find>font</find>
       <find>padding</find>
       <find>textSize</find>
+      <find>getText</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -258,8 +254,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/secrets.json" />
         <option value="$PROJECT_DIR$/src/app/webcontrollers/ESVController.java" />
-        <option value="$PROJECT_DIR$/src/app/views/BibleSlidesView.java" />
         <option value="$PROJECT_DIR$/src/app/views/LiveView.java" />
+        <option value="$PROJECT_DIR$/src/app/views/BibleSlidesView.java" />
       </list>
     </option>
   </component>
@@ -379,7 +375,7 @@
     <property name="SearchEverywhereHistoryKey" value="yml&#9;FILE&#9;file://D:/Projects/Presenter/config.yml&#10;dump&#9;PSI&#9;JAVA://org.yaml.snakeyaml.DumperOptions&#10;pom.xml&#9;FILE&#9;jar://C:/Users/ianhc/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar!/META-INF/maven/org.jsoup/jsoup/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560115782385" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560117427945" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/dmg" />
@@ -510,7 +506,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22080536" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22080536" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.3295302" />
       <window_info id="Designer" order="3" />
@@ -519,7 +515,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32844576" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30311614" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30311614" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.398017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -855,20 +851,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/views/BibleSlidesView.java">
+    <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        <state relative-caret-position="340">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/views/LiveView.java">
+    <entry file="file://$PROJECT_DIR$/src/app/views/BibleSlidesView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+        <state relative-caret-position="298">
+          <caret line="63" column="44" lean-forward="true" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
