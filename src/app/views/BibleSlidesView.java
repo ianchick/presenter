@@ -5,8 +5,6 @@ import app.webcontrollers.ESVController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.json.simple.parser.ParseException;
@@ -23,31 +21,21 @@ public class BibleSlidesView {
 
     public void display(ScrollPane parent) {
         ESVController esvController = new ESVController();
-
         VBox wrapper = new VBox();
         wrapper.setSpacing(8);
-
         TextField queryTextField = new TextField();
         queryTextField.setPromptText("Reference...");
         Button search = new Button("Search");
         search.setOnMouseClicked(event -> {
-            try {
-                // Cache verses into rawPassageText
-                rawPassageText = esvController.getText(queryTextField.getText(), headersCheckbox.isSelected(), footnotesCheckbox.isSelected());
-                textArea.setText(rawPassageText);
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
+            searchBibleReference(esvController, queryTextField);
         });
         headersCheckbox = new CheckBox("Headers");
         footnotesCheckbox = new CheckBox("Footnotes");
-
         HBox bibleSearchHBox = new HBox(queryTextField, search, headersCheckbox, footnotesCheckbox);
         bibleSearchHBox.setAlignment(Pos.CENTER_LEFT);
         bibleSearchHBox.setSpacing(4);
         textArea = new TextArea();
         textArea.setWrapText(true);
-
         TextField versesPerSlideInput = new TextField();
         versesPerSlideInput.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
@@ -56,19 +44,7 @@ public class BibleSlidesView {
         });
         Button setFormatButton = new Button("Format Verses");
         setFormatButton.setOnMouseClicked(event -> {
-            String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
-            String[] splitVerses = stripped.split("\\[.*?]");
-            StringBuilder output = new StringBuilder();
-            int count = 0;
-            for (String verse : splitVerses) {
-                output.append(verse);
-                count++;
-                if (count >= Integer.valueOf(versesPerSlideInput.getText())) {
-                    count = 0;
-                    output.append("\\n\\n");
-                }
-            }
-            textArea.setText(output.toString());
+            formatPassageByVerse(versesPerSlideInput);
         });
 
         HBox formattingBox = new HBox(versesPerSlideInput, setFormatButton);
@@ -88,4 +64,34 @@ public class BibleSlidesView {
         parent.setId("bible_pane");
         parent.setContent(wrapper);
     }
+
+    private void searchBibleReference(ESVController esvController, TextField queryTextField) {
+        try {
+            // Cache verses into rawPassageText
+            rawPassageText = esvController.getText(queryTextField.getText(), headersCheckbox.isSelected(), footnotesCheckbox.isSelected());
+            textArea.setText(rawPassageText);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void formatPassageByVerse(TextField versesPerSlideInput) {
+        if (rawPassageText != null && !textArea.getText().isEmpty() && !versesPerSlideInput.getText().isEmpty()) {
+            String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
+            String[] splitVerses = stripped.split("\\[.*?]");
+            StringBuilder output = new StringBuilder();
+            int count = 0;
+            for (String verse : splitVerses) {
+                output.append(verse);
+                count++;
+                if (count >= Integer.valueOf(versesPerSlideInput.getText())) {
+                    count = 0;
+                    output.append("\\n\\n");
+                }
+            }
+            textArea.setText(output.toString());
+        }
+    }
+
+
 }

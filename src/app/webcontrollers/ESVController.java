@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class ESVController {
 
@@ -22,22 +23,22 @@ public class ESVController {
         if (!withFootnotes) {
             searchQuery.append("&include-footnotes=false");
         }
-        URL url = new URL(baseURL+searchQuery.toString().replace(" ", "").trim());
+        URL url = new URL(baseURL + searchQuery.toString().replace(" ", "").trim());
         URLConnection uc = url.openConnection();
 
         JSONParser tokenParser = new JSONParser();
-        JSONObject tokenJSON = (JSONObject)tokenParser.parse(new FileReader("secrets.json"));
+        JSONObject tokenJSON = (JSONObject) tokenParser.parse(new FileReader("secrets.json"));
         uc.addRequestProperty("Authorization", "Token " + tokenJSON.get("esv_token"));
 
         JSONParser jsonParser = new JSONParser();
         JSONObject response = null;
         try {
-            response = (JSONObject)jsonParser.parse(new InputStreamReader(uc.getInputStream(), "UTF-8"));
+            response = (JSONObject) jsonParser.parse(new InputStreamReader(uc.getInputStream(), StandardCharsets.UTF_8));
         } catch (ParseException e) {
             e.printStackTrace();
             return "Reference could not be found";
         }
-        return ((JSONArray)response.get("passages")).get(0).toString();
+        return ((JSONArray) response.get("passages")).get(0).toString();
     }
 
     public String getText(String search) throws IOException, ParseException {

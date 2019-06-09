@@ -19,6 +19,7 @@ public class TheRootView {
     private static SplitPane contentSplitPane;
     private static ScrollPane backgroundPane;
     private static SplitPane songListSplitPane;
+    private static ScrollPane bibleScrollPane;
     private static BorderPane root;
 
     public static BorderPane init() {
@@ -50,9 +51,9 @@ public class TheRootView {
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
         // Bible Slides View
-        ScrollPane biblePane = new ScrollPane();
+        bibleScrollPane = new ScrollPane();
         BibleSlidesView bibleSlidesView = new BibleSlidesView();
-        bibleSlidesView.display(biblePane);
+        bibleSlidesView.display(bibleScrollPane);
 
         ToolBar toolBar = ControlBar.setup();
 
@@ -63,7 +64,7 @@ public class TheRootView {
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListSplitPane);
         root.setCenter(contentSplitPane);
-        root.setRight(biblePane);
+        root.setRight(bibleScrollPane);
         return root;
     }
 
@@ -105,6 +106,14 @@ public class TheRootView {
             root.getChildren().remove(songListSplitPane);
         } else {
             root.setLeft(songListSplitPane);
+        }
+    }
+
+    public static void toggleBiblePane(boolean isVisible) {
+        if (!isVisible) {
+            root.getChildren().remove(bibleScrollPane);
+        } else {
+            root.setRight(bibleScrollPane);
         }
     }
 }

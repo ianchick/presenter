@@ -46,7 +46,11 @@ public class NavigationBar {
         toggleSongs.setSelected(true);
         toggleSongs.setOnAction(e -> TheRootView.toggleSongsPane(toggleSongs.isSelected()));
 
-        viewMenu.getItems().addAll(toggleBackgrounds, toggleSongs);
+        CheckMenuItem toggleBible = new CheckMenuItem("Toggle Bible Search");
+        toggleBible.setSelected(true);
+        toggleBible.setOnAction(e -> TheRootView.toggleBiblePane(toggleBible.isSelected()));
+
+        viewMenu.getItems().addAll(toggleBackgrounds, toggleSongs, toggleBible);
     }
 
     private static void setFileMenu() {
