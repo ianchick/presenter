@@ -13,9 +13,16 @@ import java.net.URLConnection;
 
 public class ESVController {
 
-    public String getText() throws IOException, ParseException {
-        String baseURL = "https://api.esv.org/v3/passage/text/?q=John+3:16-18&include-footnotes=false&include-headings=false";
-        URL url = new URL(baseURL);
+    public String getText(String search, boolean withHeaders, boolean withFootnotes) throws IOException, ParseException {
+        String baseURL = "https://api.esv.org/v3/passage/text/?";
+        StringBuilder searchQuery = new StringBuilder("q=" + search);
+        if (!withHeaders) {
+            searchQuery.append("&include-headings=false");
+        }
+        if (!withFootnotes) {
+            searchQuery.append("&include-footnotes=false");
+        }
+        URL url = new URL(baseURL+searchQuery.toString().replace(" ", "").trim());
         URLConnection uc = url.openConnection();
 
         JSONParser tokenParser = new JSONParser();
@@ -25,5 +32,9 @@ public class ESVController {
         JSONParser jsonParser = new JSONParser();
         JSONObject response = (JSONObject)jsonParser.parse(new InputStreamReader(uc.getInputStream(), "UTF-8"));
         return ((JSONArray)response.get("passages")).get(0).toString();
+    }
+
+    public String getText(String search) throws IOException, ParseException {
+        return getText(search, false, false);
     }
 }
