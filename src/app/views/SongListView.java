@@ -109,4 +109,8 @@ public class SongListView {
     public void removeSong(Song song) {
         songList.remove(song);
     }
+
+    public TextField getSearchBar() {
+        return this.searchBar;
+    }
 }

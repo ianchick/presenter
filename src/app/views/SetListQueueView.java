@@ -39,6 +39,7 @@ public class SetListQueueView {
 
     private void setListViewClickListener() {
         listView.setOnMouseClicked(event -> {
+            Mastermind.getInstance().getSongListView().getSearchBar().clear();
             Song song = listView.getSelectionModel().getSelectedItem();
             Session.getInstance().setSelectedSong(song);
             Mastermind.getInstance().getSongListView().setSelectedSong(song);
