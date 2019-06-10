@@ -26,9 +26,7 @@ public class BibleSlidesView {
         TextField queryTextField = new TextField();
         queryTextField.setPromptText("Reference...");
         Button search = new Button("Search");
-        search.setOnMouseClicked(event -> {
-            searchBibleReference(esvController, queryTextField);
-        });
+        search.setOnMouseClicked(event -> searchBibleReference(esvController, queryTextField));
         headersCheckbox = new CheckBox("Headers");
         footnotesCheckbox = new CheckBox("Footnotes");
         HBox bibleSearchHBox = new HBox(queryTextField, search, headersCheckbox, footnotesCheckbox);
@@ -36,7 +34,10 @@ public class BibleSlidesView {
         bibleSearchHBox.setSpacing(4);
         textArea = new TextArea();
         textArea.setWrapText(true);
+        textArea.setDisable(rawPassageText == null);
         TextField versesPerSlideInput = new TextField();
+        versesPerSlideInput.setPromptText("Enter # of verses to show on each slide...");
+        versesPerSlideInput.setPrefWidth(400);
         versesPerSlideInput.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 versesPerSlideInput.setText(newValue.replaceAll("[^\\d]", ""));
@@ -52,10 +53,12 @@ public class BibleSlidesView {
 
         Button createSlidesButton = new Button("Create Slides");
         createSlidesButton.setOnMouseClicked(event -> {
-            CreateSongView createSongView = new CreateSongView();
-            createSongView.setFields(queryTextField.getText(), textArea.getText());
-            if (createSongView.display()) {
-                Mastermind.getInstance().getSongListView().populateSongList();
+            if (!textArea.getText().isEmpty()) {
+                CreateSongView createSongView = new CreateSongView();
+                createSongView.setFields(queryTextField.getText(), textArea.getText());
+                if (createSongView.display()) {
+                    Mastermind.getInstance().getSongListView().populateSongList();
+                }
             }
         });
 
