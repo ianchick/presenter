@@ -44,7 +44,7 @@ public class BibleSlidesView {
                 versesPerSlideInput.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
-        Button setFormatButton = new Button("Format Verses");
+        Button setFormatButton = new Button("Format & Create Slides");
         setFormatButton.setOnMouseClicked(event -> {
             if (rawPassageText != null && !textArea.getText().isEmpty() && !versesPerSlideInput.getText().isEmpty()) {
                 CreateSongView createSongView = new CreateSongView();
