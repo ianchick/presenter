@@ -57,11 +57,7 @@ public class BibleSlidesView {
         HBox formattingBox = new HBox(versesPerSlideInput, setFormatButton);
         formattingBox.setSpacing(4);
 
-        Button createSlidesButton = new Button("Create Slides");
-        createSlidesButton.setOnMouseClicked(event -> {
-        });
-
-        wrapper.getChildren().addAll(new Label("Bible Search"), bibleSearchHBox, textArea, formattingBox, createSlidesButton);
+        wrapper.getChildren().addAll(new Label("Bible Search"), bibleSearchHBox, textArea, formattingBox);
         parent.setPadding(new Insets(4));
         parent.setId("bible_pane");
         parent.setContent(wrapper);
