@@ -34,6 +34,7 @@ public class CreateSongView {
         if (lyricsField == null) {
             lyricsField = new TextArea();
         }
+        lyricsField.setWrapText(true);
         Button submit = new Button("Save");
         submit.setOnAction(e -> {
             if (validations()) {

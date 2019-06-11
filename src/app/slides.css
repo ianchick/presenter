@@ -1,0 +1,24 @@
+#slides_flow {
+    -fx-vgap: 20;
+    -fx-hgap: 20;
+}
+
+#slide_preview_pane {
+    -fx-background-color: #000;
+    -fx-padding: 20;
+    -fx-min-width: 350;
+    -fx-min-height: 150;
+}
+
+#slides_scroll_pane {
+    -fx-background: #999999;
+    -fx-focus-color: transparent;
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 3;
+    -fx-padding: 10;
+}
+
+#slide_preview_text {
+    -fx-fill: #fff;
+    -fx-text-alignment: center;
+}

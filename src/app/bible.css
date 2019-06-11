@@ -1,0 +1,6 @@
+#bible_pane {
+    -fx-background: #D7D7D7;
+    -fx-focus-color: transparent;
+    -fx-border-color: #AAA;
+    -fx-border-width: 2;
+}

@@ -45,7 +45,13 @@ public class BibleSlidesView {
         });
         Button setFormatButton = new Button("Format Verses");
         setFormatButton.setOnMouseClicked(event -> {
-            formatPassageByVerse(versesPerSlideInput);
+            if (rawPassageText != null && !textArea.getText().isEmpty() && !versesPerSlideInput.getText().isEmpty()) {
+                CreateSongView createSongView = new CreateSongView();
+                createSongView.setFields(queryTextField.getText(), formatPassageByVerse(versesPerSlideInput));
+                if (createSongView.display()) {
+                    Mastermind.getInstance().getSongListView().populateSongList();
+                }
+            }
         });
 
         HBox formattingBox = new HBox(versesPerSlideInput, setFormatButton);
@@ -53,13 +59,6 @@ public class BibleSlidesView {
 
         Button createSlidesButton = new Button("Create Slides");
         createSlidesButton.setOnMouseClicked(event -> {
-            if (!textArea.getText().isEmpty()) {
-                CreateSongView createSongView = new CreateSongView();
-                createSongView.setFields(queryTextField.getText(), textArea.getText());
-                if (createSongView.display()) {
-                    Mastermind.getInstance().getSongListView().populateSongList();
-                }
-            }
         });
 
         wrapper.getChildren().addAll(new Label("Bible Search"), bibleSearchHBox, textArea, formattingBox, createSlidesButton);
@@ -73,27 +72,26 @@ public class BibleSlidesView {
             // Cache verses into rawPassageText
             rawPassageText = esvController.getText(queryTextField.getText(), headersCheckbox.isSelected(), footnotesCheckbox.isSelected());
             textArea.setText(rawPassageText);
+            textArea.setDisable(rawPassageText == null);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
 
-    private void formatPassageByVerse(TextField versesPerSlideInput) {
-        if (rawPassageText != null && !textArea.getText().isEmpty() && !versesPerSlideInput.getText().isEmpty()) {
-            String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
-            String[] splitVerses = stripped.split("\\[.*?]");
-            StringBuilder output = new StringBuilder();
-            int count = 0;
-            for (String verse : splitVerses) {
-                output.append(verse);
-                count++;
-                if (count >= Integer.valueOf(versesPerSlideInput.getText())) {
-                    count = 0;
-                    output.append("\\n\\n");
-                }
+    private String formatPassageByVerse(TextField versesPerSlideInput) {
+        String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
+        String[] splitVerses = stripped.split("\\[.*?]");
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        for (String verse : splitVerses) {
+            output.append(verse);
+            count++;
+            if (count >= Integer.valueOf(versesPerSlideInput.getText())) {
+                count = 0;
+                output.append("\\n\\n");
             }
-            textArea.setText(output.toString());
         }
+        return output.toString();
     }
 
 

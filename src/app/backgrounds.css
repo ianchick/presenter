@@ -1,0 +1,17 @@
+#background_preview_pane {
+    -fx-max-width: 350;
+    -fx-max-height: 150;
+}
+
+#background_flow {
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-padding: 10;
+}
+
+#background_scroll_pane {
+    -fx-background: #D3D3D3;
+    -fx-focus-color: transparent;
+    -fx-border-color: #A9A9A9;
+    -fx-border-width: 2;
+}
