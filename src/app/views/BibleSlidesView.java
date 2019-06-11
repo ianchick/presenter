@@ -38,6 +38,7 @@ public class BibleSlidesView {
         TextField versesPerSlideInput = new TextField();
         versesPerSlideInput.setPromptText("Enter # of verses to show on each slide...");
         versesPerSlideInput.setPrefWidth(400);
+        // Only allow numbers in field
         versesPerSlideInput.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 versesPerSlideInput.setText(newValue.replaceAll("[^\\d]", ""));
@@ -47,7 +48,7 @@ public class BibleSlidesView {
         setFormatButton.setOnMouseClicked(event -> {
             if (rawPassageText != null && !textArea.getText().isEmpty() && !versesPerSlideInput.getText().isEmpty()) {
                 CreateSongView createSongView = new CreateSongView();
-                createSongView.setFields(queryTextField.getText(), formatPassageByVerse(versesPerSlideInput));
+                createSongView.setFields(queryTextField.getText(), formatPassageByVerse(versesPerSlideInput).replaceAll(" +", " ").trim());
                 if (createSongView.display()) {
                     Mastermind.getInstance().getSongListView().populateSongList();
                 }
@@ -75,7 +76,7 @@ public class BibleSlidesView {
     }
 
     private String formatPassageByVerse(TextField versesPerSlideInput) {
-        String stripped = rawPassageText.replace("\n", "").replace(" +", " ").trim();
+        String stripped = rawPassageText.replace("\n", "").replaceAll(" +", " ").trim();
         String[] splitVerses = stripped.split("\\[.*?]");
         StringBuilder output = new StringBuilder();
         int count = 0;
