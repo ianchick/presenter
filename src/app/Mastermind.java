@@ -1,5 +1,6 @@
 package app;
 
+import app.models.Song;
 import app.views.SetListQueueView;
 import app.views.SlidesListView;
 import app.views.SongListView;
@@ -14,12 +15,22 @@ public class Mastermind {
     private SlidesListView slidesListView;
     private SetListQueueView setListQueueView;
 
+    private Song selectedSong;
+
     public static void init() {
         mastermind = new Mastermind();
     }
 
     public static Mastermind getInstance() {
         return mastermind;
+    }
+
+    public Song getSelectedSong() {
+        return selectedSong;
+    }
+
+    public void setSelectedSong(Song selectedSong) {
+        this.selectedSong = selectedSong;
     }
 
     public SongListView getSongListView() {

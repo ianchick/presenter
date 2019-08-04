@@ -1,7 +1,6 @@
 package app.views;
 
 import app.Mastermind;
-import app.Session;
 import app.models.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +40,7 @@ public class SetListQueueView {
         listView.setOnMouseClicked(event -> {
             Mastermind.getInstance().getSongListView().getSearchBar().clear();
             Song song = listView.getSelectionModel().getSelectedItem();
-            Session.getInstance().setSelectedSong(song);
+            Mastermind.getInstance().setSelectedSong(song);
             Mastermind.getInstance().getSongListView().setSelectedSong(song);
             if (event.getClickCount() == 2) {
                 removeSong(song);

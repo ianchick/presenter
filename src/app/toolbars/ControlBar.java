@@ -2,7 +2,6 @@ package app.toolbars;
 
 import app.Configurations;
 import app.Mastermind;
-import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
@@ -142,7 +141,7 @@ public class ControlBar {
         editSongButton.setTooltip(new Tooltip("Edit the currently selected song. Slides are split by empty lines.\nRight click on slides to edit individually. Edits will not display real time.\nAfter saving edits, reselect slide to display changes"));
         editSongButton.setDisable(true);
         editSongButton.setOnAction(e -> {
-            Song song = Session.getInstance().getSelectedSong();
+            Song song = Mastermind.getInstance().getSelectedSong();
             if (song != null) {
                 CreateSongView createSongView = new CreateSongView();
                 createSongView.setFields(song.getTitle(), song.getLyrics());
@@ -165,7 +164,7 @@ public class ControlBar {
         deleteSongButton.setDisable(true);
         deleteSongButton.setOnAction(e -> {
             if (confirmDelete()) {
-                Song song = Session.getInstance().getSelectedSong();
+                Song song = Mastermind.getInstance().getSelectedSong();
                 if (song != null) {
                     StorageController.deleteFile(StorageController.convertTitleToFileName(song.getTitle()));
                     Mastermind.getInstance().getSongListView().removeSong(song);

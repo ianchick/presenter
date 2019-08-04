@@ -2,7 +2,6 @@ package app.views;
 
 import app.Configurations;
 import app.Mastermind;
-import app.Session;
 import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.ControlBar;
@@ -45,7 +44,7 @@ public class SongListView {
         listView.getSelectionModel().selectedItemProperty().addListener(e -> {
             if (!listView.getSelectionModel().isEmpty()) {
                 selectedSong = listView.getSelectionModel().getSelectedItem();
-                Session.getInstance().setSelectedSong(selectedSong);
+                Mastermind.getInstance().setSelectedSong(selectedSong);
                 SlidesListView slidesListView = Mastermind.getInstance().getSlidesListView();
                 slidesListView.display(selectedSong);
                 ControlBar.getEditSongButton().setDisable(false);
@@ -55,7 +54,7 @@ public class SongListView {
 
         listView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                Song song = Session.getInstance().getSelectedSong();
+                Song song = Mastermind.getInstance().getSelectedSong();
                 SetListQueueView setList = Mastermind.getInstance().getSetListQueueView();
                 if (!setList.getQueue().contains(song)) {
                     setList.addSong(song);
