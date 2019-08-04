@@ -64,7 +64,6 @@ public class TheRootView {
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListSplitPane);
         root.setCenter(contentSplitPane);
-        root.setRight(bibleScrollPane);
         return root;
     }
 
