@@ -26,11 +26,11 @@ public class Main extends Application {
     private void init(Stage window) {
         BorderPane root = TheRootView.init();
         Scene scene = new Scene(root);
-        String songlistStyles = getClass().getResource("songs.css").toExternalForm();
-        String slidesStyles = getClass().getResource("slides.css").toExternalForm();
-        String biblesearchStyles = getClass().getResource("bible.css").toExternalForm();
-        String backgroundStyles = getClass().getResource("backgrounds.css").toExternalForm();
-        String genericStyles = getClass().getResource("style.css").toExternalForm();
+        String songlistStyles = getClass().getResource("styles/songs.css").toExternalForm();
+        String slidesStyles = getClass().getResource("styles/slides.css").toExternalForm();
+        String biblesearchStyles = getClass().getResource("styles/bible.css").toExternalForm();
+        String backgroundStyles = getClass().getResource("styles/backgrounds.css").toExternalForm();
+        String genericStyles = getClass().getResource("styles/style.css").toExternalForm();
 
         scene.getStylesheets().addAll(songlistStyles, slidesStyles, biblesearchStyles, backgroundStyles, genericStyles);
         window.setScene(scene);
