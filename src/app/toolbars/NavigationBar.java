@@ -13,6 +13,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import org.apache.commons.compress.compressors.FileNameUtil;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.sl.extractor.SlideShowExtractor;
 import org.apache.poi.sl.usermodel.Slide;
 import org.apache.poi.sl.usermodel.SlideShow;
@@ -71,9 +73,13 @@ public class NavigationBar {
                 songSlides.add(new app.models.Slide(slideText));
             }
 
-            Song pptSong = new Song(pptFile.getName());
-            if (StorageController.getFile(Configurations.getSongsPath(), pptFile.getName()) != null) {
-                System.out.println("Song already exists!");
+            Song pptSong = new Song(FilenameUtils.getBaseName(pptFile.getName()));
+            if (StorageController.getFile(Configurations.getSongsPath(), pptSong.getTitle()) != null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Import Powerpoint");
+                alert.setHeaderText(null);
+                alert.setContentText("A song with that name already exists.");
+                alert.showAndWait();
             } else {
                 pptSong.setSlides(songSlides);
                 pptSong.setLyricsFromSlides();

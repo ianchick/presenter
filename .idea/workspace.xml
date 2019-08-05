@@ -7,11 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Initializing">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_poi_poi_ooxml_4_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_directory_studio_org_apache_commons_io_2_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presenter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Presenter.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Mastermind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Mastermind.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/toolbars/NavigationBar.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -77,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+            <state relative-caret-position="272">
+              <caret line="79" column="42" lean-forward="true" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
-              <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding>
                 <element signature="e#2586#2587#0" expanded="true" />
                 <element signature="e#2634#2635#0" expanded="true" />
@@ -103,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/views/SongListView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="646">
-              <caret line="48" column="38" lean-forward="true" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+              <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/models/Song.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="19">
-              <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
               <folding>
                 <element signature="e#430#431#0" expanded="true" />
                 <element signature="e#466#467#0" expanded="true" />
@@ -142,7 +140,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/views/CreateSongView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="181">
-              <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-end-line="41" />
+              <caret line="40" column="18" selection-start-line="40" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -357,7 +355,7 @@
     <property name="SearchEverywhereHistoryKey" value="yml&#9;FILE&#9;file://D:/Projects/Presenter/config.yml&#10;dump&#9;PSI&#9;JAVA://org.yaml.snakeyaml.DumperOptions&#10;pom.xml&#9;FILE&#9;jar://C:/Users/ianhc/.m2/repository/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar!/META-INF/maven/org.jsoup/jsoup/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564966304556" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564966777379" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/styles" />
@@ -846,7 +844,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/models/Song.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding>
             <element signature="e#430#431#0" expanded="true" />
             <element signature="e#466#467#0" expanded="true" />
@@ -866,7 +864,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/views/SongListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
-          <caret line="48" column="38" lean-forward="true" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -876,7 +874,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/views/CreateSongView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
-          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-end-line="41" />
+          <caret line="40" column="18" selection-start-line="40" selection-end-line="41" />
         </state>
       </provider>
     </entry>
@@ -890,7 +888,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/storage/StorageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
-          <caret line="34" column="19" lean-forward="true" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
           <folding>
             <element signature="e#2586#2587#0" expanded="true" />
             <element signature="e#2634#2635#0" expanded="true" />
@@ -900,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/toolbars/NavigationBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+        <state relative-caret-position="272">
+          <caret line="79" column="42" lean-forward="true" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -975,7 +973,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>org.apache.poi:poi-ooxml:4.0.1</last-edited>
+          <last-edited>org.apache.directory.studio:org.apache.commons.io:2.4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
