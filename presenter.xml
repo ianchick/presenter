@@ -103,6 +103,30 @@
     <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
   </path>
   
+  <path id="library.org.apache.directory.studio:org.apache.commons.io:2.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/directory/studio/org.apache.commons.io/2.4/org.apache.commons.io-2.4.jar"/>
+  </path>
+  
+  <path id="library.org.apache.poi:poi-ooxml:4.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/virtuald/curvesapi/1.05/curvesapi-1.05.jar"/>
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.11/commons-codec-1.11.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml-schemas/4.0.1/poi-ooxml-schemas-4.0.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi-ooxml/4.0.1/poi-ooxml-4.0.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/4.0.1/poi-4.0.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/xmlbeans/xmlbeans/3.0.2/xmlbeans-3.0.2.jar"/>
+  </path>
+  
+  <path id="library.org.apache.poi:poi:4.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.11/commons-codec-1.11.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-collections4/4.2/commons-collections4-4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/4.0.1/poi-4.0.1.jar"/>
+  </path>
+  
   <path id="library.org.jsoup:jsoup:1.11.3.classpath">
     <pathelement location="${path.variable.maven_repository}/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar"/>
   </path>
@@ -139,8 +163,8 @@
   
   <property name="compiler.args.presenter" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
-  <property name="presenter.output.dir" value="C:/Users/ianhc/Desktop/production/Presenter"/>
-  <property name="presenter.testoutput.dir" value="C:/Users/ianhc/Desktop/test/Presenter"/>
+  <property name="presenter.output.dir" value="C:/Users/Ian/Desktop/production/Presenter"/>
+  <property name="presenter.testoutput.dir" value="C:/Users/Ian/Desktop/test/Presenter"/>
   
   <path id="presenter.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
@@ -152,6 +176,9 @@
     <path refid="library.com.googlecode.json-simple:json-simple:1.1.1.classpath"/>
     <path refid="library.org.jsoup:jsoup:1.11.3.classpath"/>
     <path refid="library.org.yaml:snakeyaml:1.23.classpath"/>
+    <path refid="library.org.apache.poi:poi:4.0.1.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:4.0.1.classpath"/>
+    <path refid="library.org.apache.directory.studio:org.apache.commons.io:2.4.classpath"/>
   </path>
   
   <path id="presenter.runtime.production.module.classpath">
@@ -160,6 +187,9 @@
     <path refid="library.com.googlecode.json-simple:json-simple:1.1.1.classpath"/>
     <path refid="library.org.jsoup:jsoup:1.11.3.classpath"/>
     <path refid="library.org.yaml:snakeyaml:1.23.classpath"/>
+    <path refid="library.org.apache.poi:poi:4.0.1.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:4.0.1.classpath"/>
+    <path refid="library.org.apache.directory.studio:org.apache.commons.io:2.4.classpath"/>
   </path>
   
   <path id="presenter.module.classpath">
@@ -169,6 +199,9 @@
     <path refid="library.com.googlecode.json-simple:json-simple:1.1.1.classpath"/>
     <path refid="library.org.jsoup:jsoup:1.11.3.classpath"/>
     <path refid="library.org.yaml:snakeyaml:1.23.classpath"/>
+    <path refid="library.org.apache.poi:poi:4.0.1.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:4.0.1.classpath"/>
+    <path refid="library.org.apache.directory.studio:org.apache.commons.io:2.4.classpath"/>
   </path>
   
   <path id="presenter.runtime.module.classpath">
@@ -178,6 +211,9 @@
     <path refid="library.com.googlecode.json-simple:json-simple:1.1.1.classpath"/>
     <path refid="library.org.jsoup:jsoup:1.11.3.classpath"/>
     <path refid="library.org.yaml:snakeyaml:1.23.classpath"/>
+    <path refid="library.org.apache.poi:poi:4.0.1.classpath"/>
+    <path refid="library.org.apache.poi:poi-ooxml:4.0.1.classpath"/>
+    <path refid="library.org.apache.directory.studio:org.apache.commons.io:2.4.classpath"/>
   </path>
   
   
@@ -238,7 +274,7 @@
   
   <target name="init.artifacts">
     <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
-    <property name="artifact.output.presenter" value="C:/Users/ianhc/Desktop/artifacts/Presenter"/>
+    <property name="artifact.output.presenter" value="C:/Users/Ian/Desktop/artifacts/Presenter"/>
     <mkdir dir="${artifacts.temp.dir}"/>
     <property name="artifact.temp.output.Presenter" value="${artifacts.temp.dir}/Presenter.jar"/>
     <taskdef resource="com/sun/javafx/tools/ant/antlib.xml" uri="javafx:com.sun.javafx.tools.ant" classpath="${jdk.home.1.8}/lib/ant-javafx.jar"/>
@@ -253,20 +289,20 @@
     <copy todir="${artifact.temp.output.Presenter}">
       <fileset dir="${presenter.output.dir}"/>
     </copy>
-    <copy file="${path.variable.maven_repository}/com/sachinhandiekar/jMusixMatch/1.1.4/jMusixMatch-1.1.4.jar" tofile="${artifact.temp.output.Presenter}/jMusixMatch-1.1.4.jar"/>
-    <copy file="${path.variable.maven_repository}/com/google/code/gson/gson/2.7/gson-2.7.jar" tofile="${artifact.temp.output.Presenter}/gson-2.7.jar"/>
-    <copy file="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar" tofile="${artifact.temp.output.Presenter}/junit-4.12.jar"/>
-    <copy file="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" tofile="${artifact.temp.output.Presenter}/hamcrest-core-1.3.jar"/>
     <copy file="${path.variable.maven_repository}/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" tofile="${artifact.temp.output.Presenter}/json-simple-1.1.1.jar"/>
     <copy file="${path.variable.maven_repository}/junit/junit/4.10/junit-4.10.jar" tofile="${artifact.temp.output.Presenter}/junit-4.10.jar"/>
     <copy file="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" tofile="${artifact.temp.output.Presenter}/hamcrest-core-1.1.jar"/>
     <copy file="${path.variable.maven_repository}/org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar" tofile="${artifact.temp.output.Presenter}/jsoup-1.11.3.jar"/>
     <copy file="${path.variable.maven_repository}/org/yaml/snakeyaml/1.23/snakeyaml-1.23.jar" tofile="${artifact.temp.output.Presenter}/snakeyaml-1.23.jar"/>
+    <copy file="${path.variable.maven_repository}/com/sachinhandiekar/jMusixMatch/1.1.4/jMusixMatch-1.1.4.jar" tofile="${artifact.temp.output.Presenter}/jMusixMatch-1.1.4.jar"/>
+    <copy file="${path.variable.maven_repository}/com/google/code/gson/gson/2.7/gson-2.7.jar" tofile="${artifact.temp.output.Presenter}/gson-2.7.jar"/>
+    <copy file="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar" tofile="${artifact.temp.output.Presenter}/junit-4.12.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" tofile="${artifact.temp.output.Presenter}/hamcrest-core-1.3.jar"/>
     <fx:fileset id="all_but_Presenter" dir="${artifact.temp.output.Presenter}" includes="**/*.jar">
       <exclude name="Presenter.jar"/>
     </fx:fileset>
     <fx:fileset id="all_Presenter" dir="${artifact.temp.output.Presenter}" includes="**/*.jar"/>
-    <fx:application id="Presenter_id" name="Presenter" mainClass="app.Main"/>
+    <fx:application id="Presenter_id" name="Presenter" mainClass="app.Main" version="0.1.0"/>
     <fx:jar destfile="${artifact.temp.output.Presenter}/Presenter.jar">
       <fx:application refid="Presenter_id"/>
       <fileset dir="${artifact.temp.output.Presenter}" excludes="**/*.jar"/>
@@ -274,13 +310,14 @@
         <fx:fileset refid="all_but_Presenter"/>
       </fx:resources>
       <manifest>
-        <attribute name="Implementation-Title" value=""/>
-        <attribute name="Implementation-Version" value=""/>
+        <attribute name="Implementation-Title" value="Resound Presenter"/>
+        <attribute name="Implementation-Version" value="0.1.0"/>
         <attribute name="Implementation-Vendor" value=""/>
       </manifest>
     </fx:jar>
     <fx:deploy width="600" height="400" updatemode="background" outdir="${artifact.temp.output.Presenter}/deploy" outfile="Presenter" nativeBundles="all">
       <fx:application refid="Presenter_id"/>
+      <fx:info title="Resound Presenter"/>
       <fx:resources>
         <fx:fileset refid="all_Presenter"/>
       </fx:resources>
