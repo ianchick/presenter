@@ -13,5 +13,6 @@
     <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.11.3" level="project" />
     <orderEntry type="library" exported="" name="org.yaml:snakeyaml:1.23" level="project" />
     <orderEntry type="library" name="org.apache.poi:poi:4.0.1" level="project" />
+    <orderEntry type="library" name="org.apache.poi:poi-ooxml:4.0.1" level="project" />
   </component>
 </module>

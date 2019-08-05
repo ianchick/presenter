@@ -18,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage window) throws IOException {
         Configurations.setup();
-        Mastermind.init();
+        Mastermind.init(window);
         init(window);
         window.show();
     }

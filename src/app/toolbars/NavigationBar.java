@@ -1,6 +1,9 @@
 package app.toolbars;
 
 import app.Configurations;
+import app.Mastermind;
+import app.models.Song;
+import app.storage.StorageController;
 import app.views.ChangeBackgroundView;
 import app.views.SongListView;
 import app.views.TheRootView;
@@ -9,15 +12,22 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import org.apache.poi.sl.extractor.SlideShowExtractor;
+import org.apache.poi.sl.usermodel.Slide;
+import org.apache.poi.sl.usermodel.SlideShow;
+import org.apache.poi.sl.usermodel.SlideShowFactory;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class NavigationBar {
 
     private static Menu fileMenu;
     private static Menu viewMenu;
+    private static Menu slidesMenu;
 
     private static ChangeBackgroundView backgroundView;
     private static ScrollPane backgroundPane;
@@ -30,11 +40,50 @@ public class NavigationBar {
 
         MenuBar menuBar = new MenuBar();
         fileMenu = new Menu("File");
+        slidesMenu = new Menu("Slides");
         viewMenu = new Menu("View");
         setViewMenu();
         setFileMenu();
-        menuBar.getMenus().addAll(fileMenu, viewMenu);
+        setSlidesMenu();
+        menuBar.getMenus().addAll(fileMenu, viewMenu, slidesMenu);
         return menuBar;
+    }
+
+    private static void setSlidesMenu() {
+        MenuItem importPowerpoint = new MenuItem("Import Powerpoint");
+        importPowerpoint.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Import Powerpoint");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Powerpoint files", "*.pptx", "*.ppt");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File pptFile = fileChooser.showOpenDialog(Mastermind.getInstance().getMainStage());
+            SlideShow slideShow = null;
+            try {
+                slideShow = SlideShowFactory.create(pptFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            SlideShowExtractor extractor = new SlideShowExtractor(slideShow);
+
+            ArrayList<app.models.Slide> songSlides = new ArrayList<>();
+            for (int i = 0; i < slideShow.getSlides().size(); i++) {
+                String slideText = extractor.getText((Slide)slideShow.getSlides().get(i)).trim();
+                songSlides.add(new app.models.Slide(slideText));
+            }
+
+            Song pptSong = new Song(pptFile.getName());
+            if (StorageController.getFile(Configurations.getSongsPath(), pptFile.getName()) != null) {
+                System.out.println("Song already exists!");
+            } else {
+                pptSong.setSlides(songSlides);
+                pptSong.setLyricsFromSlides();
+                boolean songSaved = StorageController.saveFile(Configurations.getSongsPath(), pptSong.getTitle(), pptSong.getLyrics());
+                if (songSaved) {
+                    refresh();
+                }
+            }
+        });
+        slidesMenu.getItems().add(importPowerpoint);
     }
 
     private static void setViewMenu() {

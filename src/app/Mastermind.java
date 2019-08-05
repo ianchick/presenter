@@ -4,6 +4,7 @@ import app.models.Song;
 import app.views.SetListQueueView;
 import app.views.SlidesListView;
 import app.views.SongListView;
+import javafx.stage.Stage;
 
 /**
  * Singleton class to allow interaction between views.
@@ -14,15 +15,23 @@ public class Mastermind {
     private SongListView songListView;
     private SlidesListView slidesListView;
     private SetListQueueView setListQueueView;
+    private static Stage mainStage;
 
     private Song selectedSong;
 
-    public static void init() {
-        mastermind = new Mastermind();
+    static void init(Stage window) {
+        if (mastermind == null) {
+            mastermind = new Mastermind();
+            mainStage = window;
+        }
     }
 
     public static Mastermind getInstance() {
         return mastermind;
+    }
+
+    public Stage getMainStage() {
+        return mainStage;
     }
 
     public Song getSelectedSong() {
