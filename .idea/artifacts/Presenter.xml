@@ -1,10 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Presenter">
+  <artifact type="javafx" build-on-make="true" name="Presenter">
     <output-path>$USER_HOME$/Desktop/artifacts/Presenter</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="app.Main" />
-        <option name="convertCss2Bin" value="true" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
         <option name="nativeBundle" value="all" />

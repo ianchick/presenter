@@ -13,7 +13,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import org.apache.commons.compress.compressors.FileNameUtil;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.sl.extractor.SlideShowExtractor;
 import org.apache.poi.sl.usermodel.Slide;
@@ -23,7 +22,6 @@ import org.apache.poi.xslf.usermodel.*;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,51 +54,49 @@ public class NavigationBar {
 
     private static void setSlidesMenu() {
         MenuItem importPowerpoint = new MenuItem("Import Powerpoint");
-        importPowerpoint.setOnAction(event -> {
-            importPowerpoint();
-        });
-
+        importPowerpoint.setOnAction(event -> importPowerpoint());
         MenuItem exportPowerpoint = new MenuItem("Export Set List");
-        exportPowerpoint.setOnAction(event -> {
-            XMLSlideShow ppt = new XMLSlideShow();
-            XSLFSlideMaster defaultMaster = ppt.getSlideMasters().get(0);
-            defaultMaster.getBackground().setFillColor(Color.BLACK);
-            XSLFSlideLayout titleLayout = defaultMaster.getLayout(SlideLayout.TITLE);
-            titleLayout.removeShape(titleLayout.getPlaceholder(1));
+        exportPowerpoint.setOnAction(event -> exportPowerpoint());
+        slidesMenu.getItems().addAll(importPowerpoint, exportPowerpoint);
+    }
 
-            ArrayList<Song> setList = new ArrayList<>(Mastermind.getInstance().getSetListQueueView().getQueue());
-            if (!setList.isEmpty()) {
-                for (Song song : setList) {
-                    // Blank slide before each song
-                    ppt.createSlide(titleLayout).getPlaceholder(0).clearText();
+    private static void exportPowerpoint() {
+        XMLSlideShow ppt = new XMLSlideShow();
+        XSLFSlideMaster defaultMaster = ppt.getSlideMasters().get(0);
+        defaultMaster.getBackground().setFillColor(Color.BLACK);
+        XSLFSlideLayout titleLayout = defaultMaster.getLayout(SlideLayout.TITLE);
+        titleLayout.removeShape(titleLayout.getPlaceholder(1));
 
-                    for (app.models.Slide songSlide : song.getSlides()) {
-                        XSLFSlide slide = ppt.createSlide(titleLayout);
-                        slide.getPlaceholder(0).clearText();
-                        XSLFTextRun run = slide.getPlaceholder(0).addNewTextParagraph().addNewTextRun();
-                        run.setFontSize(36d);
-                        run.setFontFamily("Arial");
-                        run.setFontColor(Color.WHITE);
-                        run.setText(songSlide.getContent());
-                    }
-                }
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Powerpoint (.pptx)", "*.pptx"));
-                fileChooser.setTitle("Export Set List");
-                File powerpoint = fileChooser.showSaveDialog(Mastermind.getInstance().getMainStage());
-                if (powerpoint != null) {
-                    try {
-                        FileOutputStream out = new FileOutputStream(powerpoint.getPath());
-                        ppt.write(out);
-                        out.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        ArrayList<Song> setList = new ArrayList<>(Mastermind.getInstance().getSetListQueueView().getQueue());
+        if (!setList.isEmpty()) {
+            for (Song song : setList) {
+                // Blank slide before each song
+                ppt.createSlide(titleLayout).getPlaceholder(0).clearText();
+
+                for (app.models.Slide songSlide : song.getSlides()) {
+                    XSLFSlide slide = ppt.createSlide(titleLayout);
+                    slide.getPlaceholder(0).clearText();
+                    XSLFTextRun run = slide.getPlaceholder(0).addNewTextParagraph().addNewTextRun();
+                    run.setFontSize(36d);
+                    run.setFontFamily("Arial");
+                    run.setFontColor(Color.WHITE);
+                    run.setText(songSlide.getContent());
                 }
             }
-        });
-
-        slidesMenu.getItems().addAll(importPowerpoint, exportPowerpoint);
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Powerpoint (.pptx)", "*.pptx"));
+            fileChooser.setTitle("Export Set List");
+            File powerpoint = fileChooser.showSaveDialog(Mastermind.getInstance().getMainStage());
+            if (powerpoint != null) {
+                try {
+                    FileOutputStream out = new FileOutputStream(powerpoint.getPath());
+                    ppt.write(out);
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private static void importPowerpoint() {
@@ -108,32 +104,34 @@ public class NavigationBar {
         fileChooser.setTitle("Import Powerpoint");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Powerpoint files", "*.pptx", "*.ppt");
         fileChooser.getExtensionFilters().add(extFilter);
-        File pptFile = fileChooser.showOpenDialog(Mastermind.getInstance().getMainStage());
+        ArrayList<File> files = new ArrayList<>(fileChooser.showOpenMultipleDialog(Mastermind.getInstance().getMainStage()));
         SlideShow slideShow = null;
-        try {
-            slideShow = SlideShowFactory.create(pptFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        SlideShowExtractor extractor = new SlideShowExtractor(slideShow);
-        ArrayList<app.models.Slide> songSlides = new ArrayList<>();
-        for (int i = 0; i < slideShow.getSlides().size(); i++) {
-            String slideText = extractor.getText((Slide)slideShow.getSlides().get(i)).trim();
-            songSlides.add(new app.models.Slide(slideText));
-        }
-        Song pptSong = new Song(FilenameUtils.getBaseName(pptFile.getName()));
-        if (StorageController.getFile(Configurations.getSongsPath(), pptSong.getTitle()) != null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Import Powerpoint");
-            alert.setHeaderText(null);
-            alert.setContentText("A song with that name already exists.");
-            alert.showAndWait();
-        } else {
-            pptSong.setSlides(songSlides);
-            pptSong.setLyricsFromSlides();
-            boolean songSaved = StorageController.saveFile(Configurations.getSongsPath(), pptSong.getTitle(), pptSong.getLyrics());
-            if (songSaved) {
-                refresh();
+        for (File pptFile : files) {
+            try {
+                slideShow = SlideShowFactory.create(pptFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            SlideShowExtractor extractor = new SlideShowExtractor(slideShow);
+            ArrayList<app.models.Slide> songSlides = new ArrayList<>();
+            for (int i = 0; i < slideShow.getSlides().size(); i++) {
+                String slideText = extractor.getText((Slide) slideShow.getSlides().get(i)).trim();
+                songSlides.add(new app.models.Slide(slideText));
+            }
+            Song pptSong = new Song(FilenameUtils.getBaseName(pptFile.getName()));
+            if (StorageController.getFile(Configurations.getSongsPath(), pptSong.getTitle()) != null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Import Powerpoint");
+                alert.setHeaderText(null);
+                alert.setContentText("A song with that name already exists.");
+                alert.showAndWait();
+            } else {
+                pptSong.setSlides(songSlides);
+                pptSong.setLyricsFromSlides();
+                boolean songSaved = StorageController.saveFile(Configurations.getSongsPath(), pptSong.getTitle(), pptSong.getLyrics());
+                if (songSaved) {
+                    refresh();
+                }
             }
         }
     }
