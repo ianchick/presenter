@@ -3,6 +3,7 @@ package app.views;
 import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
+import app.views.slides.SlidesListView;
 import javafx.geometry.Orientation;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;

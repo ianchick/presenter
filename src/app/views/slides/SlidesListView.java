@@ -1,13 +1,21 @@
-package app.views;
+package app.views.slides;
 
+import app.Mastermind;
 import app.models.Slide;
 import app.models.Song;
+import app.views.LiveView;
+import app.views.dialogs.EditSlideView;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class SlidesListView {
 
@@ -57,13 +65,14 @@ public class SlidesListView {
     private void setSlides(Song song) {
         slidesFlowPane.getChildren().clear();
         for (Slide slide : song.getSlides()) {
-            StackPane pane = new StackPane();
-            pane.setId("slide_preview_pane");
-            Text text = new Text();
-            text.setId("slide_preview_text");
-            text.setText(slide.getContent());
-            pane.getChildren().add(text);
-            slidesFlowPane.getChildren().add(pane);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("SlideView.fxml"));
+            try {
+                slidesFlowPane.getChildren().add(loader.load());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ((SlideViewController)loader.getController()).setSlideContent(slide.getContent());
         }
         activeSlideIndex = -1;
         activeSlide = null;

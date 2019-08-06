@@ -2,6 +2,7 @@ package app;
 
 import app.views.TheRootView;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -24,6 +25,8 @@ public class Main extends Application {
     }
 
     private void init(Stage window) {
+        Mastermind.getInstance().setFxmlLoader(new FXMLLoader());
+
         BorderPane root = TheRootView.init();
         Scene scene = new Scene(root);
         String songlistStyles = getClass().getResource("styles/songs.css").toExternalForm();

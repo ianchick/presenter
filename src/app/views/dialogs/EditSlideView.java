@@ -1,4 +1,4 @@
-package app.views;
+package app.views.dialogs;
 
 import app.Configurations;
 import app.Mastermind;

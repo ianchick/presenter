@@ -5,6 +5,8 @@ import app.Mastermind;
 import app.models.Song;
 import app.storage.StorageController;
 import app.views.*;
+import app.views.dialogs.CreateSongView;
+import app.views.slides.SlidesListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;

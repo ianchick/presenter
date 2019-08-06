@@ -5,6 +5,7 @@ import app.Mastermind;
 import app.models.Song;
 import app.storage.StorageController;
 import app.toolbars.ControlBar;
+import app.views.slides.SlidesListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

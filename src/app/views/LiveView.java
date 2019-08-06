@@ -2,6 +2,7 @@ package app.views;
 
 import app.Configurations;
 import app.toolbars.ControlBar;
+import app.views.slides.SlidesListView;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
