@@ -2,92 +2,63 @@ package app.views;
 
 import app.Configurations;
 import app.toolbars.ControlBar;
+import app.views.slides.SlideViewController;
+import app.views.slides.SlidesListView;
 import javafx.animation.FadeTransition;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 public class LiveView {
 
-    private static Text textView;
-    private static boolean isLive;
-    private static Stage window;
-    private static int fontSize = Configurations.getDefaultFontSize();
-    private static String font = Configurations.getDefaultFont();
+    private Stage window;
+    private int fontSize = Configurations.getDefaultFontSize();
+    private String fontName = Configurations.getDefaultFont();
+    private int textAnimSpeed = 2000;
 
-    private static int textAnimSpeed = 2000;
+    private SlideViewController controller;
 
-    private static ImageView background;
-    private static StackPane contentPane;
+    private ImageView background;
+    private ImageView transitionBackground;
 
-    private static Text transitionTextView;
-    private static ImageView transitionBackground;
-
-    public static void display() {
-        setLive(true);
-        setup();
-        window.show();
-        contentPane.setPadding(new Insets(fontSize * 2));
-        textView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
-        transitionTextView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
-    }
-
-    private static void setup() {
+    /**
+     * Opens Live View window, sets title, handles close events, sets window size and key listener, and loads SlideView.fxml
+     */
+    public LiveView() {
         window = new Stage();
         window.setTitle("Live");
         window.setAlwaysOnTop(true);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/app/views/slides/SlideView.fxml"));
+        try {
+            window.setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        controller = loader.getController();
+
+        window.widthProperty().addListener((obs, oldVal, newVal) -> {
+            controller.slide_text.setWrappingWidth(controller.slide_pane.getWidth() - controller.slide_pane.getInsets().getLeft());
+        });
+
+        window.getScene().getStylesheets().add(getClass().getResource("/app/styles/slides.css").toExternalForm());
         handleCloseEvents();
         setDisplaySizeOnScreen();
-        contentPane = new StackPane();
-        contentPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        setBackground(null);
-        window.widthProperty().addListener((obs, oldVal, newVal) -> {
-            textView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
-            transitionTextView.setWrappingWidth(contentPane.getWidth() - contentPane.getInsets().getLeft());
-        });
-        textView = new Text();
-        transitionTextView = new Text();
-        textView.setFill(Color.WHITE);
-        textView.setTextAlignment(TextAlignment.CENTER);
-        textView.setFont(new Font(font, fontSize));
-        contentPane.getChildren().add(background);
-        contentPane.getChildren().add(transitionBackground);
-        contentPane.getChildren().add(textView);
-        contentPane.getChildren().add(transitionTextView);
-
-        window.setScene(new Scene(contentPane));
-
-        window.setOnCloseRequest(e -> {
-            background = null;
-            contentPane = null;
-            textView = null;
-        });
     }
 
-    public static boolean isLive() {
-        return isLive;
-    }
-
-    public static void setLive(boolean live) {
-        isLive = live;
-    }
-
-    private static void handleCloseEvents() {
+    private void handleCloseEvents() {
         window.setOnHidden(e -> {
             e.consume();
             closeLiveView();
@@ -99,9 +70,10 @@ public class LiveView {
         });
     }
 
-    private static void closeLiveView() {
-        setLive(false);
-        SlidesListView.unsetActiveSlide();
+    private void closeLiveView() {
+        controller.slide_text.setText("");
+        controller.transition_text.setText("");
+        SlidesListView.unsetActiveSlideBorders();
         ChangeBackgroundView.unsetActiveBackground();
         ControlBar.setImageButtonImage("play_button.png");
         window.close();
@@ -110,7 +82,7 @@ public class LiveView {
     /**
      * Checks if there are external displays, full screen. Else, windowed mode.
      */
-    private static void setDisplaySizeOnScreen() {
+    private void setDisplaySizeOnScreen() {
         if (Screen.getScreens().size() > 1) {
             window.setFullScreen(true);
             window.setFullScreenExitHint("");
@@ -123,34 +95,32 @@ public class LiveView {
         }
     }
 
-    public static void setFontSize(String text) {
-        textView.setFont(new Font(font, fontSize));
-        textView.setText(text);
-    }
-
-    public static void setCurrentSlide(String text) {
-        transitionTextView.setText(textView.getText());
-        transitionTextView.setFill(Color.WHITE);
-        transitionTextView.setTextAlignment(TextAlignment.CENTER);
-        transitionTextView.setFont(new Font(font, fontSize));
-        textView.setFont(new Font(font, fontSize));
-        textView.setText(text);
-        animateLyrics(transitionTextView, textView);
-    }
-
-    public static void setFontSize(int size) {
+    public void setFont(String font, int size) {
         fontSize = size;
+        fontName = font;
+        controller.slide_text.setFont(new Font(font, size));
     }
 
-    public static void setFont(String fontName) {
-        font = fontName;
+    public void setFont(int size) {
+        setFont(fontName, size);
     }
 
-    public static Text getTextView() {
-        return textView;
+    public void setFont(String font) {
+        setFont(font, fontSize);
     }
 
-    public static void setBackground(Image image) {
+    public void setCurrentSlide(String text) {
+        controller.transition_text.setText(controller.slide_text.getText());
+        controller.setFont(fontName, fontSize);
+        controller.slide_text.setText(text);
+        animateLyrics(controller.transition_text, controller.slide_text);
+    }
+
+    public Text getTextView() {
+        return controller.slide_text;
+    }
+
+    public void setBackground(Image image) {
         if (background == null) {
             background = new ImageView();
             transitionBackground = new ImageView();
@@ -159,15 +129,15 @@ public class LiveView {
             transitionBackground.setImage(background.getImage());
             background.setImage(null);
         } else {
-            contentPane.widthProperty().addListener((obs, oldVal, newVal) -> background.setFitWidth(newVal.doubleValue()));
-            contentPane.heightProperty().addListener((obs, oldVal, newVal) -> background.setFitHeight(newVal.doubleValue()));
-            background.setFitWidth(contentPane.getWidth());
-            background.setFitHeight(contentPane.getHeight());
+            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> background.setFitWidth(newVal.doubleValue()));
+            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> background.setFitHeight(newVal.doubleValue()));
+            background.setFitWidth(controller.slide_pane.getWidth());
+            background.setFitHeight(controller.slide_pane.getHeight());
             background.preserveRatioProperty().setValue(false);
-            contentPane.widthProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitWidth(newVal.doubleValue()));
-            contentPane.heightProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitHeight(newVal.doubleValue()));
-            transitionBackground.setFitWidth(contentPane.getWidth());
-            transitionBackground.setFitHeight(contentPane.getHeight());
+            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitWidth(newVal.doubleValue()));
+            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitHeight(newVal.doubleValue()));
+            transitionBackground.setFitWidth(controller.slide_pane.getWidth());
+            transitionBackground.setFitHeight(controller.slide_pane.getHeight());
             transitionBackground.preserveRatioProperty().setValue(false);
 
             transitionBackground.setImage(background.getImage());
@@ -176,7 +146,7 @@ public class LiveView {
         animateBackground(transitionBackground, background);
     }
 
-    private static void animateLyrics(Text oldView, Text newView) {
+    private void animateLyrics(Text oldView, Text newView) {
         FadeTransition oldft = new FadeTransition(Duration.millis(textAnimSpeed * .4), oldView);
         oldft.setFromValue(1);
         oldft.setToValue(0);
@@ -187,7 +157,7 @@ public class LiveView {
         newft.play();
     }
 
-    private static void animateBackground(ImageView oldView, ImageView newView) {
+    private void animateBackground(ImageView oldView, ImageView newView) {
         FadeTransition oldft = new FadeTransition(Duration.millis(1500), oldView);
         oldft.setFromValue(1);
         oldft.setToValue(0);
@@ -198,15 +168,11 @@ public class LiveView {
         newft.play();
     }
 
-    public static Stage getWindow() {
+    public Stage getWindow() {
         return window;
     }
 
-    public static int getTextAnimSpeed() {
-        return textAnimSpeed;
-    }
-
-    public static void setTextAnimSpeed(int textAnimSpeed) {
-        LiveView.textAnimSpeed = textAnimSpeed;
+    public void setTextAnimSpeed(int textAnimSpeed) {
+        this.textAnimSpeed = textAnimSpeed;
     }
 }

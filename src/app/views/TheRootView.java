@@ -3,6 +3,7 @@ package app.views;
 import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
+import app.views.slides.SlidesListView;
 import javafx.geometry.Orientation;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
@@ -13,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
 
 public class TheRootView {
 
@@ -81,12 +83,8 @@ public class TheRootView {
                 }
             }
             if (KeyCode.B == event.getCode()) {
-                if (LiveView.isLive()) {
-                    if (LiveView.getTextView().getText().equals("")) {
-                        slidesListView.currentSlide();
-                    } else {
-                        LiveView.getTextView().setText("");
-                    }
+                if (Mastermind.getInstance().liveViewIsShowing()) {
+                    Mastermind.getInstance().getLiveView().setCurrentSlide("");
                 }
             }
         });

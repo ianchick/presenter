@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx"
+           fx:id="slide_pane"
+           fx:controller="app.views.slides.SlideViewController"
+           prefHeight="200.0" prefWidth="300.0">
+
+    <Text fx:id="slide_text" styleClass="slide"/>
+
+    <Text fx:id="transition_text" styleClass="slide"/>
+
+</StackPane>

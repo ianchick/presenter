@@ -1,9 +1,10 @@
 package app;
 
 import app.models.Song;
+import app.views.LiveView;
 import app.views.SetListQueueView;
-import app.views.SlidesListView;
 import app.views.SongListView;
+import app.views.slides.SlidesListView;
 import javafx.stage.Stage;
 
 /**
@@ -15,6 +16,7 @@ public class Mastermind {
     private SongListView songListView;
     private SlidesListView slidesListView;
     private SetListQueueView setListQueueView;
+    private LiveView liveView;
     private static Stage mainStage;
 
     private Song selectedSong;
@@ -64,5 +66,17 @@ public class Mastermind {
 
     public void setSetListQueueView(SetListQueueView setListQueueView) {
         this.setListQueueView = setListQueueView;
+    }
+
+    public LiveView getLiveView() {
+        return liveView;
+    }
+
+    public void setLiveView(LiveView liveView) {
+        this.liveView = liveView;
+    }
+
+    public boolean liveViewIsShowing() {
+        return liveView.getWindow().isShowing();
     }
 }

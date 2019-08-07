@@ -4,7 +4,11 @@ import app.Configurations;
 import app.Mastermind;
 import app.models.Song;
 import app.storage.StorageController;
-import app.views.*;
+import app.views.LiveView;
+import app.views.SongListView;
+import app.views.WebSearchView;
+import app.views.dialogs.CreateSongView;
+import app.views.slides.SlidesListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -55,7 +59,7 @@ public class ControlBar {
         animSpeedCombo.getSelectionModel().select(4);
         animSpeedCombo.setOnAction(e -> {
             int speedMilli = animSpeedCombo.getValue() * 400;
-            LiveView.setTextAnimSpeed(speedMilli);
+            Mastermind.getInstance().getLiveView().setTextAnimSpeed(speedMilli);
         });
         return animSpeedCombo;
     }
@@ -65,10 +69,7 @@ public class ControlBar {
         ComboBox<String> fontSizeCombo = new ComboBox<>(options);
         fontSizeCombo.getSelectionModel().select(String.valueOf(Configurations.getDefaultFontSize()));
         fontSizeCombo.setOnAction(e -> {
-            LiveView.setFontSize(Integer.valueOf(fontSizeCombo.getValue()));
-            if (LiveView.isLive()) {
-                LiveView.setFontSize(LiveView.getTextView().getText());
-            }
+            Mastermind.getInstance().getLiveView().setFont(Integer.valueOf(fontSizeCombo.getValue()));
         });
         return fontSizeCombo;
     }
@@ -78,15 +79,15 @@ public class ControlBar {
         ComboBox<String> fontCombo = new ComboBox<>(options);
         fontCombo.getSelectionModel().select(Configurations.getDefaultFont());
         fontCombo.setOnAction(e -> {
-            LiveView.setFont(fontCombo.getValue());
-            if (LiveView.isLive()) {
-                LiveView.setFontSize(LiveView.getTextView().getText());
-            }
+            Mastermind.getInstance().getLiveView().setFont(fontCombo.getValue());
         });
         return fontCombo;
     }
 
     private static Button setLiveView() {
+        if (Mastermind.getInstance().getLiveView() == null) {
+            Mastermind.getInstance().setLiveView(new LiveView());
+        }
         if (liveViewButton == null) {
             liveViewButton = new Button();
             Image buttonImage = new Image("play_button.png");
@@ -97,13 +98,11 @@ public class ControlBar {
             liveViewButton.setGraphic(imageView);
         }
         liveViewButton.setOnAction(e -> {
-            if (!LiveView.isLive()) {
-                LiveView.display();
-                LiveView.setLive(true);
+            if (!Mastermind.getInstance().liveViewIsShowing()) {
                 setImageButtonImage("stop_button.png");
+                Mastermind.getInstance().getLiveView().getWindow().show();
             } else {
-                LiveView.getWindow().close();
-                LiveView.setLive(false);
+                Mastermind.getInstance().getLiveView().getWindow().close();
                 setImageButtonImage("play_button.png");
             }
         });
