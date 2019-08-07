@@ -55,13 +55,10 @@ public class TheRootView {
         SetListQueueView setListQueueView = new SetListQueueView().init(songListSplitPane);
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
-
-
         // Preview Screen
         rightPane = new VBox();
         Mastermind.getInstance().setPreview(new ImageView());
-        Mastermind.getInstance().getPreview().setFitHeight(300);
-        Mastermind.getInstance().getPreview().setFitWidth(400);
+        Mastermind.getInstance().getPreview().setFitWidth(250);
         rightPane.getChildren().add(Mastermind.getInstance().getPreview());
 
         // Bible Slides View

@@ -20,9 +20,4 @@ public class SlideViewController  {
         this.slide_text.setText(slideContent);
         this.slide_text.wrappingWidthProperty().bind(slide_pane.widthProperty());
     }
-
-    public void setFont(String font, int size) {
-        this.transition_text.setFont(new Font(font, size));
-        this.slide_text.setFont(new Font(font, size));
-    }
 }

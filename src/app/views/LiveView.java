@@ -99,9 +99,10 @@ public class LiveView {
     }
 
     public void setFont(String font, int size) {
+        Font oldFont = new Font(fontName, fontSize);
         fontSize = size;
         fontName = font;
-        controller.slide_text.setFont(new Font(font, size));
+        setCurrentSlide(controller.slide_text.getText(), oldFont);
     }
 
     public void setFont(int size) {
@@ -112,15 +113,20 @@ public class LiveView {
         setFont(font, fontSize);
     }
 
-    public void setCurrentSlide(String text) {
+    public void setCurrentSlide(String text, Font oldFont) {
+        controller.transition_text.setFont(oldFont);
         controller.transition_text.setText(controller.slide_text.getText());
-        controller.setFont(fontName, fontSize);
+        controller.slide_text.setFont(new Font(fontName, fontSize));
         controller.slide_text.setText(text);
         animateLyrics(controller.transition_text, controller.slide_text);
         setPreviewImage();
     }
 
-    private void setPreviewImage() {
+    public void setCurrentSlide(String text) {
+        setCurrentSlide(text, new Font(fontName, fontSize));
+    }
+
+    public void setPreviewImage() {
         WritableImage previewImage = new WritableImage((int)(window.getWidth()), (int)(window.getHeight()));
         window.getScene().snapshot(previewImage);
         Mastermind.getInstance().getPreview().preserveRatioProperty().setValue(true);

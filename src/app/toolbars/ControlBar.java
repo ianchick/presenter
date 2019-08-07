@@ -70,6 +70,7 @@ public class ControlBar {
         fontSizeCombo.getSelectionModel().select(String.valueOf(Configurations.getDefaultFontSize()));
         fontSizeCombo.setOnAction(e -> {
             Mastermind.getInstance().getLiveView().setFont(Integer.valueOf(fontSizeCombo.getValue()));
+            Mastermind.getInstance().getLiveView().setPreviewImage();
         });
         return fontSizeCombo;
     }
@@ -80,6 +81,7 @@ public class ControlBar {
         fontCombo.getSelectionModel().select(Configurations.getDefaultFont());
         fontCombo.setOnAction(e -> {
             Mastermind.getInstance().getLiveView().setFont(fontCombo.getValue());
+            Mastermind.getInstance().getLiveView().setPreviewImage();
         });
         return fontCombo;
     }
