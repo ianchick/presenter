@@ -1,6 +1,7 @@
 package app.views;
 
 import app.Configurations;
+import app.Mastermind;
 import app.storage.StorageController;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -41,9 +42,9 @@ public class ChangeBackgroundView {
             imageView.setFitHeight(150);
             imageView.preserveRatioProperty().setValue(false);
             pane.setOnMouseClicked(e -> {
-                if (LiveView.isLive()) {
+                if (Mastermind.getInstance().liveViewIsShowing()) {
                     if (activeBackground != pane) {
-                        LiveView.setBackground(image);
+                        Mastermind.getInstance().getLiveView().setBackground(image);
                         if (activeBackground != null) {
                             activeBackground.setBorder(null);
                         }
@@ -52,7 +53,7 @@ public class ChangeBackgroundView {
                     } else {
                         activeBackground.setBorder(null);
                         activeBackground = null;
-                        LiveView.setBackground(null);
+                        Mastermind.getInstance().getLiveView().setBackground(null);
                     }
                 }
             });

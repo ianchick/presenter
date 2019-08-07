@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+
 public class TheRootView {
 
     private static SplitPane contentSplitPane;
@@ -82,12 +83,8 @@ public class TheRootView {
                 }
             }
             if (KeyCode.B == event.getCode()) {
-                if (LiveView.isLive()) {
-                    if (LiveView.getTextView().getText().equals("")) {
-                        slidesListView.currentSlide();
-                    } else {
-                        LiveView.getTextView().setText("");
-                    }
+                if (Mastermind.getInstance().liveViewIsShowing()) {
+                    Mastermind.getInstance().getLiveView().setCurrentSlide("");
                 }
             }
         });

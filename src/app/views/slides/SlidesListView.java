@@ -3,18 +3,14 @@ package app.views.slides;
 import app.Mastermind;
 import app.models.Slide;
 import app.models.Song;
-import app.views.LiveView;
 import app.views.dialogs.EditSlideView;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class SlidesListView {
@@ -25,7 +21,7 @@ public class SlidesListView {
     private ScrollPane parentScrollPane;
     private Song song;
 
-    public static void unsetActiveSlide() {
+    public static void unsetActiveSlideBorders() {
         if (activeSlide != null) {
             activeSlide.setBorder(null);
         }
@@ -44,7 +40,6 @@ public class SlidesListView {
             slidesFlowPane = new FlowPane();
         }
         slidesFlowPane.setId("slides_flow");
-        Tooltip.install(slidesFlowPane, new Tooltip("Right click on a slide to edit slide content"));
         if (song != null) {
             setSlides(song);
         }
@@ -86,9 +81,9 @@ public class SlidesListView {
                 EditSlideView editSlideView = new EditSlideView(song);
                 editSlideView.display(song.getSlideFromText(text.getText()));
             } else {
-                if (LiveView.isLive()) {
+                if (Mastermind.getInstance().liveViewIsShowing()) {
                     Text text = (Text) ((StackPane) item).getChildren().get(0);
-                    LiveView.setCurrentSlide(text.getText());
+                    Mastermind.getInstance().getLiveView().setCurrentSlide(text.getText());
                     setActiveSlide((StackPane) item);
                     activeSlideIndex = slidesFlowPane.getChildren().indexOf(item);
                 }
@@ -109,28 +104,28 @@ public class SlidesListView {
         if (activeSlideIndex == -1) {
             nextSlide();
         }
-        if (LiveView.isLive() && activeSlideIndex > 0) {
+        if (Mastermind.getInstance().liveViewIsShowing() && activeSlideIndex > 0) {
             activeSlideIndex = activeSlideIndex - 1;
             String lyric = song.getSlides().get(activeSlideIndex).getContent();
             setActiveSlide((StackPane) slidesFlowPane.getChildren().get(activeSlideIndex));
-            LiveView.setCurrentSlide(lyric);
+            Mastermind.getInstance().getLiveView().setCurrentSlide(lyric);
         }
     }
 
     public void nextSlide() {
-        if (LiveView.isLive() && activeSlideIndex < slidesFlowPane.getChildren().size() - 1) {
+        if (Mastermind.getInstance().liveViewIsShowing() && activeSlideIndex < slidesFlowPane.getChildren().size() - 1) {
             activeSlideIndex = activeSlideIndex + 1;
             String lyric = song.getSlides().get(activeSlideIndex).getContent();
             setActiveSlide((StackPane) slidesFlowPane.getChildren().get(activeSlideIndex));
-            LiveView.setCurrentSlide(lyric);
+            Mastermind.getInstance().getLiveView().setCurrentSlide(lyric);
         }
     }
 
     public void currentSlide() {
-        if (LiveView.isLive()) {
+        if (Mastermind.getInstance().liveViewIsShowing()) {
             String lyric = song.getSlides().get(activeSlideIndex).getContent();
             setActiveSlide((StackPane) slidesFlowPane.getChildren().get(activeSlideIndex));
-            LiveView.setCurrentSlide(lyric);
+            Mastermind.getInstance().getLiveView().setCurrentSlide(lyric);
         }
     }
 }
