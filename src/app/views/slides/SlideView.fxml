@@ -2,11 +2,16 @@
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
            fx:id="slide_pane"
            fx:controller="app.views.slides.SlideViewController"
            prefHeight="200.0" prefWidth="300.0">
+
+    <ImageView fx:id="background"/>
+
+    <ImageView fx:id="transition_background"/>
 
     <Text fx:id="slide_text" styleClass="slide"/>
 

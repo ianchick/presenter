@@ -29,9 +29,6 @@ public class LiveView {
 
     private SlideViewController controller;
 
-    private ImageView background;
-    private ImageView transitionBackground;
-
     /**
      * Opens Live View window, sets title, handles close events, sets window size and key listener, and loads SlideView.fxml
      */
@@ -51,6 +48,8 @@ public class LiveView {
 
         window.widthProperty().addListener((obs, oldVal, newVal) -> {
             controller.slide_text.setWrappingWidth(window.getWidth() - controller.slide_pane.getInsets().getLeft());
+            controller.transition_text.setWrappingWidth(window.getWidth() - controller.slide_pane.getInsets().getLeft());
+
         });
 
         window.getScene().getStylesheets().add(getClass().getResource("/app/styles/slides.css").toExternalForm());
@@ -116,34 +115,26 @@ public class LiveView {
         animateLyrics(controller.transition_text, controller.slide_text);
     }
 
-    public Text getTextView() {
-        return controller.slide_text;
-    }
-
     public void setBackground(Image image) {
-        if (background == null) {
-            background = new ImageView();
-            transitionBackground = new ImageView();
-        }
         if (image == null) {
-            transitionBackground.setImage(background.getImage());
-            background.setImage(null);
+            controller.transition_background.setImage(controller.background.getImage());
+            controller.background.setImage(null);
         } else {
-            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> background.setFitWidth(newVal.doubleValue()));
-            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> background.setFitHeight(newVal.doubleValue()));
-            background.setFitWidth(controller.slide_pane.getWidth());
-            background.setFitHeight(controller.slide_pane.getHeight());
-            background.preserveRatioProperty().setValue(false);
-            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitWidth(newVal.doubleValue()));
-            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> transitionBackground.setFitHeight(newVal.doubleValue()));
-            transitionBackground.setFitWidth(controller.slide_pane.getWidth());
-            transitionBackground.setFitHeight(controller.slide_pane.getHeight());
-            transitionBackground.preserveRatioProperty().setValue(false);
+            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> controller.background.setFitWidth(newVal.doubleValue()));
+            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> controller.background.setFitHeight(newVal.doubleValue()));
+            controller.background.setFitWidth(controller.slide_pane.getWidth());
+            controller.background.setFitHeight(controller.slide_pane.getHeight());
+            controller.background.preserveRatioProperty().setValue(false);
+            controller.slide_pane.widthProperty().addListener((obs, oldVal, newVal) -> controller.transition_background.setFitWidth(newVal.doubleValue()));
+            controller.slide_pane.heightProperty().addListener((obs, oldVal, newVal) -> controller.transition_background.setFitHeight(newVal.doubleValue()));
+            controller.transition_background.setFitWidth(controller.slide_pane.getWidth());
+            controller.transition_background.setFitHeight(controller.slide_pane.getHeight());
+            controller.transition_background.preserveRatioProperty().setValue(false);
 
-            transitionBackground.setImage(background.getImage());
-            background.setImage(image);
+            controller.transition_background.setImage(controller.background.getImage());
+            controller.background.setImage(image);
         }
-        animateBackground(transitionBackground, background);
+        animateBackground(controller.transition_background, controller.background);
     }
 
     private void animateLyrics(Text oldView, Text newView) {

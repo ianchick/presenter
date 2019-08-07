@@ -77,12 +77,12 @@ public class SlidesListView {
     private void setSlideClickEvent() {
         slidesFlowPane.getChildren().forEach(item -> item.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.SECONDARY) {
-                Text text = (Text) ((StackPane) item).getChildren().get(0);
+                Text text = (Text) item.lookup("#slide_text");
                 EditSlideView editSlideView = new EditSlideView(song);
                 editSlideView.display(song.getSlideFromText(text.getText()));
             } else {
                 if (Mastermind.getInstance().liveViewIsShowing()) {
-                    Text text = (Text) ((StackPane) item).getChildren().get(0);
+                    Text text = (Text) item.lookup("#slide_text");
                     Mastermind.getInstance().getLiveView().setCurrentSlide(text.getText());
                     setActiveSlide((StackPane) item);
                     activeSlideIndex = slidesFlowPane.getChildren().indexOf(item);
