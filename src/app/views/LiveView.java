@@ -1,6 +1,7 @@
 package app.views;
 
 import app.Configurations;
+import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.views.slides.SlideViewController;
 import app.views.slides.SlidesListView;
@@ -10,10 +11,12 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -76,6 +79,7 @@ public class LiveView {
         ChangeBackgroundView.unsetActiveBackground();
         ControlBar.setImageButtonImage("play_button.png");
         window.close();
+        Mastermind.getInstance().getPreview().setImage(null);
     }
 
     /**
@@ -113,6 +117,14 @@ public class LiveView {
         controller.setFont(fontName, fontSize);
         controller.slide_text.setText(text);
         animateLyrics(controller.transition_text, controller.slide_text);
+        setPreviewImage();
+    }
+
+    private void setPreviewImage() {
+        WritableImage previewImage = new WritableImage((int)(window.getWidth()), (int)(window.getHeight()));
+        window.getScene().snapshot(previewImage);
+        Mastermind.getInstance().getPreview().preserveRatioProperty().setValue(true);
+        Mastermind.getInstance().getPreview().setImage(previewImage);
     }
 
     public void setBackground(Image image) {
@@ -135,6 +147,7 @@ public class LiveView {
             controller.background.setImage(image);
         }
         animateBackground(controller.transition_background, controller.background);
+        setPreviewImage();
     }
 
     private void animateLyrics(Text oldView, Text newView) {

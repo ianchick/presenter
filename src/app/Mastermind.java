@@ -5,6 +5,7 @@ import app.views.LiveView;
 import app.views.SetListQueueView;
 import app.views.SongListView;
 import app.views.slides.SlidesListView;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -17,6 +18,7 @@ public class Mastermind {
     private SlidesListView slidesListView;
     private SetListQueueView setListQueueView;
     private LiveView liveView;
+    private ImageView preview;
     private static Stage mainStage;
 
     private Song selectedSong;
@@ -78,5 +80,13 @@ public class Mastermind {
 
     public boolean liveViewIsShowing() {
         return liveView.getWindow().isShowing();
+    }
+
+    public ImageView getPreview() {
+        return preview;
+    }
+
+    public void setPreview(ImageView preview) {
+        this.preview = preview;
     }
 }

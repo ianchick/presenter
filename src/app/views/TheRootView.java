@@ -9,11 +9,13 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
 
 
 public class TheRootView {
@@ -22,6 +24,7 @@ public class TheRootView {
     private static ScrollPane backgroundPane;
     private static SplitPane songListSplitPane;
     private static ScrollPane bibleScrollPane;
+    private static VBox rightPane;
     private static BorderPane root;
 
     public static BorderPane init() {
@@ -52,6 +55,15 @@ public class TheRootView {
         SetListQueueView setListQueueView = new SetListQueueView().init(songListSplitPane);
         Mastermind.getInstance().setSetListQueueView(setListQueueView);
 
+
+
+        // Preview Screen
+        rightPane = new VBox();
+        Mastermind.getInstance().setPreview(new ImageView());
+        Mastermind.getInstance().getPreview().setFitHeight(300);
+        Mastermind.getInstance().getPreview().setFitWidth(400);
+        rightPane.getChildren().add(Mastermind.getInstance().getPreview());
+
         // Bible Slides View
         bibleScrollPane = new ScrollPane();
         BibleSlidesView bibleSlidesView = new BibleSlidesView();
@@ -66,6 +78,7 @@ public class TheRootView {
         root.setTop(new VBox(menuBar, toolBar));
         root.setLeft(songListSplitPane);
         root.setCenter(contentSplitPane);
+        root.setRight(rightPane);
         return root;
     }
 
@@ -108,9 +121,9 @@ public class TheRootView {
 
     public static void toggleBiblePane(boolean isVisible) {
         if (!isVisible) {
-            root.getChildren().remove(bibleScrollPane);
+            rightPane.getChildren().remove(bibleScrollPane);
         } else {
-            root.setRight(bibleScrollPane);
+            rightPane.getChildren().add(bibleScrollPane);
         }
     }
 }
