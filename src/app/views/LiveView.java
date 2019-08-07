@@ -50,7 +50,7 @@ public class LiveView {
         controller = loader.getController();
 
         window.widthProperty().addListener((obs, oldVal, newVal) -> {
-            controller.slide_text.setWrappingWidth(controller.slide_pane.getWidth() - controller.slide_pane.getInsets().getLeft());
+            controller.slide_text.setWrappingWidth(window.getWidth() - controller.slide_pane.getInsets().getLeft());
         });
 
         window.getScene().getStylesheets().add(getClass().getResource("/app/styles/slides.css").toExternalForm());
