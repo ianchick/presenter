@@ -3,7 +3,7 @@
     -fx-hgap: 20;
 }
 
-#slide_preview_pane {
+#slide_pane {
     -fx-background-color: #000;
     -fx-padding: 20;
     -fx-min-width: 350;
@@ -18,7 +18,7 @@
     -fx-padding: 10;
 }
 
-#slide_preview_text {
+#slide_text {
     -fx-fill: #fff;
     -fx-text-alignment: center;
 }

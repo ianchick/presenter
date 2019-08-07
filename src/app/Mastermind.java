@@ -16,7 +16,6 @@ public class Mastermind {
     private SongListView songListView;
     private SlidesListView slidesListView;
     private SetListQueueView setListQueueView;
-    private FXMLLoader fxmlLoader;
     private static Stage mainStage;
 
     private Song selectedSong;
@@ -66,13 +65,5 @@ public class Mastermind {
 
     public void setSetListQueueView(SetListQueueView setListQueueView) {
         this.setListQueueView = setListQueueView;
-    }
-
-    public FXMLLoader getFxmlLoader() {
-        return fxmlLoader;
-    }
-
-    public void setFxmlLoader(FXMLLoader fxmlLoader) {
-        this.fxmlLoader = fxmlLoader;
     }
 }

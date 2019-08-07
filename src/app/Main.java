@@ -25,8 +25,6 @@ public class Main extends Application {
     }
 
     private void init(Stage window) {
-        Mastermind.getInstance().setFxmlLoader(new FXMLLoader());
-
         BorderPane root = TheRootView.init();
         Scene scene = new Scene(root);
         String songlistStyles = getClass().getResource("styles/songs.css").toExternalForm();
