@@ -4,18 +4,20 @@ import app.Mastermind;
 import app.toolbars.ControlBar;
 import app.toolbars.NavigationBar;
 import app.views.slides.SlidesListView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 
 public class TheRootView {
@@ -57,8 +59,19 @@ public class TheRootView {
 
         // Preview Screen
         rightPane = new VBox();
+        rightPane.alignmentProperty().setValue(Pos.TOP_CENTER);
         Mastermind.getInstance().setPreview(new ImageView());
         Mastermind.getInstance().getPreview().setFitWidth(250);
+        Mastermind.getInstance().getPreview().imageProperty().addListener(new ChangeListener<Image>() {
+            @Override
+            public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
+                if (newValue == null) {
+                    Mastermind.getInstance().getPreview().setFitWidth(0);
+                } else {
+                    Mastermind.getInstance().getPreview().setFitWidth(250);
+                }
+            }
+        });
         rightPane.getChildren().add(Mastermind.getInstance().getPreview());
 
         // Bible Slides View

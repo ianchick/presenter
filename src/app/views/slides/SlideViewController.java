@@ -2,7 +2,6 @@ package app.views.slides;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class SlideViewController  {
