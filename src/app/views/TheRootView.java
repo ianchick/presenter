@@ -62,7 +62,6 @@ public class TheRootView {
         rightPane = new VBox();
         rightPane.alignmentProperty().setValue(Pos.TOP_CENTER);
         Mastermind.getInstance().setPreview(new ImageView());
-        Mastermind.getInstance().getPreview().setFitWidth(250);
         Mastermind.getInstance().getPreview().imageProperty().addListener(new ChangeListener<Image>() {
             @Override
             public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
